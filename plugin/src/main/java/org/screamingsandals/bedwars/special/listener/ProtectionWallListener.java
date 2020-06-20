@@ -1,26 +1,25 @@
 package org.screamingsandals.bedwars.special.listener;
 
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.APIUtils;
-import org.screamingsandals.bedwars.api.events.BedwarsPlayerBreakBlock;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.game.GameStatus;
-import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
-import org.screamingsandals.bedwars.api.special.SpecialItem;
-import org.screamingsandals.bedwars.game.GamePlayer;
-import org.screamingsandals.bedwars.special.ProtectionWall;
-import org.screamingsandals.bedwars.utils.DelayFactory;
-import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.APIUtils;
+import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
+import org.screamingsandals.bedwars.api.events.BedwarsPlayerBreakBlock;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.game.GameStatus;
+import org.screamingsandals.bedwars.api.special.SpecialItem;
+import org.screamingsandals.bedwars.game.GamePlayer;
+import org.screamingsandals.bedwars.special.ProtectionWall;
+import org.screamingsandals.bedwars.utils.DelayFactory;
+import org.screamingsandals.bedwars.utils.MiscUtils;
 
 import java.util.ArrayList;
 

@@ -1,15 +1,15 @@
 package org.screamingsandals.bedwars.game;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.utils.MiscUtils;
 
 import static misat11.lib.lang.I18n.i18nonly;
 
 public class RespawnProtection extends BukkitRunnable {
-    private Game game;
-    private Player player;
+    private final Game game;
+    private final Player player;
     private int length;
     private boolean running = true;
 
@@ -21,7 +21,7 @@ public class RespawnProtection extends BukkitRunnable {
 
     @Override
     public void run() {
-    	if (!running) return;
+        if (!running) return;
         if (length > 0) {
             MiscUtils.sendActionBarMessage(player, i18nonly("respawn_protection_remaining").replace("%time%", String.valueOf(this.length)));
 

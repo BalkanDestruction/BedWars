@@ -1,9 +1,9 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.game.GameStatus;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.game.GameStatus;
 
 /**
  * @author Bedwars Team
@@ -12,13 +12,13 @@ public class BedwarsGameTickEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 
-    private Game game;
-    private int previousCountdown;
-    private GameStatus previousStatus;
-    private int countdown;
-    private GameStatus status;
-    private int originalNextCountdown;
-    private GameStatus originalNextStatus;
+    private final Game game;
+    private final int previousCountdown;
+    private final GameStatus previousStatus;
+    private final int countdown;
+    private final GameStatus status;
+    private final int originalNextCountdown;
+    private final GameStatus originalNextStatus;
     private int nextCountdown;
     private GameStatus nextStatus;
 

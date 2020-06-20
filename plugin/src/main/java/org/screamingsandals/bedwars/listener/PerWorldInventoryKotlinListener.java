@@ -1,11 +1,11 @@
 package org.screamingsandals.bedwars.listener;
 
 import me.ebonjaeger.perworldinventory.event.InventoryLoadEvent;
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.game.GamePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.game.GamePlayer;
 
 public class PerWorldInventoryKotlinListener implements Listener {
     @EventHandler

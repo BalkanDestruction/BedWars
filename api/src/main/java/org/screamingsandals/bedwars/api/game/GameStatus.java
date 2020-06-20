@@ -9,5 +9,5 @@ public enum GameStatus {
     RUNNING,
     GAME_END_CELEBRATING,
     REBUILDING,
-    DISABLED;
+    DISABLED
 }

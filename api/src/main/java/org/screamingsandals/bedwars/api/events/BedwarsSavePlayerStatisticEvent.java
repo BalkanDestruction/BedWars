@@ -1,9 +1,9 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.statistics.PlayerStatistic;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.screamingsandals.bedwars.api.statistics.PlayerStatistic;
 
 /**
  * @author Bedwars Team

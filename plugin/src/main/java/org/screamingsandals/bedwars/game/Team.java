@@ -1,7 +1,7 @@
 package org.screamingsandals.bedwars.game;
 
-import org.screamingsandals.bedwars.api.game.Game;
 import org.bukkit.Location;
+import org.screamingsandals.bedwars.api.game.Game;
 
 public class Team implements Cloneable, org.screamingsandals.bedwars.api.Team {
     public TeamColor color;

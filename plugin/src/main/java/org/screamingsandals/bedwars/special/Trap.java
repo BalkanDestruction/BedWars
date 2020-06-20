@@ -1,14 +1,14 @@
 package org.screamingsandals.bedwars.special;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.RunningTeam;
-import org.screamingsandals.bedwars.api.Team;
-import org.screamingsandals.bedwars.utils.MiscUtils;
-import org.screamingsandals.bedwars.utils.Sounds;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
+import org.screamingsandals.bedwars.api.RunningTeam;
+import org.screamingsandals.bedwars.api.Team;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.utils.MiscUtils;
+import org.screamingsandals.bedwars.utils.Sounds;
 
 import java.util.List;
 import java.util.Map;
@@ -16,9 +16,9 @@ import java.util.Map;
 import static misat11.lib.lang.I18n.i18nonly;
 
 public class Trap extends SpecialItem implements org.screamingsandals.bedwars.api.special.Trap {
-    private List<Map<String, Object>> trapData;
+    private final List<Map<String, Object>> trapData;
     private Location location;
-    private Player player;
+    private final Player player;
 
     public Trap(Game game, Player player, Team team, List<Map<String, Object>> trapData) {
         super(game, player, team);

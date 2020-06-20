@@ -1,7 +1,7 @@
 package org.screamingsandals.bedwars.utils;
 
-import org.screamingsandals.bedwars.Main;
 import org.bukkit.entity.Player;
+import org.screamingsandals.bedwars.Main;
 
 public class Title {
     public static void send(Player player, String title, String subtitle) {

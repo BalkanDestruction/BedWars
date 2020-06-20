@@ -1,19 +1,19 @@
 package org.screamingsandals.bedwars.api.events;
 
+import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
 import org.screamingsandals.bedwars.api.game.Game;
 import org.screamingsandals.bedwars.api.upgrades.Upgrade;
 import org.screamingsandals.bedwars.api.upgrades.UpgradeStorage;
-import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
 
 /**
  * @author Bedwars Team
  */
 public class BedwarsUpgradeRegisteredEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
-    private Game game;
-    private UpgradeStorage storage;
-    private Upgrade upgrade;
+    private final Game game;
+    private final UpgradeStorage storage;
+    private final Upgrade upgrade;
 
     /**
      * @param game

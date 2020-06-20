@@ -1,11 +1,11 @@
 package org.screamingsandals.bedwars.statistics;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.events.BedwarsSavePlayerStatisticEvent;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.events.BedwarsSavePlayerStatisticEvent;
 
 import java.io.File;
 import java.sql.*;
@@ -19,7 +19,7 @@ Thanks to BedWarsRel for this
 public class PlayerStatisticManager {
     private File databaseFile = null;
     private FileConfiguration fileDatabase;
-    private Map<UUID, PlayerStatistic> playerStatistic;
+    private final Map<UUID, PlayerStatistic> playerStatistic;
 
     public PlayerStatisticManager() {
         this.playerStatistic = new HashMap<>();

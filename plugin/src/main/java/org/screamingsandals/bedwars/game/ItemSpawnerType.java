@@ -8,14 +8,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import static misat11.lib.lang.I18n.i18n;
 
 public class ItemSpawnerType implements org.screamingsandals.bedwars.api.game.ItemSpawnerType {
-    private String configKey;
-    private String name;
-    private String translatableKey;
-    private double spread;
-    private Material material;
-    private ChatColor color;
-    private int interval;
-    private int damage;
+    private final String configKey;
+    private final String name;
+    private final String translatableKey;
+    private final double spread;
+    private final Material material;
+    private final ChatColor color;
+    private final int interval;
+    private final int damage;
 
     public ItemSpawnerType(String configKey, String name, String translatableKey, double spread, Material material,
                            ChatColor color, int interval, int damage) {

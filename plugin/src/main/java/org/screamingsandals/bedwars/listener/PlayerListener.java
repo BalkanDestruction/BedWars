@@ -25,10 +25,9 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.Cake;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.metadata.FixedMetadataValue;
 import org.screamingsandals.bedwars.Main;
 import org.screamingsandals.bedwars.api.events.BedwarsPlayerKilledEvent;
 import org.screamingsandals.bedwars.api.events.BedwarsTeamChestOpenEvent;
@@ -51,6 +50,27 @@ import static misat11.lib.lang.I18n.i18nonly;
 import static org.screamingsandals.bedwars.commands.BaseCommand.ADMIN_PERMISSION;
 
 public class PlayerListener implements Listener {
+
+    /* This event was replaced on 1.12 with newer (event handling is devided between Player112Listener and PlayerBefore112Listener) */
+    public static void onItemPickup(Player player, Item item, Cancellable cancel) {
+        if (cancel.isCancelled()) {
+            return;
+        }
+
+        if (Main.isPlayerInGame(player)) {
+            GamePlayer gPlayer = Main.getPlayerGameProfile(player);
+            Game game = gPlayer.getGame();
+            if (game.getStatus() == GameStatus.WAITING || gPlayer.isSpectator) {
+                cancel.setCancelled(true);
+            } else {
+                for (ItemSpawner spawner : game.getSpawners()) {
+                    if (spawner.getMaxSpawnedResources() > 0) {
+                        spawner.remove(item);
+                    }
+                }
+            }
+        }
+    }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent event) {
@@ -181,8 +201,8 @@ public class PlayerListener implements Listener {
 
                 new BukkitRunnable() {
                     int livingTime = respawnTime;
-                    GamePlayer gamePlayer = gVictim;
-                    Player player = gamePlayer.player;
+                    final GamePlayer gamePlayer = gVictim;
+                    final Player player = gamePlayer.player;
 
                     @Override
                     public void run() {
@@ -331,7 +351,6 @@ public class PlayerListener implements Listener {
                         && Main.getConfigurator().config.getBoolean("tnt.auto-ignite", false)) {
                     block.setType(Material.AIR);
                     Location location = block.getLocation().add(0.5, 0.5, 0.5);
-                    ;
 
                     TNTPrimed tnt = (TNTPrimed) location.getWorld().spawnEntity(location, EntityType.PRIMED_TNT);
                     tnt.setFuseTicks(explosionTime);
@@ -599,7 +618,7 @@ public class PlayerListener implements Listener {
 
         Player player = event.getPlayer();
         if (Main.isPlayerInGame(player) && !Main.getPlayerGameProfile(player).isSpectator
-               && (!player.hasPermission("bw.bypass.flight") && Main.getConfigurator().config.getBoolean("disable-flight"))) {
+                && (!player.hasPermission("bw.bypass.flight") && Main.getConfigurator().config.getBoolean("disable-flight"))) {
             event.setCancelled(true);
         }
     }
@@ -1034,27 +1053,6 @@ public class PlayerListener implements Listener {
                 if (game.getStatus() != GameStatus.DISABLED && GameCreator.isInArea(event.getBlockClicked().getLocation(), game.getPos1(), game.getPos2())) {
                     event.setCancelled(true);
                     return;
-                }
-            }
-        }
-    }
-
-    /* This event was replaced on 1.12 with newer (event handling is devided between Player112Listener and PlayerBefore112Listener) */
-    public static void onItemPickup(Player player, Item item, Cancellable cancel) {
-        if (cancel.isCancelled()) {
-            return;
-        }
-
-        if (Main.isPlayerInGame(player)) {
-            GamePlayer gPlayer = Main.getPlayerGameProfile(player);
-            Game game = gPlayer.getGame();
-            if (game.getStatus() == GameStatus.WAITING || gPlayer.isSpectator) {
-                cancel.setCancelled(true);
-            } else {
-                for (ItemSpawner spawner : game.getSpawners()) {
-                    if (spawner.getMaxSpawnedResources() > 0) {
-                        spawner.remove(item);
-                    }
                 }
             }
         }

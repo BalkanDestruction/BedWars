@@ -1,9 +1,5 @@
 package org.screamingsandals.bedwars.api.game;
 
-import org.screamingsandals.bedwars.api.*;
-import org.screamingsandals.bedwars.api.boss.StatusBar;
-import org.screamingsandals.bedwars.api.special.SpecialItem;
-import org.screamingsandals.bedwars.api.utils.DelayFactory;
 import org.bukkit.Location;
 import org.bukkit.WeatherType;
 import org.bukkit.World;
@@ -11,6 +7,10 @@ import org.bukkit.block.Block;
 import org.bukkit.boss.BarColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.screamingsandals.bedwars.api.*;
+import org.screamingsandals.bedwars.api.boss.StatusBar;
+import org.screamingsandals.bedwars.api.special.SpecialItem;
+import org.screamingsandals.bedwars.api.utils.DelayFactory;
 
 import java.util.List;
 
@@ -22,22 +22,22 @@ public interface Game {
     /**
      * @return Arena name
      */
-	String getName();
+    String getName();
 
     /**
      * @return GameStatus of the arena
      */
-	GameStatus getStatus();
+    GameStatus getStatus();
 
     /**
      *
      */
-	void start();
+    void start();
 
     /**
      *
      */
-	void stop();
+    void stop();
 
     /**
      * @return true if GameStatus is different than DISABLED
@@ -51,78 +51,78 @@ public interface Game {
     /**
      * @param player
      */
-	void joinToGame(Player player);
+    void joinToGame(Player player);
 
     /**
      * @param player
      */
-	void leaveFromGame(Player player);
+    void leaveFromGame(Player player);
 
     /**
      * @param player
      * @param team
      */
-	void selectPlayerTeam(Player player, Team team);
+    void selectPlayerTeam(Player player, Team team);
 
     /**
      * @param player
      */
-	void selectPlayerRandomTeam(Player player);
+    void selectPlayerRandomTeam(Player player);
 
     /**
      * @return defined world of the game
      */
-	World getGameWorld();
+    World getGameWorld();
 
     /**
      * @return
      */
-	Location getPos1();
+    Location getPos1();
 
     /**
      * @return
      */
-	Location getPos2();
+    Location getPos2();
 
     /**
      * @return
      */
-	Location getSpectatorSpawn();
+    Location getSpectatorSpawn();
 
     /**
      * @return configured time of the game
      */
-	int getGameTime();
+    int getGameTime();
 
     /**
      * @return configured minimal players to start the game
      */
-	int getMinPlayers();
+    int getMinPlayers();
 
     /**
      * @return configured maximal players of the arena
      */
-	int getMaxPlayers();
+    int getMaxPlayers();
 
     /**
      * @return players in game
      */
-	int countConnectedPlayers();
+    int countConnectedPlayers();
 
     /**
      * @return list of players in game
      */
-	List<Player> getConnectedPlayers();
+    List<Player> getConnectedPlayers();
 
     /**
      * @return list of game stores
      */
-	List<GameStore> getGameStores();
+    List<GameStore> getGameStores();
 
     /**
      * @return
      */
-	int countGameStores();
+    int countGameStores();
 
     /**
      * @return Team instance from the name
@@ -132,116 +132,116 @@ public interface Game {
     /**
      * @return
      */
-	List<Team> getAvailableTeams();
+    List<Team> getAvailableTeams();
 
     /**
      * @return
      */
-	int countAvailableTeams();
+    int countAvailableTeams();
 
     /**
      * @return
      */
-	List<RunningTeam> getRunningTeams();
+    List<RunningTeam> getRunningTeams();
 
     /**
      * @return
      */
-	int countRunningTeams();
-
-    /**
-     * @param player
-     * @return
-     */
-	RunningTeam getTeamOfPlayer(Player player);
+    int countRunningTeams();
 
     /**
      * @param player
      * @return
      */
-	boolean isPlayerInAnyTeam(Player player);
+    RunningTeam getTeamOfPlayer(Player player);
+
+    /**
+     * @param player
+     * @return
+     */
+    boolean isPlayerInAnyTeam(Player player);
 
     /**
      * @param player
      * @param team
      * @return
      */
-	boolean isPlayerInTeam(Player player, RunningTeam team);
+    boolean isPlayerInTeam(Player player, RunningTeam team);
 
     /**
      * @param location
      * @return
      */
-	boolean isLocationInArena(Location location);
+    boolean isLocationInArena(Location location);
 
     /**
      * @param location
      * @return
      */
-	boolean isBlockAddedDuringGame(Location location);
+    boolean isBlockAddedDuringGame(Location location);
 
     /**
      * @return
      */
-	List<SpecialItem> getActivedSpecialItems();
+    List<SpecialItem> getActivedSpecialItems();
 
     /**
      * @param type
      * @return
      */
-	List<SpecialItem> getActivedSpecialItems(Class<? extends SpecialItem> type);
+    List<SpecialItem> getActivedSpecialItems(Class<? extends SpecialItem> type);
 
     /**
      * @param team
      * @return
      */
-	List<SpecialItem> getActivedSpecialItemsOfTeam(Team team);
-
-    /**
-     * @param team
-     * @param type
-     * @return
-     */
-	List<SpecialItem> getActivedSpecialItemsOfTeam(Team team, Class<? extends SpecialItem> type);
-
-    /**
-     * @param team
-     * @return
-     */
-	SpecialItem getFirstActivedSpecialItemOfTeam(Team team);
+    List<SpecialItem> getActivedSpecialItemsOfTeam(Team team);
 
     /**
      * @param team
      * @param type
      * @return
      */
-	SpecialItem getFirstActivedSpecialItemOfTeam(Team team, Class<? extends SpecialItem> type);
+    List<SpecialItem> getActivedSpecialItemsOfTeam(Team team, Class<? extends SpecialItem> type);
+
+    /**
+     * @param team
+     * @return
+     */
+    SpecialItem getFirstActivedSpecialItemOfTeam(Team team);
+
+    /**
+     * @param team
+     * @param type
+     * @return
+     */
+    SpecialItem getFirstActivedSpecialItemOfTeam(Team team, Class<? extends SpecialItem> type);
 
     /**
      * @param player
      * @return
      */
-	List<SpecialItem> getActivedSpecialItemsOfPlayer(Player player);
+    List<SpecialItem> getActivedSpecialItemsOfPlayer(Player player);
 
     /**
      * @param player
      * @param type
      * @return
      */
-	List<SpecialItem> getActivedSpecialItemsOfPlayer(Player player, Class<? extends SpecialItem> type);
+    List<SpecialItem> getActivedSpecialItemsOfPlayer(Player player, Class<? extends SpecialItem> type);
 
     /**
      * @param player
      * @return
      */
-	SpecialItem getFirstActivedSpecialItemOfPlayer(Player player);
+    SpecialItem getFirstActivedSpecialItemOfPlayer(Player player);
 
     /**
      * @param player
      * @param type
      * @return
      */
-	SpecialItem getFirstActivedSpecialItemOfPlayer(Player player, Class<? extends SpecialItem> type);
+    SpecialItem getFirstActivedSpecialItemOfPlayer(Player player, Class<? extends SpecialItem> type);
 
     /**
      * @return
@@ -281,329 +281,329 @@ public interface Game {
     /**
      * @param item
      */
-	void registerSpecialItem(SpecialItem item);
+    void registerSpecialItem(SpecialItem item);
 
     /**
      * @param item
      */
-	void unregisterSpecialItem(SpecialItem item);
+    void unregisterSpecialItem(SpecialItem item);
 
     /**
      * @param item
      * @return
      */
-	boolean isRegisteredSpecialItem(SpecialItem item);
+    boolean isRegisteredSpecialItem(SpecialItem item);
 
     /**
      * @return
      */
-	List<ItemSpawner> getItemSpawners();
+    List<ItemSpawner> getItemSpawners();
 
     /**
      * @return
      */
-	Region getRegion();
+    Region getRegion();
 
     /**
      * @return
      */
-	StatusBar getStatusBar();
+    StatusBar getStatusBar();
 
     // LOBBY
 
     /**
      * @return
      */
-	World getLobbyWorld();
+    World getLobbyWorld();
 
     /**
      * @return
      */
-	Location getLobbySpawn();
+    Location getLobbySpawn();
 
     /**
      * @return
      */
-	int getLobbyCountdown();
+    int getLobbyCountdown();
 
     /**
      * @return
      */
-	int countTeamChests();
+    int countTeamChests();
 
     /**
      * @param team
      * @return
      */
-	int countTeamChests(RunningTeam team);
+    int countTeamChests(RunningTeam team);
 
     /**
      * @param location
      * @return
      */
-	RunningTeam getTeamOfChest(Location location);
+    RunningTeam getTeamOfChest(Location location);
 
     /**
      * @param block
      * @return
      */
-	RunningTeam getTeamOfChest(Block block);
+    RunningTeam getTeamOfChest(Block block);
 
     /**
      * @param entity
      * @return
      */
-	boolean isEntityShop(Entity entity);
+    boolean isEntityShop(Entity entity);
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getCompassEnabled();
+    InGameConfigBooleanConstants getCompassEnabled();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedCompassEnabled();
+    boolean getOriginalOrInheritedCompassEnabled();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getJoinRandomTeamAfterLobby();
+    InGameConfigBooleanConstants getJoinRandomTeamAfterLobby();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedJoinRandomTeamAfterLobby();
+    boolean getOriginalOrInheritedJoinRandomTeamAfterLobby();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getJoinRandomTeamOnJoin();
+    InGameConfigBooleanConstants getJoinRandomTeamOnJoin();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedJoinRandomTeamOnJoin();
+    boolean getOriginalOrInheritedJoinRandomTeamOnJoin();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getAddWoolToInventoryOnJoin();
+    InGameConfigBooleanConstants getAddWoolToInventoryOnJoin();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedAddWoolToInventoryOnJoin();
+    boolean getOriginalOrInheritedAddWoolToInventoryOnJoin();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getPreventKillingVillagers();
+    InGameConfigBooleanConstants getPreventKillingVillagers();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedPreventKillingVillagers();
+    boolean getOriginalOrInheritedPreventKillingVillagers();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getPlayerDrops();
+    InGameConfigBooleanConstants getPlayerDrops();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedPlayerDrops();
+    boolean getOriginalOrInheritedPlayerDrops();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getFriendlyfire();
+    InGameConfigBooleanConstants getFriendlyfire();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedFriendlyfire();
+    boolean getOriginalOrInheritedFriendlyfire();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getColoredLeatherByTeamInLobby();
+    InGameConfigBooleanConstants getColoredLeatherByTeamInLobby();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedColoredLeatherByTeamInLobby();
+    boolean getOriginalOrInheritedColoredLeatherByTeamInLobby();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getKeepInventory();
+    InGameConfigBooleanConstants getKeepInventory();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedKeepInventory();
+    boolean getOriginalOrInheritedKeepInventory();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getCrafting();
+    InGameConfigBooleanConstants getCrafting();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedCrafting();
+    boolean getOriginalOrInheritedCrafting();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getLobbyBossbar();
+    InGameConfigBooleanConstants getLobbyBossbar();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedLobbyBossbar();
+    boolean getOriginalOrInheritedLobbyBossbar();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getGameBossbar();
+    InGameConfigBooleanConstants getGameBossbar();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedGameBossbar();
+    boolean getOriginalOrInheritedGameBossbar();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getScoreboard();
+    InGameConfigBooleanConstants getScoreboard();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedScoreaboard();
+    boolean getOriginalOrInheritedScoreaboard();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getLobbyScoreboard();
+    InGameConfigBooleanConstants getLobbyScoreboard();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedLobbyScoreaboard();
+    boolean getOriginalOrInheritedLobbyScoreaboard();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getPreventSpawningMobs();
+    InGameConfigBooleanConstants getPreventSpawningMobs();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedPreventSpawningMobs();
+    boolean getOriginalOrInheritedPreventSpawningMobs();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getSpawnerHolograms();
+    InGameConfigBooleanConstants getSpawnerHolograms();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedSpawnerHolograms();
+    boolean getOriginalOrInheritedSpawnerHolograms();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getSpawnerDisableMerge();
+    InGameConfigBooleanConstants getSpawnerDisableMerge();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedSpawnerDisableMerge();
+    boolean getOriginalOrInheritedSpawnerDisableMerge();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getGameStartItems();
+    InGameConfigBooleanConstants getGameStartItems();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedGameStartItems();
+    boolean getOriginalOrInheritedGameStartItems();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getPlayerRespawnItems();
+    InGameConfigBooleanConstants getPlayerRespawnItems();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedPlayerRespawnItems();
+    boolean getOriginalOrInheritedPlayerRespawnItems();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getSpawnerHologramsCountdown();
+    InGameConfigBooleanConstants getSpawnerHologramsCountdown();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedSpawnerHologramsCountdown();
+    boolean getOriginalOrInheritedSpawnerHologramsCountdown();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getDamageWhenPlayerIsNotInArena();
+    InGameConfigBooleanConstants getDamageWhenPlayerIsNotInArena();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedDamageWhenPlayerIsNotInArena();
+    boolean getOriginalOrInheritedDamageWhenPlayerIsNotInArena();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getRemoveUnusedTargetBlocks();
+    InGameConfigBooleanConstants getRemoveUnusedTargetBlocks();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedRemoveUnusedTargetBlocks();
+    boolean getOriginalOrInheritedRemoveUnusedTargetBlocks();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getAllowBlockFalling();
+    InGameConfigBooleanConstants getAllowBlockFalling();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedAllowBlockFalling();
+    boolean getOriginalOrInheritedAllowBlockFalling();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getHoloAboveBed();
+    InGameConfigBooleanConstants getHoloAboveBed();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedHoloAboveBed();
+    boolean getOriginalOrInheritedHoloAboveBed();
 
     /**
      * @return
      */
-	InGameConfigBooleanConstants getSpectatorJoin();
+    InGameConfigBooleanConstants getSpectatorJoin();
 
     /**
      * @return
      */
-	boolean getOriginalOrInheritedSpectatorJoin();
+    boolean getOriginalOrInheritedSpectatorJoin();
 
     /**
      * @return
@@ -618,27 +618,27 @@ public interface Game {
     /**
      * @return
      */
-	boolean getBungeeEnabled();
+    boolean getBungeeEnabled();
 
     /**
      * @return
      */
-	ArenaTime getArenaTime();
+    ArenaTime getArenaTime();
 
     /**
      * @return
      */
-	WeatherType getArenaWeather();
+    WeatherType getArenaWeather();
 
     /**
      * @return
      */
-	BarColor getLobbyBossBarColor();
+    BarColor getLobbyBossBarColor();
 
     /**
      * @return
      */
-	BarColor getGameBossBarColor();
+    BarColor getGameBossBarColor();
 
     /**
      * @return

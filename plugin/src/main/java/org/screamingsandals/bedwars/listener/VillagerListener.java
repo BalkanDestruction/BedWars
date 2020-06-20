@@ -1,15 +1,15 @@
 package org.screamingsandals.bedwars.listener;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.game.GameStatus;
-import org.screamingsandals.bedwars.api.game.GameStore;
-import org.screamingsandals.bedwars.api.events.BedwarsOpenShopEvent;
-import org.screamingsandals.bedwars.api.events.BedwarsOpenShopEvent.Result;
-import org.screamingsandals.bedwars.game.Game;
-import org.screamingsandals.bedwars.game.GamePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.events.BedwarsOpenShopEvent;
+import org.screamingsandals.bedwars.api.events.BedwarsOpenShopEvent.Result;
+import org.screamingsandals.bedwars.api.game.GameStatus;
+import org.screamingsandals.bedwars.api.game.GameStore;
+import org.screamingsandals.bedwars.game.Game;
+import org.screamingsandals.bedwars.game.GamePlayer;
 
 public class VillagerListener implements Listener {
 

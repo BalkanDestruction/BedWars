@@ -1,12 +1,12 @@
 package org.screamingsandals.bedwars.utils;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.game.Team;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.game.Team;
 
 public class TeamJoinMetaDataValue implements MetadataValue {
-    private Team team;
+    private final Team team;
     private boolean teamJoin = true;
 
     public TeamJoinMetaDataValue(Team team) {

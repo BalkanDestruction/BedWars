@@ -1,8 +1,8 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.screamingsandals.bedwars.api.game.Game;
 
 /**
  * @author Bedwars Team
@@ -10,7 +10,7 @@ import org.bukkit.event.HandlerList;
 public class BedwarsGameStartedEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
-    private Game game;
+    private final Game game;
 
     /**
      * @param game

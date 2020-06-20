@@ -4,17 +4,17 @@ version: ${project.version}
 author: ScreamingSandals <Misat11, Ceph>
 api-version: 1.13
 load: POSTWORLD
-softdepend: 
-- Vault
-- Multiverse-Core
-- Multiworld
-- MultiWorld
-- UltimateCore
-- PlaceholderAPI
-- BarAPI
-- PerWorldInventory
-- SlimeWorldManager
-- My_Worlds
+softdepend:
+  - Vault
+  - Multiverse-Core
+  - Multiworld
+  - MultiWorld
+  - UltimateCore
+  - PlaceholderAPI
+  - BarAPI
+  - PerWorldInventory
+  - SlimeWorldManager
+  - My_Worlds
 
 commands:
   bw:

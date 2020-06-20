@@ -1,10 +1,5 @@
 package org.screamingsandals.bedwars.special;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.Team;
-import org.screamingsandals.bedwars.game.TeamColor;
-import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -12,6 +7,11 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.Team;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.game.TeamColor;
+import org.screamingsandals.bedwars.utils.MiscUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,9 @@ import static misat11.lib.lang.I18n.i18n;
 import static misat11.lib.lang.I18n.i18nonly;
 
 public class ProtectionWall extends SpecialItem implements org.screamingsandals.bedwars.api.special.ProtectionWall {
-    private Game game;
-    private Player player;
-    private Team team;
+    private final Game game;
+    private final Player player;
+    private final Team team;
 
     private int breakingTime;
     private int livingTime;
@@ -31,7 +31,7 @@ public class ProtectionWall extends SpecialItem implements org.screamingsandals.
     private int distance;
     private boolean canBreak;
 
-    private ItemStack item;
+    private final ItemStack item;
     private Material buildingMaterial;
     private List<Block> wallBlocks;
 
@@ -197,9 +197,9 @@ public class ProtectionWall extends SpecialItem implements org.screamingsandals.
             MiscUtils.sendActionBarMessage(player, i18nonly("specials_protection_wall_created").replace("%time%", Integer.toString(breakingTime)));
 
             if (item.getAmount() > 1) {
-        		item.setAmount(item.getAmount() - 1);
-        	} else {
-        		player.getInventory().remove(item);
+                item.setAmount(item.getAmount() - 1);
+            } else {
+                player.getInventory().remove(item);
             }
             player.updateInventory();
         } else {
@@ -207,10 +207,10 @@ public class ProtectionWall extends SpecialItem implements org.screamingsandals.
 
             MiscUtils.sendActionBarMessage(player, i18nonly("specials_protection_wall_created_unbreakable"));
             if (item.getAmount() > 1) {
-        		item.setAmount(item.getAmount() - 1);
-        	} else {
-        		player.getInventory().remove(item);
-        	}
+                item.setAmount(item.getAmount() - 1);
+            } else {
+                player.getInventory().remove(item);
+            }
             player.updateInventory();
         }
     }

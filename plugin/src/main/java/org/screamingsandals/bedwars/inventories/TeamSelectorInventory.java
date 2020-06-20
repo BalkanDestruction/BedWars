@@ -26,10 +26,10 @@ import java.util.List;
 import static misat11.lib.lang.I18n.i18nonly;
 
 public class TeamSelectorInventory implements Listener {
-    private Game game;
+    private final Game game;
     private SimpleInventories simpleGuiFormat;
-    private Options options;
-    private List<Player> openedForPlayers = new ArrayList<>();
+    private final Options options;
+    private final List<Player> openedForPlayers = new ArrayList<>();
 
     public TeamSelectorInventory(Main plugin, Game game) {
         this.game = game;
@@ -70,11 +70,11 @@ public class TeamSelectorInventory implements Listener {
     }
 
     private void createData() {
-    	SimpleInventories simpleGuiFormat = new SimpleInventories(options);
+        SimpleInventories simpleGuiFormat = new SimpleInventories(options);
         FormatBuilder builder = new FormatBuilder();
-        
+
         ItemStack stack = Main.getConfigurator().readDefinedItem("team-select", Main.isLegacy() ? "WOOL" : "WHITE_WOOL");
-        
+
         for (Team team : game.getTeams()) {
             ItemStack teamStack = Main.applyColor(team.color, stack, true);
             ItemMeta teamMeta = teamStack.getItemMeta();

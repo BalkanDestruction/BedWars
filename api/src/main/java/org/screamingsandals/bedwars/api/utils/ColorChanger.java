@@ -1,7 +1,7 @@
 package org.screamingsandals.bedwars.api.utils;
 
-import org.screamingsandals.bedwars.api.TeamColor;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.api.TeamColor;
 
 
 /**

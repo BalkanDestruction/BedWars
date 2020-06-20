@@ -9,10 +9,10 @@ public interface Trap extends SpecialItem {
     /**
      * @return
      */
-	Location getLocation();
+    Location getLocation();
 
     /**
      * @return
      */
-	boolean isPlaced();
+    boolean isPlaced();
 }

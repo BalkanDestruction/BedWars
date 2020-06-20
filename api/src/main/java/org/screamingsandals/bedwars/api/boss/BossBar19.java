@@ -10,20 +10,20 @@ public interface BossBar19 extends BossBar {
     /**
      * @return color
      */
-	BarColor getColor();
+    BarColor getColor();
 
     /**
      * @param color
      */
-	void setColor(BarColor color);
+    void setColor(BarColor color);
 
     /**
      * @return style
      */
-	BarStyle getStyle();
+    BarStyle getStyle();
 
     /**
      * @param style
      */
-	void setStyle(BarStyle style);
+    void setStyle(BarStyle style);
 }

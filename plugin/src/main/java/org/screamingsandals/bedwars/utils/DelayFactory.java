@@ -1,16 +1,16 @@
 package org.screamingsandals.bedwars.utils;
 
+import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.screamingsandals.bedwars.Main;
 import org.screamingsandals.bedwars.api.game.Game;
 import org.screamingsandals.bedwars.api.special.SpecialItem;
-import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class DelayFactory implements org.screamingsandals.bedwars.api.utils.DelayFactory {
     private int delay;
-    private SpecialItem specialItem;
-    private Player player;
-    private Game game;
+    private final SpecialItem specialItem;
+    private final Player player;
+    private final Game game;
     private boolean delayActive;
 
     public DelayFactory(int delay, SpecialItem specialItem, Player player, Game game) {

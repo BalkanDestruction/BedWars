@@ -1,10 +1,10 @@
 package org.screamingsandals.bedwars.utils;
 
-import org.screamingsandals.bedwars.game.Team;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.screamingsandals.bedwars.game.Team;
 
 public class ArmorStandUtils {
     public static void equipArmorStand(ArmorStand stand, Team team) {

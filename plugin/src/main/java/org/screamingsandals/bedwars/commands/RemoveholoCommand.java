@@ -1,9 +1,9 @@
 package org.screamingsandals.bedwars.commands;
 
-import org.screamingsandals.bedwars.Main;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.screamingsandals.bedwars.Main;
 
 import java.util.List;
 

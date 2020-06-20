@@ -36,7 +36,7 @@ public final class UpgradeRegistry {
      * @param name Name of upgrade
      */
     public static void unregisterUpgrade(String name) {
-		registeredUpgrades.remove(name);
+        registeredUpgrades.remove(name);
     }
 
     /**

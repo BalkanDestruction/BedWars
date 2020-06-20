@@ -1,9 +1,9 @@
 package org.screamingsandals.bedwars.commands;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.game.Game;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.game.Game;
 
 import java.util.List;
 

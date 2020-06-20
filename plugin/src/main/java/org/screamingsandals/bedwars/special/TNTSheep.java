@@ -1,28 +1,28 @@
 package org.screamingsandals.bedwars.special;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.Team;
-import org.screamingsandals.bedwars.game.TeamColor;
-import org.screamingsandals.bedwars.utils.MiscUtils;
-import org.screamingsandals.lib.nms.entity.EntityUtils;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.Team;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.game.TeamColor;
+import org.screamingsandals.bedwars.utils.MiscUtils;
+import org.screamingsandals.lib.nms.entity.EntityUtils;
 
 import static misat11.lib.lang.I18n.i18n;
 
 public class TNTSheep extends SpecialItem implements org.screamingsandals.bedwars.api.special.TNTSheep {
     private LivingEntity entity;
     private TNTPrimed tnt;
-    private Location loc;
-    private ItemStack item;
-    private double speed;
-    private double followRange;
-    private double maxTargetDistance;
-    private int explosionTime;
+    private final Location loc;
+    private final ItemStack item;
+    private final double speed;
+    private final double followRange;
+    private final double maxTargetDistance;
+    private final int explosionTime;
 
     public TNTSheep(Game game, Player player, Team team, Location loc, ItemStack item,
                     double speed, double followRange, double maxTargetDistance, int explosionTime) {
@@ -75,7 +75,7 @@ public class TNTSheep extends SpecialItem implements org.screamingsandals.bedwar
 
         entity = sheep;
         EntityUtils.makeMobAttackTarget(sheep, speed, followRange, 0)
-        	.getTargetSelector().attackTarget(target);
+                .getTargetSelector().attackTarget(target);
 
         tnt = (TNTPrimed) loc.getWorld().spawnEntity(loc, EntityType.PRIMED_TNT);
         tnt.setFuseTicks(explosionTime);
@@ -87,9 +87,9 @@ public class TNTSheep extends SpecialItem implements org.screamingsandals.bedwar
         Main.registerGameEntity(tnt, (org.screamingsandals.bedwars.game.Game) game);
 
         if (item.getAmount() > 1) {
-        	item.setAmount(item.getAmount() - 1);
+            item.setAmount(item.getAmount() - 1);
         } else {
-        	player.getInventory().remove(item);
+            player.getInventory().remove(item);
         }
         player.updateInventory();
 

@@ -1,13 +1,13 @@
 package org.screamingsandals.bedwars.api.utils;
 
-import org.screamingsandals.bedwars.api.BedwarsAPI;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
-import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToDisplayedItem;
-import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToItem;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.api.BedwarsAPI;
+import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
+import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToDisplayedItem;
+import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToItem;
+import org.screamingsandals.bedwars.api.game.Game;
 
 import java.util.HashMap;
 import java.util.Map;

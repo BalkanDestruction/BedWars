@@ -12,12 +12,11 @@ import org.screamingsandals.lib.nms.entity.PlayerUtils;
 
 public class GamePlayer {
     public final Player player;
-    private Game game = null;
-    private String latestGame = null;
-    private StoredInventory oldInventory = new StoredInventory();
-
     public boolean isSpectator = false;
     public boolean isTeleportingFromGame_justForInventoryPlugins = false;
+    private final StoredInventory oldInventory = new StoredInventory();
+    private Game game = null;
+    private String latestGame = null;
 
     public GamePlayer(Player player) {
         this.player = player;
@@ -104,10 +103,7 @@ public class GamePlayer {
 
         player.setGameMode(oldInventory.mode);
 
-        if (oldInventory.mode == GameMode.CREATIVE)
-            player.setAllowFlight(true);
-        else
-            player.setAllowFlight(false);
+        player.setAllowFlight(oldInventory.mode == GameMode.CREATIVE);
 
         player.updateInventory();
         player.resetPlayerTime();
@@ -145,7 +141,7 @@ public class GamePlayer {
     }
 
     public boolean teleport(Location location) {
-    	return PlayerUtils.teleportPlayer(player, location);
+        return PlayerUtils.teleportPlayer(player, location);
     }
 
     public boolean teleport(Location location, Runnable runnable) {

@@ -1,10 +1,5 @@
 package org.screamingsandals.bedwars.utils;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.lib.nms.particles.Particles;
-import org.screamingsandals.bedwars.api.events.BedwarsPostSpawnEffectEvent;
-import org.screamingsandals.bedwars.api.events.BedwarsPreSpawnEffectEvent;
 import org.bukkit.Effect;
 import org.bukkit.FireworkEffect;
 import org.bukkit.configuration.ConfigurationSection;
@@ -12,6 +7,11 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.events.BedwarsPostSpawnEffectEvent;
+import org.screamingsandals.bedwars.api.events.BedwarsPreSpawnEffectEvent;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.lib.nms.particles.Particles;
 
 import java.util.List;
 import java.util.Map;

@@ -1,7 +1,7 @@
 package org.screamingsandals.bedwars.commands;
 
-import org.screamingsandals.bedwars.Main;
 import org.bukkit.command.CommandSender;
+import org.screamingsandals.bedwars.Main;
 
 import java.util.List;
 

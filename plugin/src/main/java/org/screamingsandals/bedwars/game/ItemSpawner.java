@@ -1,16 +1,15 @@
 package org.screamingsandals.bedwars.game;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
 import org.screamingsandals.bedwars.api.Team;
 import org.screamingsandals.lib.nms.holograms.Hologram;
-
-import static misat11.lib.lang.I.i18nonly;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Location;
-import org.bukkit.entity.Item;
+import static misat11.lib.lang.I.i18nonly;
 
 public class ItemSpawner implements org.screamingsandals.bedwars.api.game.ItemSpawner {
     public Location loc;
@@ -68,13 +67,13 @@ public class ItemSpawner implements org.screamingsandals.bedwars.api.game.ItemSp
     }
 
     @Override
-    public boolean getHologramEnabled() {
-        return hologramEnabled;
+    public void setCurrentLevel(double level) {
+        currentLevel = level;
     }
 
     @Override
-    public void setCurrentLevel(double level) {
-        currentLevel = level;
+    public boolean getHologramEnabled() {
+        return hologramEnabled;
     }
 
     @Override
@@ -86,74 +85,74 @@ public class ItemSpawner implements org.screamingsandals.bedwars.api.game.ItemSp
     public void setTeam(Team team) {
         this.team = team;
     }
-    
+
     public int getMaxSpawnedResources() {
-    	return maxSpawnedResources;
+        return maxSpawnedResources;
     }
-    
+
     public int nextMaxSpawn(int calculated, Hologram countdown) {
-    	if (currentLevel <= 0) {
-    		if (countdown != null && (!spawnerIsFullHologram || currentLevelOnHologram != currentLevel)) {
-    			spawnerIsFullHologram = true;
-    			currentLevelOnHologram = currentLevel; 
-    			countdown.setLine(1, i18nonly("spawner_not_enough_level").replace("%levels%", String.valueOf((currentLevelOnHologram * (-1)) + 1)));
-    		}
-    		return 0;
-    	}
-    	
-    	if (maxSpawnedResources <= 0) {
-    		if (spawnerIsFullHologram && !rerenderHologram) {
-    			spawnerIsFullHologram = false;
-    			rerenderHologram = true;
-    		}
-    		return calculated;
-    	}
-    	
-    	/* Update spawned items */
+        if (currentLevel <= 0) {
+            if (countdown != null && (!spawnerIsFullHologram || currentLevelOnHologram != currentLevel)) {
+                spawnerIsFullHologram = true;
+                currentLevelOnHologram = currentLevel;
+                countdown.setLine(1, i18nonly("spawner_not_enough_level").replace("%levels%", String.valueOf((currentLevelOnHologram * (-1)) + 1)));
+            }
+            return 0;
+        }
+
+        if (maxSpawnedResources <= 0) {
+            if (spawnerIsFullHologram && !rerenderHologram) {
+                spawnerIsFullHologram = false;
+                rerenderHologram = true;
+            }
+            return calculated;
+        }
+
+        /* Update spawned items */
         spawnedItems.removeIf(Entity::isDead);
-    	
-    	int spawned = spawnedItems.size();
-    	
-    	if (spawned >= maxSpawnedResources) {
-    		if (countdown != null && !spawnerIsFullHologram) {
-        		spawnerIsFullHologram = true;
-    			countdown.setLine(1, i18nonly("spawner_is_full"));
-    		}
-    		return 0;
-    	}
-    	
-    	if ((maxSpawnedResources - spawned) >= calculated) {
-    		if (spawnerIsFullHologram && !rerenderHologram) {
-    			rerenderHologram = true;
-    			spawnerIsFullHologram = false;
-    		} else if (countdown != null && (calculated + spawned) == maxSpawnedResources) {
-        		spawnerIsFullHologram = true;
-    			countdown.setLine(1, i18nonly("spawner_is_full"));
-    		}
-    		return calculated;
-    	}
-    	
-		if (countdown != null && !spawnerIsFullHologram) {
-    		spawnerIsFullHologram = true;
-			countdown.setLine(1, i18nonly("spawner_is_full"));
-		}
-    	
-    	return maxSpawnedResources - spawned;
+
+        int spawned = spawnedItems.size();
+
+        if (spawned >= maxSpawnedResources) {
+            if (countdown != null && !spawnerIsFullHologram) {
+                spawnerIsFullHologram = true;
+                countdown.setLine(1, i18nonly("spawner_is_full"));
+            }
+            return 0;
+        }
+
+        if ((maxSpawnedResources - spawned) >= calculated) {
+            if (spawnerIsFullHologram && !rerenderHologram) {
+                rerenderHologram = true;
+                spawnerIsFullHologram = false;
+            } else if (countdown != null && (calculated + spawned) == maxSpawnedResources) {
+                spawnerIsFullHologram = true;
+                countdown.setLine(1, i18nonly("spawner_is_full"));
+            }
+            return calculated;
+        }
+
+        if (countdown != null && !spawnerIsFullHologram) {
+            spawnerIsFullHologram = true;
+            countdown.setLine(1, i18nonly("spawner_is_full"));
+        }
+
+        return maxSpawnedResources - spawned;
     }
-    
+
     public void add(Item item) {
-    	if (maxSpawnedResources > 0 && !spawnedItems.contains(item)) {
-    		spawnedItems.add(item);
-    	}
+        if (maxSpawnedResources > 0 && !spawnedItems.contains(item)) {
+            spawnedItems.add(item);
+        }
     }
-    
+
     public void remove(Item item) {
-    	if (maxSpawnedResources > 0 && spawnedItems.contains(item)) {
-    		spawnedItems.remove(item);
-    		if (spawnerIsFullHologram && maxSpawnedResources > spawnedItems.size()) {
-    			spawnerIsFullHologram = false;
-    			rerenderHologram = true;
-    		}
-    	}
+        if (maxSpawnedResources > 0 && spawnedItems.contains(item)) {
+            spawnedItems.remove(item);
+            if (spawnerIsFullHologram && maxSpawnedResources > spawnedItems.size()) {
+                spawnerIsFullHologram = false;
+                rerenderHologram = true;
+            }
+        }
     }
 }

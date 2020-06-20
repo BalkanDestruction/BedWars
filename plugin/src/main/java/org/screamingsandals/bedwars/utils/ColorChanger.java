@@ -1,10 +1,10 @@
 package org.screamingsandals.bedwars.utils;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.game.TeamColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.game.TeamColor;
 import org.screamingsandals.lib.debug.Debug;
 
 public class ColorChanger implements org.screamingsandals.bedwars.api.utils.ColorChanger {

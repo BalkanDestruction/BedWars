@@ -1,10 +1,10 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.api.game.Game;
 
 import java.util.Map;
 
@@ -27,6 +27,10 @@ public class BedwarsApplyPropertyToItem extends Event {
         this.player = player;
         this.stack = stack;
         this.properties = properties;
+    }
+
+    public static HandlerList getHandlerList() {
+        return BedwarsApplyPropertyToItem.handlers;
     }
 
     /**
@@ -158,10 +162,6 @@ public class BedwarsApplyPropertyToItem extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return BedwarsApplyPropertyToItem.handlers;
-    }
-
-    public static HandlerList getHandlerList() {
         return BedwarsApplyPropertyToItem.handlers;
     }
 }

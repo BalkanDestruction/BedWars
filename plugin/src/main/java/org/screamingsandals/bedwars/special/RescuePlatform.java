@@ -1,10 +1,5 @@
 package org.screamingsandals.bedwars.special;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.Team;
-import org.screamingsandals.bedwars.game.TeamColor;
-import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -12,6 +7,11 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.Team;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.game.TeamColor;
+import org.screamingsandals.bedwars.utils.MiscUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +19,13 @@ import java.util.List;
 import static misat11.lib.lang.I18n.i18nonly;
 
 public class RescuePlatform extends SpecialItem implements org.screamingsandals.bedwars.api.special.RescuePlatform {
-    private Game game;
-    private Player player;
-    private Team team;
+    private final Game game;
+    private final Player player;
+    private final Team team;
     private List<Block> platformBlocks;
 
     private Material buildingMaterial;
-    private ItemStack item;
+    private final ItemStack item;
 
     private boolean canBreak;
     private int breakingTime;
@@ -145,10 +145,10 @@ public class RescuePlatform extends SpecialItem implements org.screamingsandals.
 
             item.setAmount(item.getAmount() - 1);
             if (item.getAmount() > 1) {
-        		item.setAmount(item.getAmount() - 1);
-        	} else {
-        		player.getInventory().remove(item);
-        	}
+                item.setAmount(item.getAmount() - 1);
+            } else {
+                player.getInventory().remove(item);
+            }
             player.updateInventory();
         } else {
             game.registerSpecialItem(this);
@@ -156,10 +156,10 @@ public class RescuePlatform extends SpecialItem implements org.screamingsandals.
             MiscUtils.sendActionBarMessage(player, i18nonly("specials_rescue_platform_created_unbreakable"));
             item.setAmount(item.getAmount() - 1);
             if (item.getAmount() > 1) {
-        		item.setAmount(item.getAmount() - 1);
-        	} else {
-        		player.getInventory().remove(item);
-        	}
+                item.setAmount(item.getAmount() - 1);
+            } else {
+                player.getInventory().remove(item);
+            }
             player.updateInventory();
         }
     }

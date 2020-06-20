@@ -1,20 +1,20 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.RunningTeam;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.screamingsandals.bedwars.api.RunningTeam;
+import org.screamingsandals.bedwars.api.game.Game;
 
 /**
  * @author Bedwars Team
  */
 public class BedwarsTeamChestOpenEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
-    private Game game;
-    private Player player;
-    private RunningTeam team;
+    private final Game game;
+    private final Player player;
+    private final RunningTeam team;
     private boolean cancelled = false;
 
     /**

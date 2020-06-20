@@ -1,22 +1,22 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.game.GameStore;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.game.GameStore;
 
 /**
  * @author Bedwars Team
  */
 public class BedwarsOpenShopEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
-    private Entity clickedEntity;
-    private Game game;
-    private Player player;
-    private GameStore store;
+    private final Entity clickedEntity;
+    private final Game game;
+    private final Player player;
+    private final GameStore store;
     private Result result = Result.ALLOW;
 
     /**
@@ -101,11 +101,11 @@ public class BedwarsOpenShopEvent extends Event implements Cancellable {
     /**
      * @author Bedwars Team
      */
-    public static enum Result {
+    public enum Result {
         ALLOW,
         DISALLOW_THIRD_PARTY_SHOP,
         DISALLOW_LOCKED_FOR_THIS_PLAYER,
-        DISALLOW_UNKNOWN;
+        DISALLOW_UNKNOWN
     }
 
 }

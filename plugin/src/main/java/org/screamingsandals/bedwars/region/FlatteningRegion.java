@@ -1,6 +1,5 @@
 package org.screamingsandals.bedwars.region;
 
-import org.screamingsandals.bedwars.api.Region;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -9,6 +8,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Bed;
 import org.bukkit.block.data.type.Bed.Part;
+import org.screamingsandals.bedwars.api.Region;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 public class FlatteningRegion implements Region {
-    private List<Location> builtBlocks = new ArrayList<>();
-    private Map<Location, BlockData> brokenOriginalBlocks = new HashMap<>();
+    private final List<Location> builtBlocks = new ArrayList<>();
+    private final Map<Location, BlockData> brokenOriginalBlocks = new HashMap<>();
 
     @Override
     public boolean isBlockAddedDuringGame(Location loc) {

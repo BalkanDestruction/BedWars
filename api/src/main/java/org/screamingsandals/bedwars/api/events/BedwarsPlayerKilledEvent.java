@@ -1,10 +1,10 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.api.game.Game;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import java.util.List;
 public class BedwarsPlayerKilledEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
-    private Game game;
-    private Player killer;
-    private Player player;
-    private List<ItemStack> drops;
+    private final Game game;
+    private final Player killer;
+    private final Player player;
+    private final List<ItemStack> drops;
 
     /**
      * @param game

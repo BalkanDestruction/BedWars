@@ -1,21 +1,10 @@
 package org.screamingsandals.bedwars.special.listener;
 
-import org.bukkit.entity.Projectile;
-import org.bukkit.projectiles.ProjectileSource;
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.APIUtils;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.game.GameStatus;
-import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
-import org.screamingsandals.bedwars.api.special.SpecialItem;
-import org.screamingsandals.bedwars.game.GamePlayer;
-import org.screamingsandals.bedwars.special.Golem;
-import org.screamingsandals.bedwars.utils.DelayFactory;
-import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -25,6 +14,17 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.projectiles.ProjectileSource;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.APIUtils;
+import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.game.GameStatus;
+import org.screamingsandals.bedwars.api.special.SpecialItem;
+import org.screamingsandals.bedwars.game.GamePlayer;
+import org.screamingsandals.bedwars.special.Golem;
+import org.screamingsandals.bedwars.utils.DelayFactory;
+import org.screamingsandals.bedwars.utils.MiscUtils;
 
 import java.util.List;
 
@@ -143,7 +143,7 @@ public class GolemListener implements Listener {
 
     @EventHandler
     public void onGolemTarget(EntityTargetEvent event) {
-    	if (!(event.getEntity() instanceof IronGolem)) {
+        if (!(event.getEntity() instanceof IronGolem)) {
             return;
         }
 
@@ -165,11 +165,11 @@ public class GolemListener implements Listener {
 
                                 if (Main.isPlayerInGame(player)) {
                                     if (golem.getTeam() == game.getTeamOfPlayer(player)) {
-                                    	event.setCancelled(true);
+                                        event.setCancelled(true);
                                         // Try to find enemy
                                         Player playerTarget = MiscUtils.findTarget(game, player, golem.getFollowRange());
                                         if (playerTarget != null) {
-                                        	// Oh. We found enemy!
+                                            // Oh. We found enemy!
                                             ironGolem.setTarget(playerTarget);
                                             return;
                                         }

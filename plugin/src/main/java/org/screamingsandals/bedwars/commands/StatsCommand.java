@@ -1,11 +1,11 @@
 package org.screamingsandals.bedwars.commands;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.statistics.PlayerStatistic;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.statistics.PlayerStatistic;
 
 import java.util.List;
 

@@ -1,14 +1,14 @@
 package org.screamingsandals.bedwars.special.listener;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.APIUtils;
-import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
-import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.APIUtils;
+import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
+import org.screamingsandals.bedwars.utils.MiscUtils;
 
 public class MagnetShoesListener implements Listener {
     // Class for special item is not needed in this case (so this special item is not registered in game)

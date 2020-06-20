@@ -1,6 +1,6 @@
 inventory {
 
-    category ('DIAMOND_CHESTPLATE;1;Armor;Protect yourself with armor! Click here.') {
+    category('DIAMOND_CHESTPLATE;1;Armor;Protect yourself with armor! Click here.') {
 
 
         item('LEATHER_HELMET for 1 of bronze') {
@@ -42,7 +42,7 @@ inventory {
     }
 
 
-    category ('DIAMOND_SWORD;1;Swords;Click here to get sword for attacking your enemies') {
+    category('DIAMOND_SWORD;1;Swords;Click here to get sword for attacking your enemies') {
         column 'center'
 
         item('STICK for 8 of bronze') {
@@ -62,22 +62,22 @@ inventory {
         }
 
         item('GOLDEN_SWORD for 3 of gold') {
-            stack.enchant ([
+            stack.enchant([
                     'DAMAGE_ALL': 2,
-                    'KNOCKBACK': 1
+                    'KNOCKBACK' : 1
             ])
         }
 
         item('GOLDEN_AXE for 15 of gold') {
             stack {
                 name 'Axe of Infinity'
-                enchant (['DAMAGE_ALL', 'DURABILITY', 'KNOCKBACK'])
+                enchant(['DAMAGE_ALL', 'DURABILITY', 'KNOCKBACK'])
             }
         }
 
     }
 
-    category ('BOW;1;Bows;Prove yourself as a marksman with these wonderful bows') {
+    category('BOW;1;Bows;Prove yourself as a marksman with these wonderful bows') {
         column 'right'
 
         item('BOW for 3 of gold') {
@@ -85,65 +85,65 @@ inventory {
         }
 
         item('BOW for 7 of gold') {
-            stack.enchant (['ARROW_INFINITE', 'ARROW_DAMAGE'])
+            stack.enchant(['ARROW_INFINITE', 'ARROW_DAMAGE'])
         }
 
         item('BOW for 13 of gold') {
-            stack.enchant ([
+            stack.enchant([
                     'ARROW_INFINITE': 1,
-                    'ARROW_DAMAGE': 2
+                    'ARROW_DAMAGE'  : 2
             ])
         }
 
         item('BOW for 14 of gold') {
-            stack.enchant (['ARROW_INFINITE',  'ARROW_FIRE'])
+            stack.enchant(['ARROW_INFINITE', 'ARROW_FIRE'])
         }
 
         item('BOW for 15 of gold') {
-            stack.enchant (['ARROW_INFINITE',  'ARROW_FIRE', 'ARROW_KNOCKBACK'])
+            stack.enchant(['ARROW_INFINITE', 'ARROW_FIRE', 'ARROW_KNOCKBACK'])
         }
 
         item('ARROW for 1 of gold')
     }
 
-    category ('COOKED_PORKCHOP;1;Eat;Are you hungry? Get something to eat.') {
+    category('COOKED_PORKCHOP;1;Eat;Are you hungry? Get something to eat.') {
         row 3
         column 2
 
-        item ('COOKED_PORKCHOP;2 for 4 of bronze')
-        item ('GOLDEN_APPLE for 2 of iron')
-        item ('BREAD;10 for 5 of gold')
+        item('COOKED_PORKCHOP;2 for 4 of bronze')
+        item('GOLDEN_APPLE for 2 of iron')
+        item('BREAD;10 for 5 of gold')
     }
 
     /* THIS PART IS NOT DONE, NOW I'M WORKING ON POTION-TYPE INTEGRATION */
 
-    category ('POTION;1;Drinks;Not enough? Use these potions and you\'ll feel better!') {
+    category('POTION;1;Drinks;Not enough? Use these potions and you\'ll feel better!') {
         stack.potion 'strength'
         row 3
         column 6
 
-        item ('POTION for 3 of iron') {
+        item('POTION for 3 of iron') {
             stack.potion 'healing'
         }
 
-        item ('POTION for 5 of iron') {
+        item('POTION for 5 of iron') {
             stack.potion 'strong_healing'
         }
 
-        item ('POTION for 7 of iron') {
+        item('POTION for 7 of iron') {
             stack.potion 'swiftness'
         }
 
-        item ('POTION for 1 of gold') {
+        item('POTION for 1 of gold') {
             stack.potion 'strength'
         }
 
-        item ('POTION for 3 of gold') {
+        item('POTION for 3 of gold') {
             stack.potion 'regeneration'
         }
     }
 
-    category ('SANDSTONE;1;Blocks;Get to the others! Possible with blocks.') {
+    category('SANDSTONE;1;Blocks;Get to the others! Possible with blocks.') {
         linebreak 'before'
 
         item('CUT_SANDSTONE;2 for 1 of bronze')
@@ -155,13 +155,13 @@ inventory {
         }
     }
 
-    category ('TNT;1;Useful Stuff;Looking for useful stuff? Here are some!') {
+    category('TNT;1;Useful Stuff;Looking for useful stuff? Here are some!') {
         column 'center'
 
         item('CHEST for 1 of iron')
         item('ENDER_CHEST for 1 of gold')
         item('GUNPOWDER;1;Warp Powder for 7 of iron') {
-            stack.lore ([
+            stack.lore([
                     "When using this powder you'll get",
                     "teleported to you spawn point within 6 seconds",
                     "Warning: Any movement will stop the process"
@@ -172,10 +172,10 @@ inventory {
             ]
         }
         item('STRING;1;Trap for 3 of iron') {
-            stack.lore ([
+            stack.lore([
                     "Get informed if an enemy steps on your trap",
                     "and your enemy won't be able to move properly."
-            ]);
+            ])
 
             property 'Trap', [
                     data: [
@@ -184,35 +184,35 @@ inventory {
                             ],
                             [
                                     effect: [
-                                            '==': 'org.bukkit.potion.PotionEffect',
-                                            'effect': 15,
-                                            'amplifier': 2,
-                                            'duration': 100,
-                                            'ambient': true,
+                                            '=='           : 'org.bukkit.potion.PotionEffect',
+                                            'effect'       : 15,
+                                            'amplifier'    : 2,
+                                            'duration'     : 100,
+                                            'ambient'      : true,
                                             'has-particles': true,
-                                            'has-icon': true
+                                            'has-icon'     : true
                                     ]
                             ],
                             [
                                     effect: [
-                                            '==': 'org.bukkit.potion.PotionEffect',
-                                            'effect': 18,
-                                            'amplifier': 2,
-                                            'duration': 100,
-                                            'ambient': true,
+                                            '=='           : 'org.bukkit.potion.PotionEffect',
+                                            'effect'       : 18,
+                                            'amplifier'    : 2,
+                                            'duration'     : 100,
+                                            'ambient'      : true,
                                             'has-particles': true,
-                                            'has-icon': true
+                                            'has-icon'     : true
                                     ]
                             ],
                             [
                                     effect: [
-                                            '==': 'org.bukkit.potion.PotionEffect',
-                                            'effect': 2,
-                                            'amplifier': 2,
-                                            'duration': 100,
-                                            'ambient': true,
+                                            '=='           : 'org.bukkit.potion.PotionEffect',
+                                            'effect'       : 2,
+                                            'amplifier'    : 2,
+                                            'duration'     : 100,
+                                            'ambient'      : true,
                                             'has-particles': true,
-                                            'has-icon': true
+                                            'has-icon'     : true
                                     ]
                             ]
                     ]
@@ -273,7 +273,7 @@ inventory {
             ])
 
             property 'Golem', [
-                    speed: 0.25,
+                    speed : 0.25,
                     follow: 16.0
             ]
         }
@@ -298,7 +298,7 @@ inventory {
 
     }
 
-    category ('DIAMOND_PICKAXE;1;Pickaxes;Destroy others blocks? Use these pickaxes.') {
+    category('DIAMOND_PICKAXE;1;Pickaxes;Destroy others blocks? Use these pickaxes.') {
         column 'right'
 
         item('IRON_PICKAXE for 4 of bronze') {

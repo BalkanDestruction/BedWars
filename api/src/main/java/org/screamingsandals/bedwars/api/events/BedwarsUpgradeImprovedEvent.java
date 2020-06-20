@@ -1,22 +1,22 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.upgrades.Upgrade;
-import org.screamingsandals.bedwars.api.upgrades.UpgradeStorage;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.upgrades.Upgrade;
+import org.screamingsandals.bedwars.api.upgrades.UpgradeStorage;
 
 /**
  * @author Bedwars Team
  */
 public class BedwarsUpgradeImprovedEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
-    private Game game;
-    private UpgradeStorage storage;
-    private Upgrade upgrade;
-    private double oldLevel;
-    private double newLevel;
+    private final Game game;
+    private final UpgradeStorage storage;
+    private final Upgrade upgrade;
+    private final double oldLevel;
+    private final double newLevel;
 
     /**
      * @param game
@@ -83,6 +83,13 @@ public class BedwarsUpgradeImprovedEvent extends Event implements Cancellable {
     }
 
     /**
+     * @param newLevel
+     */
+    public void setNewLevel(double newLevel) {
+        upgrade.setLevel(newLevel);
+    }
+
+    /**
      * @return old level
      */
     public double getOldLevel() {
@@ -94,13 +101,6 @@ public class BedwarsUpgradeImprovedEvent extends Event implements Cancellable {
      */
     public double getOriginalNewLevel() {
         return newLevel;
-    }
-
-    /**
-     * @param newLevel
-     */
-    public void setNewLevel(double newLevel) {
-        upgrade.setLevel(newLevel);
     }
 
 }

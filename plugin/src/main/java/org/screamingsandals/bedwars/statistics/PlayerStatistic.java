@@ -215,6 +215,10 @@ public class PlayerStatistic implements ConfigurationSerializable, org.screaming
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getScore() {
         return score;
     }
@@ -225,10 +229,6 @@ public class PlayerStatistic implements ConfigurationSerializable, org.screaming
 
     public int getWins() {
         return wins;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

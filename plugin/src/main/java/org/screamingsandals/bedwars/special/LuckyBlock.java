@@ -1,8 +1,5 @@
 package org.screamingsandals.bedwars.special;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.Team;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -10,6 +7,9 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.Team;
+import org.screamingsandals.bedwars.api.game.Game;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class LuckyBlock extends SpecialItem implements org.screamingsandals.bedwars.api.special.LuckyBlock {
 
-    private List<Map<String, Object>> luckyBlockData;
+    private final List<Map<String, Object>> luckyBlockData;
     private Location placedLocation = null;
     private boolean isPlaced = false;
 

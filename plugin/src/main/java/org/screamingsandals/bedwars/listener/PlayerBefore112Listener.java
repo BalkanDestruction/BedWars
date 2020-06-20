@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 @SuppressWarnings("deprecation")
 public class PlayerBefore112Listener implements Listener {
 
-	@EventHandler
+    @EventHandler
     public void onPickup(PlayerPickupItemEvent event) {
         PlayerListener.onItemPickup(event.getPlayer(), event.getItem(), event);
     }

@@ -8,13 +8,13 @@ import java.sql.SQLException;
 import java.util.TimeZone;
 
 public class DatabaseManager {
-    private String tablePrefix;
-    private String database;
+    private final String tablePrefix;
+    private final String database;
     private HikariDataSource dataSource = null;
-    private String host;
-    private String password;
-    private int port;
-    private String user;
+    private final String host;
+    private final String password;
+    private final int port;
+    private final String user;
 
     public DatabaseManager(String host, int port, String user, String password, String database, String tablePrefix) {
         this.host = host;

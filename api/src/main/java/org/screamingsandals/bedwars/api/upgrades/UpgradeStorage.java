@@ -1,12 +1,12 @@
 package org.screamingsandals.bedwars.api.upgrades;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.game.ItemSpawner;
+import org.bukkit.Bukkit;
 import org.screamingsandals.bedwars.api.Team;
 import org.screamingsandals.bedwars.api.events.BedwarsUpgradeRegisteredEvent;
 import org.screamingsandals.bedwars.api.events.BedwarsUpgradeUnregisteredEvent;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.game.ItemSpawner;
 import org.screamingsandals.bedwars.api.game.ItemSpawnerType;
-import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,15 +1,5 @@
 package org.screamingsandals.bedwars.holograms;
 
-import static misat11.lib.lang.I.i18n;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -20,26 +10,32 @@ import org.screamingsandals.bedwars.commands.AdminCommand;
 import org.screamingsandals.lib.nms.holograms.Hologram;
 import org.screamingsandals.lib.nms.holograms.TouchHandler;
 
+import java.io.File;
+import java.util.*;
+import java.util.Map.Entry;
+
+import static misat11.lib.lang.I.i18n;
+
 public class NMSUtilsHologramInteraction implements IHologramInteraction, TouchHandler {
 
     private ArrayList<Location> hologramLocations = null;
     private Map<Player, List<Hologram>> holograms = null;
 
-	@Override
-	public void addHologramLocation(Location eyeLocation) {
+    @Override
+    public void addHologramLocation(Location eyeLocation) {
         this.hologramLocations.add(eyeLocation.subtract(0, 3, 0));
         this.updateHologramDatabase();
-	}
+    }
 
-	@Override
-	public ArrayList<Location> getHologramLocations() {
-		return hologramLocations;
-	}
+    @Override
+    public ArrayList<Location> getHologramLocations() {
+        return hologramLocations;
+    }
 
-	@Override
-	public String getType() {
+    @Override
+    public String getType() {
         return "NMSUtils.Holograms";
-	}
+    }
 
     @SuppressWarnings("unchecked")
     public void loadHolograms() {
@@ -70,13 +66,13 @@ public class NMSUtilsHologramInteraction implements IHologramInteraction, TouchH
         this.updateHolograms();
     }
 
-	@Override
-	public void onHologramTouch(Player player, Location holoLocation) {
+    @Override
+    public void onHologramTouch(Player player, Location holoLocation) {
         // NOT NEEDED HERE
-	}
+    }
 
-	@Override
-	public void unloadAllHolograms(Player player) {
+    @Override
+    public void unloadAllHolograms(Player player) {
         if (!this.holograms.containsKey(player)) {
             return;
         }
@@ -86,45 +82,45 @@ public class NMSUtilsHologramInteraction implements IHologramInteraction, TouchH
         }
 
         this.holograms.remove(player);
-	}
+    }
 
-	@Override
-	public void unloadHolograms() {
+    @Override
+    public void unloadHolograms() {
         if (Main.isHologramsEnabled()) {
-        	for (List<Hologram> holos : holograms.values()) {
-        		for (Hologram holo : holos) {
-        			holo.destroy();
-        		}
-        	}
+            for (List<Hologram> holos : holograms.values()) {
+                for (Hologram holo : holos) {
+                    holo.destroy();
+                }
+            }
         }
-	}
+    }
 
-	@Override
-	public void updateHolograms(Player player) {
+    @Override
+    public void updateHolograms(Player player) {
         Main.getInstance().getServer().getScheduler().runTask(Main.getInstance(), () -> {
             for (Location holoLocation : NMSUtilsHologramInteraction.this.hologramLocations) {
-            	NMSUtilsHologramInteraction.this.updatePlayerHologram(player, holoLocation);
+                NMSUtilsHologramInteraction.this.updatePlayerHologram(player, holoLocation);
             }
         });
-	}
+    }
 
-	@Override
-	public void updateHolograms(Player player, long delay) {
+    @Override
+    public void updateHolograms(Player player, long delay) {
         Main.getInstance().getServer().getScheduler().runTaskLater(Main.getInstance(), () -> {
-        	NMSUtilsHologramInteraction.this.updateHolograms(player);
+            NMSUtilsHologramInteraction.this.updateHolograms(player);
         }, delay);
-	}
+    }
 
-	@Override
-	public void updateHolograms() {
+    @Override
+    public void updateHolograms() {
         for (final Player player : Bukkit.getServer().getOnlinePlayers()) {
             Main.getInstance().getServer().getScheduler().runTask(Main.getInstance(), () -> {
                 for (Location holoLocation : NMSUtilsHologramInteraction.this.hologramLocations) {
-                	NMSUtilsHologramInteraction.this.updatePlayerHologram(player, holoLocation);
+                    NMSUtilsHologramInteraction.this.updatePlayerHologram(player, holoLocation);
                 }
             });
         }
-	}
+    }
 
     private Hologram getHologramByLocation(List<Hologram> holograms, Location holoLocation) {
         for (Hologram holo : holograms) {
@@ -136,8 +132,8 @@ public class NMSUtilsHologramInteraction implements IHologramInteraction, TouchH
 
         return null;
     }
-	
-	public void updatePlayerHologram(Player player, Location holoLocation) {
+
+    public void updatePlayerHologram(Player player, Location holoLocation) {
         List<Hologram> holograms;
         if (!this.holograms.containsKey(player)) {
             this.holograms.put(player, new ArrayList<>());
@@ -155,7 +151,7 @@ public class NMSUtilsHologramInteraction implements IHologramInteraction, TouchH
                 holo.destroy();
             }
         }
-	}
+    }
 
     private Hologram createPlayerStatisticHologram(Player player, Location holoLocation) {
         final Hologram holo = Main.getHologramManager().spawnHologramTouchable(player, holoLocation);
@@ -198,8 +194,8 @@ public class NMSUtilsHologramInteraction implements IHologramInteraction, TouchH
         return null;
     }
 
-	@Override
-	public void handle(Player player, Hologram holo) {
+    @Override
+    public void handle(Player player, Hologram holo) {
         if (!player.hasMetadata("bw-remove-holo") || (!player.isOp() && !player.hasPermission(AdminCommand.ADMIN_PERMISSION))) {
             return;
         }
@@ -226,11 +222,11 @@ public class NMSUtilsHologramInteraction implements IHologramInteraction, TouchH
             }
             player.sendMessage(i18n("holo_removed"));
         });
-	}
+    }
 
     private void updatePlayerStatisticHologram(Player player, final Hologram holo) {
         PlayerStatistic statistic = Main.getPlayerStatisticsManager().getStatistic(player);
-        
+
         List<String> lines = new ArrayList<>();
 
         lines.add(i18n("statistics_kills", false).replace("%kills%",
@@ -249,15 +245,15 @@ public class NMSUtilsHologramInteraction implements IHologramInteraction, TouchH
                 Integer.toString(statistic.getDestroyedBeds() + statistic.getCurrentDestroyedBeds())));
         lines.add(i18n("statistics_score", false).replace("%score%",
                 Integer.toString(statistic.getScore() + statistic.getCurrentScore())));
-        
+
         int size = holo.length();
         int increment = 0;
         if (size == 1 || size > lines.size()) {
-        	increment = 1;
+            increment = 1;
         }
 
         for (int i = 0; i < lines.size(); i++) {
-        	holo.setLine(i + increment, lines.get(i));
+            holo.setLine(i + increment, lines.get(i));
         }
     }
 

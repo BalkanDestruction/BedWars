@@ -1,15 +1,5 @@
 package org.screamingsandals.bedwars.special.listener;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.APIUtils;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.game.GameStatus;
-import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
-import org.screamingsandals.bedwars.game.GamePlayer;
-import org.screamingsandals.bedwars.special.RescuePlatform;
-import org.screamingsandals.bedwars.special.WarpPowder;
-import org.screamingsandals.bedwars.utils.DelayFactory;
-import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -21,6 +11,16 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.APIUtils;
+import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.game.GameStatus;
+import org.screamingsandals.bedwars.game.GamePlayer;
+import org.screamingsandals.bedwars.special.RescuePlatform;
+import org.screamingsandals.bedwars.special.WarpPowder;
+import org.screamingsandals.bedwars.utils.DelayFactory;
+import org.screamingsandals.bedwars.utils.MiscUtils;
 
 import static misat11.lib.lang.I18n.i18nonly;
 

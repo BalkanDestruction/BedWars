@@ -1,6 +1,5 @@
 package org.screamingsandals.bedwars.utils;
 
-import misat11.lib.lang.I;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
@@ -8,7 +7,6 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -241,16 +239,16 @@ public class MiscUtils {
                 newColor = "BROWN";
                 break;
             case "DARK_GRAY":
-            	newColor = "GRAY";
-            	break;
+                newColor = "GRAY";
+                break;
         }
         return newColor;
     }
-    
+
     public static Vector getDirection(BlockFace face) {
-    	int modX = face.getModX();
-    	int modY = face.getModY();
-    	int modZ = face.getModZ();
+        int modX = face.getModX();
+        int modY = face.getModY();
+        int modZ = face.getModZ();
         Vector direction = new Vector(modX, modY, modZ);
         if (modX != 0 || modY != 0 || modZ != 0) {
             direction.normalize();

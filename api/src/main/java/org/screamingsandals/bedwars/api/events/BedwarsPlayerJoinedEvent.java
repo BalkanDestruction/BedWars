@@ -1,10 +1,10 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.Team;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.screamingsandals.bedwars.api.Team;
+import org.screamingsandals.bedwars.api.game.Game;
 
 /**
  * @author Bedwars Team
@@ -12,9 +12,9 @@ import org.bukkit.event.HandlerList;
 public class BedwarsPlayerJoinedEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
-    private Game game;
-    private Player player;
-    private Team team;
+    private final Game game;
+    private final Player player;
+    private final Team team;
 
     /**
      * @param game

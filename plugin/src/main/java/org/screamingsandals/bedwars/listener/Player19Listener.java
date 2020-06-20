@@ -1,15 +1,15 @@
 package org.screamingsandals.bedwars.listener;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.game.GameStatus;
-import org.screamingsandals.bedwars.game.Game;
-import org.screamingsandals.bedwars.game.GameCreator;
-import org.screamingsandals.bedwars.game.GamePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ItemMergeEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.game.GameStatus;
+import org.screamingsandals.bedwars.game.Game;
+import org.screamingsandals.bedwars.game.GameCreator;
+import org.screamingsandals.bedwars.game.GamePlayer;
 
 public class Player19Listener implements Listener {
     @EventHandler

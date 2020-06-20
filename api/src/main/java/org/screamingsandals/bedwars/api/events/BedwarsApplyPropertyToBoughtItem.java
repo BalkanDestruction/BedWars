@@ -1,8 +1,8 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.api.game.Game;
 
 import java.util.Map;
 

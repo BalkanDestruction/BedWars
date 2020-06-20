@@ -1,7 +1,7 @@
 package org.screamingsandals.bedwars.api;
 
-import org.screamingsandals.bedwars.api.game.Game;
 import org.bukkit.Location;
+import org.screamingsandals.bedwars.api.game.Game;
 
 /**
  * @author Bedwars Team

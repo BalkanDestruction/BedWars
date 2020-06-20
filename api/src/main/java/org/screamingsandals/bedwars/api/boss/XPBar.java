@@ -5,13 +5,13 @@ package org.screamingsandals.bedwars.api.boss;
  */
 public interface XPBar extends StatusBar {
     /**
-     * @param seconds
-     */
-    void setSeconds(int seconds);
-
-    /**
      * @return seconds
      */
     int getSeconds();
+
+    /**
+     * @param seconds
+     */
+    void setSeconds(int seconds);
 
 }

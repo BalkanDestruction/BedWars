@@ -16,7 +16,7 @@ public class WarpPowder extends SpecialItem implements org.screamingsandals.bedw
     private BukkitTask teleportingTask = null;
     private int teleportingTime;
 
-    private ItemStack item;
+    private final ItemStack item;
 
     public WarpPowder(Game game, Player player, Team team, ItemStack item, int teleportingTime) {
         super(game, player, team);

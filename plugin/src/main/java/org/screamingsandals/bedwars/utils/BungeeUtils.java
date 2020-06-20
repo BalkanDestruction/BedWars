@@ -2,10 +2,10 @@ package org.screamingsandals.bedwars.utils;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import org.screamingsandals.bedwars.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.screamingsandals.bedwars.Main;
 
 public class BungeeUtils {
     public static void movePlayerToBungeeServer(Player player, boolean serverRestart) {
@@ -16,7 +16,7 @@ public class BungeeUtils {
 
         new BukkitRunnable() {
             public void run() {
-               internalMove(player);
+                internalMove(player);
             }
         }.runTask(Main.getInstance());
     }

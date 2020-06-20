@@ -1,13 +1,13 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.game.ItemSpawner;
-import org.screamingsandals.bedwars.api.game.ItemSpawnerType;
 import org.bukkit.Location;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.game.ItemSpawner;
+import org.screamingsandals.bedwars.api.game.ItemSpawnerType;
 
 /**
  * @author Bedwars Team
@@ -15,9 +15,9 @@ import org.bukkit.inventory.ItemStack;
 public class BedwarsResourceSpawnEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private boolean cancelled = false;
-    private Game game;
+    private final Game game;
     private ItemStack resource;
-    private ItemSpawner spawner;
+    private final ItemSpawner spawner;
 
     /**
      * @param game

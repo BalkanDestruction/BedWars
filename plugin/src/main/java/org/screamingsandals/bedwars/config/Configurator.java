@@ -1,6 +1,5 @@
 package org.screamingsandals.bedwars.config;
 
-import org.screamingsandals.bedwars.Main;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
@@ -8,6 +7,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.Main;
 import org.screamingsandals.lib.debug.Debug;
 
 import java.io.File;
@@ -19,15 +19,25 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Configurator {
-    public File configFile, shopFile, signsFile, recordFile, langFolder;
-    public FileConfiguration config, recordConfig;
-
     public final File dataFolder;
     public final Main main;
+    public File configFile, shopFile, signsFile, recordFile, langFolder;
+    public FileConfiguration config, recordConfig;
 
     public Configurator(Main main) {
         this.dataFolder = main.getDataFolder();
         this.main = main;
+    }
+
+    private static void checkOrSet(AtomicBoolean modify, FileConfiguration config, String path, Object value) {
+        if (!config.isSet(path)) {
+            if (value instanceof Map) {
+                config.createSection(path, (Map<?, ?>) value);
+            } else {
+                config.set(path, value);
+            }
+            modify.set(true);
+        }
     }
 
     public void createFiles() {
@@ -70,8 +80,8 @@ public class Configurator {
             if (listOfFiles != null && listOfFiles.length > 0) {
                 for (File file : listOfFiles) {
                     if (file.isFile() && file.getName().startsWith("messages_") && file.getName().endsWith(".yml")) {
-                    	File dest = new File(langFolder, "language_" + file.getName().substring(9));
-                    	file.renameTo(dest);
+                        File dest = new File(langFolder, "language_" + file.getName().substring(9));
+                        file.renameTo(dest);
                     }
                 }
             }
@@ -156,7 +166,7 @@ public class Configurator {
         checkOrSetConfig(modify, "title.fadeIn", 0);
         checkOrSetConfig(modify, "title.stay", 20);
         checkOrSetConfig(modify, "title.fadeOut", 0);
-        
+
         checkOrSetConfig(modify, "shop.rows", 4);
         checkOrSetConfig(modify, "shop.render-actual-rows", 6);
         checkOrSetConfig(modify, "shop.render-offset", 9);
@@ -165,7 +175,7 @@ public class Configurator {
         checkOrSetConfig(modify, "shop.items-on-row", 9);
         checkOrSetConfig(modify, "shop.show-page-numbers", true);
         checkOrSetConfig(modify, "shop.inventory-type", "CHEST");
-        
+
         checkOrSetConfig(modify, "items.jointeam", "COMPASS");
         checkOrSetConfig(modify, "items.leavegame", "SLIME_BALL");
         checkOrSetConfig(modify, "items.startgame", "DIAMOND");
@@ -335,9 +345,9 @@ public class Configurator {
         checkOrSetConfig(modify, "chat.separate-chat.lobby", config.get("chat.separate-game-chat", false));
         checkOrSetConfig(modify, "chat.separate-chat.game", config.get("chat.separate-game-chat", false));
         if (config.isSet("chat.separate-game-chat")) {
-        	config.set("chat.separate-game-chat", null);
+            config.set("chat.separate-game-chat", null);
         }
-        
+
         checkOrSetConfig(modify, "chat.send-death-messages-just-in-game", true);
         checkOrSetConfig(modify, "chat.send-custom-death-messages", true);
         checkOrSetConfig(modify, "chat.default-team-chat-while-running", true);
@@ -385,9 +395,9 @@ public class Configurator {
 
         checkOrSetConfig(modify, "leaveshortcuts.enabled", false);
         checkOrSetConfig(modify, "leaveshortcuts.list", new ArrayList<String>() {
-        	{
-        		add("leave");
-        	}
+            {
+                add("leave");
+            }
         });
 
         checkOrSetConfig(modify, "mainlobby.enabled", false);
@@ -427,17 +437,6 @@ public class Configurator {
 
     private void checkOrSetConfig(AtomicBoolean modify, String path, Object value) {
         checkOrSet(modify, this.config, path, value);
-    }
-
-    private static void checkOrSet(AtomicBoolean modify, FileConfiguration config, String path, Object value) {
-        if (!config.isSet(path)) {
-            if (value instanceof Map) {
-                config.createSection(path, (Map<?, ?>) value);
-            } else {
-                config.set(path, value);
-            }
-            modify.set(true);
-        }
     }
 
     public ItemStack readDefinedItem(String item, String def) {

@@ -1,6 +1,5 @@
 package org.screamingsandals.bedwars.region;
 
-import org.screamingsandals.bedwars.api.Region;
 import org.bukkit.Chunk;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -9,6 +8,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.material.*;
+import org.screamingsandals.bedwars.api.Region;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,14 +16,14 @@ import java.util.List;
 import java.util.Map;
 
 public class LegacyRegion implements Region {
-    private List<Location> builtBlocks = new ArrayList<>();
-    private List<Block> brokenBlocks = new ArrayList<>();
-    private HashMap<Block, Block> brokenBeds = new HashMap<>();
-    private HashMap<Block, Byte> brokenBlockData = new HashMap<>();
-    private HashMap<Block, BlockFace> brokenBlockFace = new HashMap<>();
-    private HashMap<Block, Boolean> brokenBlockPower = new HashMap<>();
-    private HashMap<Block, Material> brokenBlockTypes = new HashMap<>();
-    private HashMap<Block, DyeColor> brokenBlockColors = new HashMap<>();
+    private final List<Location> builtBlocks = new ArrayList<>();
+    private final List<Block> brokenBlocks = new ArrayList<>();
+    private final HashMap<Block, Block> brokenBeds = new HashMap<>();
+    private final HashMap<Block, Byte> brokenBlockData = new HashMap<>();
+    private final HashMap<Block, BlockFace> brokenBlockFace = new HashMap<>();
+    private final HashMap<Block, Boolean> brokenBlockPower = new HashMap<>();
+    private final HashMap<Block, Material> brokenBlockTypes = new HashMap<>();
+    private final HashMap<Block, DyeColor> brokenBlockColors = new HashMap<>();
 
     @Override
     public boolean isBlockAddedDuringGame(Location loc) {
@@ -32,9 +32,9 @@ public class LegacyRegion implements Region {
 
     @Override
     public void putOriginalBlock(Location loc, BlockState block) {
-    	if (!block.getType().name().equals("BED_BLOCK")) {
-    		brokenBlocks.add(loc.getBlock());
-    	}
+        if (!block.getType().name().equals("BED_BLOCK")) {
+            brokenBlocks.add(loc.getBlock());
+        }
 
         if (block.getData() instanceof Directional) {
             brokenBlockFace.put(loc.getBlock(), ((Directional) block.getData()).getFacing());
@@ -51,9 +51,9 @@ public class LegacyRegion implements Region {
             // Save bed color on 1.12.x
             brokenBlockColors.put(loc.getBlock(), ((Colorable) block).getColor());
         }
-        
+
         if (isBedHead(block)) {
-        	brokenBeds.put(loc.getBlock(), getBedNeighbor(loc.getBlock()));
+            brokenBeds.put(loc.getBlock(), getBedNeighbor(loc.getBlock()));
         }
     }
 
@@ -121,7 +121,7 @@ public class LegacyRegion implements Region {
                 state.update(true, false);
             }
         }
-        
+
         for (Map.Entry<Block, Block> entry : brokenBeds.entrySet()) {
             Block blockHead = entry.getKey();
             Block blockFeed = entry.getValue();
@@ -150,18 +150,18 @@ public class LegacyRegion implements Region {
 
             if (brokenBlockColors.containsKey(blockFeed) && feedState instanceof Colorable) {
                 // Update bed color on 1.12.x
-            	((Colorable) feedState).setColor(brokenBlockColors.get(blockFeed));
+                ((Colorable) feedState).setColor(brokenBlockColors.get(blockFeed));
                 feedState.update(true, false);
             }
 
             if (brokenBlockColors.containsKey(blockHead) && headState instanceof Colorable) {
                 // Update bed color on 1.12.x
-            	((Colorable) headState).setColor(brokenBlockColors.get(blockHead));
+                ((Colorable) headState).setColor(brokenBlockColors.get(blockHead));
                 headState.update(true, true);
             }
         }
         brokenBeds.clear();
-        
+
         brokenBlocks.clear();
         brokenBlockData.clear();
         brokenBlockFace.clear();

@@ -546,9 +546,9 @@ public class AdminCommand extends BaseCommand {
             }
             if (args.size() == 8) {
                 if (gc.containsKey(args.get(0))) {
-	                for (Team t : gc.get(args.get(0)).getGame().getTeams()) {
-	                    completion.add(t.name);
-	                }
+                    for (Team t : gc.get(args.get(0)).getGame().getTeams()) {
+                        completion.add(t.name);
+                    }
                 }
             }
             if (args.size() == 8 || args.size() == 9) {

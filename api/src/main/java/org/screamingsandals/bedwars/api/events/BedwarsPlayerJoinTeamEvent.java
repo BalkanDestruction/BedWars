@@ -1,11 +1,11 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.RunningTeam;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.screamingsandals.bedwars.api.RunningTeam;
+import org.screamingsandals.bedwars.api.game.Game;
 
 /**
  * @author Bedwars Team
@@ -13,10 +13,10 @@ import org.bukkit.event.HandlerList;
 public class BedwarsPlayerJoinTeamEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private boolean cancelled = false;
-    private RunningTeam team;
-    private Player player;
-    private Game game;
-    private RunningTeam prevTeam;
+    private final RunningTeam team;
+    private final Player player;
+    private final Game game;
+    private final RunningTeam prevTeam;
 
     /**
      * @param team

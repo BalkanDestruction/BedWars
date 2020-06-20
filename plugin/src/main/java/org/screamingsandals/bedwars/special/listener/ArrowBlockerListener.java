@@ -1,15 +1,6 @@
 package org.screamingsandals.bedwars.special.listener;
 
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.APIUtils;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.game.GameStatus;
-import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
-import org.screamingsandals.bedwars.game.GamePlayer;
-import org.screamingsandals.bedwars.special.ArrowBlocker;
-import org.screamingsandals.bedwars.utils.DelayFactory;
-import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,6 +10,15 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.APIUtils;
+import org.screamingsandals.bedwars.api.events.BedwarsApplyPropertyToBoughtItem;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.game.GameStatus;
+import org.screamingsandals.bedwars.game.GamePlayer;
+import org.screamingsandals.bedwars.special.ArrowBlocker;
+import org.screamingsandals.bedwars.utils.DelayFactory;
+import org.screamingsandals.bedwars.utils.MiscUtils;
 
 import static misat11.lib.lang.I18n.i18n;
 import static misat11.lib.lang.I18n.i18nonly;

@@ -17,13 +17,13 @@ import static misat11.lib.lang.I18n.i18nonly;
 
 public class Golem extends SpecialItem implements org.screamingsandals.bedwars.api.special.Golem {
     private LivingEntity entity;
-    private Location location;
-    private ItemStack item;
-    private double speed;
-    private double followRange;
-    private double health;
-    private String name;
-    private boolean showName;
+    private final Location location;
+    private final ItemStack item;
+    private final double speed;
+    private final double followRange;
+    private final double health;
+    private final String name;
+    private final boolean showName;
 
     public Golem(Game game, Player player, Team team,
                  ItemStack item, Location location, double speed, double followRange, double health,
@@ -71,7 +71,7 @@ public class Golem extends SpecialItem implements org.screamingsandals.bedwars.a
         } catch (Throwable ignored) {
             // Still can throw an exception on some old versions
         }
-        
+
         entity = golem;
 
         EntityUtils.makeMobAttackTarget(golem, speed, followRange, -1)

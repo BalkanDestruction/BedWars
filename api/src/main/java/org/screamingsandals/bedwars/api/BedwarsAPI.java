@@ -1,11 +1,11 @@
 package org.screamingsandals.bedwars.api;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.game.ItemSpawnerType;
-import org.screamingsandals.bedwars.api.utils.ColorChanger;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.game.ItemSpawnerType;
+import org.screamingsandals.bedwars.api.utils.ColorChanger;
 
 import java.util.List;
 
@@ -13,6 +13,13 @@ import java.util.List;
  * @author Bedwars Team
  */
 public interface BedwarsAPI {
+
+    /**
+     * @return Bedwars instance
+     */
+    static BedwarsAPI getInstance() {
+        return Bukkit.getServicesManager().getRegistration(BedwarsAPI.class).getProvider();
+    }
 
     /**
      * @return List of available games
@@ -109,15 +116,7 @@ public interface BedwarsAPI {
     ColorChanger getColorChanger();
 
     /**
-     *
      * @return hub server name from config
      */
     String getHubServerName();
-
-    /**
-     * @return Bedwars instance
-     */
-    static BedwarsAPI getInstance() {
-        return Bukkit.getServicesManager().getRegistration(BedwarsAPI.class).getProvider();
-    }
 }

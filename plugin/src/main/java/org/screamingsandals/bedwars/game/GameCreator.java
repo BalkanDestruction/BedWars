@@ -1,12 +1,5 @@
 package org.screamingsandals.bedwars.game;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.ArenaTime;
-import org.screamingsandals.bedwars.api.game.GameStore;
-import org.screamingsandals.bedwars.api.InGameConfigBooleanConstants;
-import org.screamingsandals.bedwars.region.FlatteningBedUtils;
-import org.screamingsandals.bedwars.region.LegacyBedUtils;
-import org.screamingsandals.bedwars.utils.TeamJoinMetaDataValue;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -18,6 +11,13 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.ArenaTime;
+import org.screamingsandals.bedwars.api.InGameConfigBooleanConstants;
+import org.screamingsandals.bedwars.api.game.GameStore;
+import org.screamingsandals.bedwars.region.FlatteningBedUtils;
+import org.screamingsandals.bedwars.region.LegacyBedUtils;
+import org.screamingsandals.bedwars.utils.TeamJoinMetaDataValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,8 +29,8 @@ import static misat11.lib.lang.I18n.i18n;
 public class GameCreator {
     public static final String BEDWARS_TEAM_JOIN_METADATA = "bw-addteamjoin";
 
-    private Game game;
-    private HashMap<String, GameStore> villagerstores = new HashMap<>();
+    private final Game game;
+    private final HashMap<String, GameStore> villagerstores = new HashMap<>();
 
     public GameCreator(Game game) {
         this.game = game;
@@ -41,6 +41,31 @@ public class GameCreator {
                         + ";" + store.getStoreLocation().getBlockZ(), store);
             }
         }
+    }
+
+    public static boolean isInArea(Location l, Location p1, Location p2) {
+        if (!p1.getWorld().equals(l.getWorld())) {
+            return false;
+        }
+
+        Location min = new Location(p1.getWorld(), Math.min(p1.getX(), p2.getX()), Math.min(p1.getY(), p2.getY()),
+                Math.min(p1.getZ(), p2.getZ()));
+        Location max = new Location(p1.getWorld(), Math.max(p1.getX(), p2.getX()), Math.max(p1.getY(), p2.getY()),
+                Math.max(p1.getZ(), p2.getZ()));
+        return (min.getX() <= l.getX() && min.getY() <= l.getY() && min.getZ() <= l.getZ() && max.getX() >= l.getX()
+                && max.getY() >= l.getY() && max.getZ() >= l.getZ());
+    }
+
+    public static boolean isChunkInArea(Chunk l, Location p1, Location p2) {
+        if (!p1.getWorld().equals(l.getWorld())) {
+            return false;
+        }
+
+        Chunk min = new Location(p1.getWorld(), Math.min(p1.getX(), p2.getX()), Math.min(p1.getY(), p2.getY()),
+                Math.min(p1.getZ(), p2.getZ())).getChunk();
+        Chunk max = new Location(p1.getWorld(), Math.max(p1.getX(), p2.getX()), Math.max(p1.getY(), p2.getY()),
+                Math.max(p1.getZ(), p2.getZ())).getChunk();
+        return (min.getX() <= l.getX() && min.getZ() <= l.getZ() && max.getX() >= l.getX() && max.getZ() >= l.getZ());
     }
 
     public Game getGame() {
@@ -125,22 +150,22 @@ public class GameCreator {
                                                 newTeam = team;
                                             }
                                         }
-                                    	int maxSpawnedResources = -1;
+                                        int maxSpawnedResources = -1;
                                         if (newTeam == null) {
-                                        	boolean error = true;
-                                        	if (args.length == 6) { // Check if it's not higher than 6
-	                                        	try {
-	                                        		maxSpawnedResources = Integer.parseInt(args[5]);
-	                                        		error = false;
-	                                        	} catch (NumberFormatException e) {
-	                                        	}
-                                        	}
-                                        	if (error) {
-	                                            player.sendMessage(i18n("admin_command_invalid_team").replace("%team%", args[5]));
-	                                            return false;
-                                        	}
+                                            boolean error = true;
+                                            if (args.length == 6) { // Check if it's not higher than 6
+                                                try {
+                                                    maxSpawnedResources = Integer.parseInt(args[5]);
+                                                    error = false;
+                                                } catch (NumberFormatException e) {
+                                                }
+                                            }
+                                            if (error) {
+                                                player.sendMessage(i18n("admin_command_invalid_team").replace("%team%", args[5]));
+                                                return false;
+                                            }
                                         } else if (args.length >= 7) {
-                                        	maxSpawnedResources = Integer.parseInt(args[6]);
+                                            maxSpawnedResources = Integer.parseInt(args[6]);
                                         }
                                         response = addSpawner(args[1], player.getLocation(), args[4], Boolean.parseBoolean(args[2]), customLevel, newTeam, maxSpawnedResources);
                                     } else {
@@ -448,8 +473,8 @@ public class GameCreator {
                 break;
             case "spectatorjoin":
             case "allowspectatorjoin":
-            	game.setSpectatorJoin(cons);
-            	break;
+                game.setSpectatorJoin(cons);
+                break;
             case "stopteamspawnersondie":
             case "stopdeathspawners":
                 game.setStopTeamSpawnersOnDie(cons);
@@ -808,30 +833,5 @@ public class GameCreator {
             return i18n("admin_command_gametime_setted").replace("%time%", Integer.toString(countdown));
         }
         return i18n("admin_command_invalid_countdown2");
-    }
-
-    public static boolean isInArea(Location l, Location p1, Location p2) {
-        if (!p1.getWorld().equals(l.getWorld())) {
-            return false;
-        }
-
-        Location min = new Location(p1.getWorld(), Math.min(p1.getX(), p2.getX()), Math.min(p1.getY(), p2.getY()),
-                Math.min(p1.getZ(), p2.getZ()));
-        Location max = new Location(p1.getWorld(), Math.max(p1.getX(), p2.getX()), Math.max(p1.getY(), p2.getY()),
-                Math.max(p1.getZ(), p2.getZ()));
-        return (min.getX() <= l.getX() && min.getY() <= l.getY() && min.getZ() <= l.getZ() && max.getX() >= l.getX()
-                && max.getY() >= l.getY() && max.getZ() >= l.getZ());
-    }
-
-    public static boolean isChunkInArea(Chunk l, Location p1, Location p2) {
-    	if (!p1.getWorld().equals(l.getWorld())) {
-    		return false;
-    	}
-    	
-        Chunk min = new Location(p1.getWorld(), Math.min(p1.getX(), p2.getX()), Math.min(p1.getY(), p2.getY()),
-                Math.min(p1.getZ(), p2.getZ())).getChunk();
-        Chunk max = new Location(p1.getWorld(), Math.max(p1.getX(), p2.getX()), Math.max(p1.getY(), p2.getY()),
-                Math.max(p1.getZ(), p2.getZ())).getChunk();
-        return (min.getX() <= l.getX() && min.getZ() <= l.getZ() && max.getX() >= l.getX() && max.getZ() >= l.getZ());
     }
 }

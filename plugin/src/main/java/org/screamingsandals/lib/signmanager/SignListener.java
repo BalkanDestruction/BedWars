@@ -14,15 +14,15 @@ import java.util.List;
 public class SignListener implements Listener {
 
     public final List<String> SIGN_PREFIX;
-    
-    private SignOwner owner;
-    private SignManager manager;
-	
-	public SignListener(SignOwner owner, SignManager manager) {
-		this.owner = owner;
-		this.manager = manager;
-		SIGN_PREFIX = owner.getSignPrefixes();
-	}
+
+    private final SignOwner owner;
+    private final SignManager manager;
+
+    public SignListener(SignOwner owner, SignManager manager) {
+        this.owner = owner;
+        this.manager = manager;
+        SIGN_PREFIX = owner.getSignPrefixes();
+    }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {

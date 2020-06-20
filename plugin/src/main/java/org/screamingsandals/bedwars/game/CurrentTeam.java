@@ -19,14 +19,13 @@ import static misat11.lib.lang.I18n.i18n;
 public class CurrentTeam implements RunningTeam {
     public final Team teamInfo;
     public final List<GamePlayer> players = new ArrayList<>();
+    private final Inventory chestInventory = Bukkit.createInventory(null, InventoryType.ENDER_CHEST, i18n("team_chest"));
     private org.bukkit.scoreboard.Team scoreboardTeam;
-    private Inventory chestInventory = Bukkit.createInventory(null, InventoryType.ENDER_CHEST, i18n("team_chest"));
-    private List<Block> chests = new ArrayList<>();
-    private Game game;
+    private final List<Block> chests = new ArrayList<>();
+    private final Game game;
+    public boolean isBed = true;
     private Hologram holo;
     private Hologram protectHolo;
-
-    public boolean isBed = true;
 
     public CurrentTeam(Team team, Game game) {
         this.teamInfo = team;
@@ -49,24 +48,24 @@ public class CurrentTeam implements RunningTeam {
         this.scoreboardTeam = scoreboardTeam;
     }
 
-    public void setBedHolo(Hologram holo) {
-        this.holo = holo;
-    }
-
     public Hologram getBedHolo() {
         return this.holo;
+    }
+
+    public void setBedHolo(Hologram holo) {
+        this.holo = holo;
     }
 
     public boolean hasBedHolo() {
         return this.holo != null;
     }
 
-    public void setProtectHolo(Hologram protectHolo) {
-        this.protectHolo = protectHolo;
-    }
-
     public Hologram getProtectHolo() {
         return this.protectHolo;
+    }
+
+    public void setProtectHolo(Hologram protectHolo) {
+        this.protectHolo = protectHolo;
     }
 
     public boolean hasProtectHolo() {
@@ -151,9 +150,7 @@ public class CurrentTeam implements RunningTeam {
 
     @Override
     public void removeTeamChest(Block block) {
-        if (chests.contains(block)) {
-            chests.remove(block);
-        }
+        chests.remove(block);
     }
 
     @Override

@@ -7,12 +7,12 @@ public interface BossBar extends StatusBar {
     /**
      * @return current message
      */
-	String getMessage();
+    String getMessage();
 
     /**
      * @param message
      */
-	void setMessage(String message);
+    void setMessage(String message);
 
 
 }

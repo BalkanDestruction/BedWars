@@ -1003,26 +1003,11 @@ public enum Sounds {
     WEATHER_RAIN("AMBIENCE_RAIN", "WEATHER_RAIN"),
     WEATHER_RAIN_ABOVE("WEATHER_RAIN_ABOVE");
 
-    private String[] versionDependentNames;
+    private final String[] versionDependentNames;
     private Sound cached = null;
 
-    private Sounds(String... versionDependentNames) {
+    Sounds(String... versionDependentNames) {
         this.versionDependentNames = versionDependentNames;
-    }
-
-    public void playSound(Player player, Location location, float volume, float pitch) {
-        if (cached != null) {
-            player.playSound(location, cached, volume, pitch);
-        }
-        for (String name : versionDependentNames) {
-            try {
-                cached = Sound.valueOf(name);
-                player.playSound(location, cached, volume, pitch);
-                return;
-            } catch (IllegalArgumentException ignore2) {
-
-            }
-        }
     }
 
     public static void playSound(Player player, Location location, String name, Sounds fallbackSound, float volume, float pitch) {
@@ -1038,6 +1023,21 @@ public enum Sounds {
                 if (fallbackSound != null) {
                     fallbackSound.playSound(player, location, volume, pitch);
                 }
+            }
+        }
+    }
+
+    public void playSound(Player player, Location location, float volume, float pitch) {
+        if (cached != null) {
+            player.playSound(location, cached, volume, pitch);
+        }
+        for (String name : versionDependentNames) {
+            try {
+                cached = Sound.valueOf(name);
+                player.playSound(location, cached, volume, pitch);
+                return;
+            } catch (IllegalArgumentException ignore2) {
+
             }
         }
     }

@@ -1,17 +1,17 @@
 package org.screamingsandals.bedwars.special;
 
-import org.screamingsandals.bedwars.Main;
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.Team;
-import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.screamingsandals.bedwars.Main;
+import org.screamingsandals.bedwars.api.Team;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.utils.MiscUtils;
 
 import static misat11.lib.lang.I18n.i18nonly;
 
 public class Tracker extends SpecialItem implements org.screamingsandals.bedwars.api.special.Tracker {
-    private Game game;
-    private Player player;
+    private final Game game;
+    private final Player player;
 
     public Tracker(Game game, Player player, Team team) {
         super(game, player, team);

@@ -1,7 +1,7 @@
 package org.screamingsandals.bedwars.commands;
 
-import org.screamingsandals.bedwars.Main;
 import org.bukkit.command.CommandSender;
+import org.screamingsandals.bedwars.Main;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ public abstract class BaseCommand {
     public static final String ADMIN_PERMISSION = "misat11.bw.admin";
     public static final String OTHER_STATS_PERMISSION = "misat11.bw.otherstats";
 
-    private String name;
-    private String permission;
-    private boolean allowConsole;
+    private final String name;
+    private final String permission;
+    private final boolean allowConsole;
 
     protected BaseCommand(String name, String permission, boolean allowConsole) {
         this.name = name.toLowerCase();

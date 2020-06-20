@@ -10,6 +10,14 @@ public class Main extends JavaPlugin {
     private static Main main;
     private BedwarsAPI bedwarsAPI;
 
+    public static Main getInstance() {
+        return main;
+    }
+
+    public static BedwarsAPI getApi() {
+        return main.bedwarsAPI;
+    }
+
     @Override
     public void onEnable() {
         main = this;
@@ -25,13 +33,5 @@ public class Main extends JavaPlugin {
     public void onDisable() {
         getServer().getServicesManager().unregisterAll(this);
         getServer().getLogger().log(Level.INFO, "Disabled!");
-    }
-
-    public static Main getInstance() {
-        return main;
-    }
-
-    public static BedwarsAPI getApi() {
-        return main.bedwarsAPI;
     }
 }

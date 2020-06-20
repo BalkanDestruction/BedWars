@@ -10,9 +10,13 @@ import java.util.List;
 public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar18 {
 
     private boolean visible = false;
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
     private String message = "";
     private double progress = 0;
+
+    public static boolean isPluginForLegacyBossBarEnabled() {
+        return Bukkit.getPluginManager().isPluginEnabled("BarAPI");
+    }
 
     @Override
     public String getMessage() {
@@ -55,6 +59,16 @@ public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar1
     }
 
     @Override
+    public List<Player> getViewers() {
+        return players;
+    }
+
+    @Override
+    public double getProgress() {
+        return progress;
+    }
+
+    @Override
     public void setProgress(double progress) {
         if (!isPluginForLegacyBossBarEnabled()) return;
         this.progress = progress;
@@ -68,16 +82,6 @@ public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar1
                 show(p);
             }
         }
-    }
-
-    @Override
-    public List<Player> getViewers() {
-        return players;
-    }
-
-    @Override
-    public double getProgress() {
-        return progress;
     }
 
     @Override
@@ -110,10 +114,6 @@ public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar1
     private void hide(Player player) {
         if (!isPluginForLegacyBossBarEnabled()) return;
         BarAPI.removeBar(player);
-    }
-
-    public static boolean isPluginForLegacyBossBarEnabled() {
-        return Bukkit.getPluginManager().isPluginEnabled("BarAPI");
     }
 
 }

@@ -1,7 +1,5 @@
 package org.screamingsandals.bedwars.api.events;
 
-import org.screamingsandals.bedwars.api.game.Game;
-import org.screamingsandals.bedwars.api.RunningTeam;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
@@ -9,6 +7,8 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.screamingsandals.bedwars.api.RunningTeam;
+import org.screamingsandals.bedwars.api.game.Game;
 
 /**
  * @author Bedwars Team
@@ -16,13 +16,13 @@ import org.bukkit.inventory.ItemStack;
 public class BedwarsPlayerBuildBlock extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
-    private Game game;
-    private Player player;
-    private RunningTeam team;
-    private Block block;
-    private BlockState replaced;
+    private final Game game;
+    private final Player player;
+    private final RunningTeam team;
+    private final Block block;
+    private final BlockState replaced;
     private boolean cancel = false;
-    private ItemStack itemInHand;
+    private final ItemStack itemInHand;
 
     /**
      * @param game

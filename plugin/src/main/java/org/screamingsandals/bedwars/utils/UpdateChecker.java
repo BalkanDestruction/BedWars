@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static misat11.lib.lang.I.*;
+import static misat11.lib.lang.I.mpr;
 
 public class UpdateChecker {
     public static void run() {
@@ -93,7 +93,7 @@ public class UpdateChecker {
 
     public static class UpdateListener implements Listener {
         public float javaVer;
-        private Result result;
+        private final Result result;
 
         public UpdateListener(Result result) {
             this.result = result;

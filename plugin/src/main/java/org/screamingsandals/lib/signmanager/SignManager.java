@@ -19,7 +19,7 @@ public class SignManager {
     private final File configFile;
     private final HashMap<Location, SignBlock> signs = new HashMap<>();
     private boolean modify = false;
-    private SignOwner owner;
+    private final SignOwner owner;
 
     public SignManager(SignOwner owner, File configFile) {
         this.owner = owner;
@@ -40,7 +40,7 @@ public class SignManager {
             for (Map<String, Object> c : conf) {
                 String name = (String) c.get("name");
                 if (name == null || name.trim().equals("")) {
-                	name = (String) c.get("game"); // Compatibility with old BedWars sign.yml
+                    name = (String) c.get("game"); // Compatibility with old BedWars sign.yml
                 }
                 Location loc = (Location) c.get("location");
                 signs.put(loc, new SignBlock(loc, name));
@@ -62,7 +62,7 @@ public class SignManager {
 
     public boolean registerSign(Location location, String game) {
         if (owner.isNameExists(game)) {
-        	SignBlock block = new SignBlock(location, game);
+            SignBlock block = new SignBlock(location, game);
             signs.put(location, block);
             modify = true;
             owner.updateSign(block);

@@ -54,29 +54,8 @@ import java.util.stream.Stream;
 import static misat11.lib.lang.I18n.i18n;
 
 public class Main extends JavaPlugin implements BedwarsAPI {
-    private static Main instance;
-    private String version, nmsVersion;
-    private boolean isPaper;
-    private boolean isDisabling = false;
-    private boolean isSpigot, isLegacy;
-    private boolean snapshot, isVault, isNMS;
-    private int versionNumber = 0;
-    private Economy econ = null;
-    private HashMap<String, Game> games = new HashMap<>();
-    private HashMap<Player, GamePlayer> playersInGame = new HashMap<>();
-    private HashMap<Entity, Game> entitiesInGame = new HashMap<>();
-    private Configurator configurator;
-    private ShopInventory menu;
-    private HashMap<String, ItemSpawnerType> spawnerTypes = new HashMap<>();
-    private DatabaseManager databaseManager;
-    private PlayerStatisticManager playerStatisticsManager;
-    private IHologramInteraction hologramInteraction;
-    private HashMap<String, BaseCommand> commands;
-    private ColorChanger colorChanger;
-    private SignManager signManager;
-    private HologramManager manager;
     public static List<String> autoColoredMaterials = new ArrayList<>();
-    private Metrics metrics;
+    private static Main instance;
 
     static {
         // ColorChanger list of materials
@@ -89,6 +68,28 @@ public class Main extends JavaPlugin implements BedwarsAPI {
         autoColoredMaterials.add("STAINED_GLASS");
         autoColoredMaterials.add("STAINED_GLASS_PANE");
     }
+
+    private String version, nmsVersion;
+    private boolean isPaper;
+    private boolean isDisabling = false;
+    private boolean isSpigot, isLegacy;
+    private boolean snapshot, isVault, isNMS;
+    private int versionNumber = 0;
+    private Economy econ = null;
+    private final HashMap<String, Game> games = new HashMap<>();
+    private final HashMap<Player, GamePlayer> playersInGame = new HashMap<>();
+    private final HashMap<Entity, Game> entitiesInGame = new HashMap<>();
+    private Configurator configurator;
+    private ShopInventory menu;
+    private final HashMap<String, ItemSpawnerType> spawnerTypes = new HashMap<>();
+    private DatabaseManager databaseManager;
+    private PlayerStatisticManager playerStatisticsManager;
+    private IHologramInteraction hologramInteraction;
+    private HashMap<String, BaseCommand> commands;
+    private ColorChanger colorChanger;
+    private SignManager signManager;
+    private HologramManager manager;
+    private Metrics metrics;
 
     public static Main getInstance() {
         return instance;
@@ -224,7 +225,7 @@ public class Main extends JavaPlugin implements BedwarsAPI {
         if (instance.configurator.config.getBoolean("breakable.enabled")) {
             List<String> list = (List<String>) instance.configurator.config.getList("breakable.blocks");
             boolean asblacklist = instance.configurator.config.getBoolean("breakable.asblacklist", false);
-            return list.contains(mat.name()) ? !asblacklist : asblacklist;
+            return list.contains(mat.name()) != asblacklist;
         }
         return false;
     }
@@ -320,6 +321,30 @@ public class Main extends JavaPlugin implements BedwarsAPI {
 
     public static HologramManager getHologramManager() {
         return instance.manager;
+    }
+
+    public static boolean isPaper() {
+        return instance.isPaper;
+    }
+
+    public static ItemStack applyColor(TeamColor color, ItemStack itemStack) {
+        return applyColor(color, itemStack, false);
+    }
+
+    public static ItemStack applyColor(TeamColor color, ItemStack itemStack, boolean clone) {
+        org.screamingsandals.bedwars.api.TeamColor teamColor = color.toApiColor();
+        if (clone) {
+            itemStack = itemStack.clone();
+        }
+        return instance.getColorChanger().applyColor(teamColor, itemStack);
+    }
+
+    public static ItemStack applyColor(org.screamingsandals.bedwars.api.TeamColor teamColor, ItemStack itemStack) {
+        return instance.getColorChanger().applyColor(teamColor, itemStack);
+    }
+
+    public static boolean isDisabling() {
+        return instance.isDisabling;
     }
 
     public void onEnable() {
@@ -538,7 +563,7 @@ public class Main extends JavaPlugin implements BedwarsAPI {
 
         if (Main.getConfigurator().config.getBoolean("update-checker.zero.console")
                 || Main.getConfigurator().config.getBoolean("update-checker.zero.oped-players")
-        || Main.getConfigurator().config.getBoolean("update-checker.one.console")
+                || Main.getConfigurator().config.getBoolean("update-checker.one.console")
                 || Main.getConfigurator().config.getBoolean("update-checker.one.oped-players")) {
             UpdateChecker.run();
         }
@@ -565,10 +590,6 @@ public class Main extends JavaPlugin implements BedwarsAPI {
         }
 
         metrics = null;
-    }
-
-    public static boolean isPaper() {
-        return instance.isPaper;
     }
 
     private boolean setupEconomy() {
@@ -673,9 +694,7 @@ public class Main extends JavaPlugin implements BedwarsAPI {
 
     @Override
     public void unregisterEntityFromGame(Entity entity) {
-        if (entitiesInGame.containsKey(entity)) {
-            entitiesInGame.remove(entity);
-        }
+        entitiesInGame.remove(entity);
     }
 
     @Override
@@ -691,22 +710,6 @@ public class Main extends JavaPlugin implements BedwarsAPI {
     @Override
     public ColorChanger getColorChanger() {
         return colorChanger;
-    }
-
-    public static ItemStack applyColor(TeamColor color, ItemStack itemStack) {
-        return applyColor(color, itemStack, false);
-    }
-
-    public static ItemStack applyColor(TeamColor color, ItemStack itemStack, boolean clone) {
-        org.screamingsandals.bedwars.api.TeamColor teamColor = color.toApiColor();
-        if (clone) {
-            itemStack = itemStack.clone();
-        }
-        return instance.getColorChanger().applyColor(teamColor, itemStack);
-    }
-
-    public static ItemStack applyColor(org.screamingsandals.bedwars.api.TeamColor teamColor, ItemStack itemStack) {
-        return instance.getColorChanger().applyColor(teamColor, itemStack);
     }
 
     @Override
@@ -730,9 +733,5 @@ public class Main extends JavaPlugin implements BedwarsAPI {
     @Override
     public String getHubServerName() {
         return configurator.config.getString("bungee.server");
-    }
-
-    public static boolean isDisabling() {
-        return instance.isDisabling;
     }
 }

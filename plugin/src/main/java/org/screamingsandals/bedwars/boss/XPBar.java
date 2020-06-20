@@ -11,7 +11,7 @@ public class XPBar implements org.screamingsandals.bedwars.api.boss.XPBar {
     private boolean visible = false;
     private float progress = 0F;
     private int seconds = 0;
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
     @Override
     public void addPlayer(Player player) {
@@ -34,6 +34,16 @@ public class XPBar implements org.screamingsandals.bedwars.api.boss.XPBar {
     }
 
     @Override
+    public List<Player> getViewers() {
+        return players;
+    }
+
+    @Override
+    public double getProgress() {
+        return progress;
+    }
+
+    @Override
     public void setProgress(double progress) {
         if (progress < 0) {
             progress = 0;
@@ -43,19 +53,9 @@ public class XPBar implements org.screamingsandals.bedwars.api.boss.XPBar {
         this.progress = (float) progress;
         if (visible) {
             for (Player player : players) {
-            	PlayerUtils.fakeExp(player, this.progress, seconds);
+                PlayerUtils.fakeExp(player, this.progress, seconds);
             }
         }
-    }
-
-    @Override
-    public List<Player> getViewers() {
-        return players;
-    }
-
-    @Override
-    public double getProgress() {
-        return progress;
     }
 
     @Override
@@ -68,11 +68,11 @@ public class XPBar implements org.screamingsandals.bedwars.api.boss.XPBar {
         if (this.visible != visible) {
             if (visible) {
                 for (Player player : players) {
-                	PlayerUtils.fakeExp(player, progress, seconds);
+                    PlayerUtils.fakeExp(player, progress, seconds);
                 }
             } else {
                 for (Player player : players) {
-                	PlayerUtils.fakeExp(player, player.getExp(), player.getLevel());
+                    PlayerUtils.fakeExp(player, player.getExp(), player.getLevel());
                 }
             }
         }
@@ -80,18 +80,18 @@ public class XPBar implements org.screamingsandals.bedwars.api.boss.XPBar {
     }
 
     @Override
+    public int getSeconds() {
+        return this.seconds;
+    }
+
+    @Override
     public void setSeconds(int seconds) {
         this.seconds = seconds;
         if (visible) {
             for (Player player : players) {
-            	PlayerUtils.fakeExp(player, this.progress, seconds);
+                PlayerUtils.fakeExp(player, this.progress, seconds);
             }
         }
-    }
-
-    @Override
-    public int getSeconds() {
-        return this.seconds;
     }
 
 }

@@ -1,8 +1,8 @@
 package org.screamingsandals.bedwars.api.game;
 
+import org.bukkit.Location;
 import org.screamingsandals.bedwars.api.Team;
 import org.screamingsandals.bedwars.api.upgrades.Upgrade;
-import org.bukkit.Location;
 
 /**
  * @author Bedwars Team
@@ -39,9 +39,19 @@ public interface ItemSpawner extends Upgrade {
     double getCurrentLevel();
 
     /**
+     * @param level
+     */
+    void setCurrentLevel(double level);
+
+    /**
      * @return
      */
     boolean getHologramEnabled();
+
+    /**
+     * @return registered team for this upgrade
+     */
+    Team getTeam();
 
     /**
      * Sets team of this upgrade
@@ -49,17 +59,6 @@ public interface ItemSpawner extends Upgrade {
      * @param team current team
      */
     void setTeam(Team team);
-
-    /**
-     *
-     * @return registered team for this upgrade
-     */
-    Team getTeam();
-
-    /**
-     * @param level
-     */
-    void setCurrentLevel(double level);
 
     default void addToCurrentLevel(double level) {
         setCurrentLevel(getCurrentLevel() + level);
