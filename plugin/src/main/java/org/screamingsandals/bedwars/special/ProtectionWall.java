@@ -196,22 +196,16 @@ public class ProtectionWall extends SpecialItem implements org.screamingsandals.
 
             MiscUtils.sendActionBarMessage(player, i18nonly("specials_protection_wall_created").replace("%time%", Integer.toString(breakingTime)));
 
-            if (item.getAmount() > 1) {
-                item.setAmount(item.getAmount() - 1);
-            } else {
-                player.getInventory().remove(item);
-            }
-            player.updateInventory();
         } else {
             game.registerSpecialItem(this);
 
             MiscUtils.sendActionBarMessage(player, i18nonly("specials_protection_wall_created_unbreakable"));
-            if (item.getAmount() > 1) {
-                item.setAmount(item.getAmount() - 1);
-            } else {
-                player.getInventory().remove(item);
-            }
-            player.updateInventory();
         }
+        if (item.getAmount() > 1) {
+            item.setAmount(item.getAmount() - 1);
+        } else {
+            player.getInventory().remove(item);
+        }
+        player.updateInventory();
     }
 }
