@@ -55,7 +55,7 @@ public class RescuePlatformListener implements Listener {
                 String unhidden = APIUtils.unhashFromInvisibleStringStartsWith(stack, RESCUE_PLATFORM_PREFIX);
 
                 if (unhidden != null) {
-                    if (!game.isDelayActive(player, RescuePlatform.class)) {
+                    if (game.isDelayActive(player, RescuePlatform.class)) {
                         event.setCancelled(true);
 
                         boolean isBreakable = Boolean.parseBoolean(unhidden.split(":")[2]);

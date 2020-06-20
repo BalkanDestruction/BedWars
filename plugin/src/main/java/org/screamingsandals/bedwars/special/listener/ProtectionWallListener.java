@@ -53,7 +53,7 @@ public class ProtectionWallListener implements Listener {
                 String unhidden = APIUtils.unhashFromInvisibleStringStartsWith(stack, PROTECTION_WALL_PREFIX);
 
                 if (unhidden != null) {
-                    if (!game.isDelayActive(player, ProtectionWall.class)) {
+                    if (game.isDelayActive(player, ProtectionWall.class)) {
                         event.setCancelled(true);
 
                         boolean isBreakable = Boolean.parseBoolean(unhidden.split(":")[2]);

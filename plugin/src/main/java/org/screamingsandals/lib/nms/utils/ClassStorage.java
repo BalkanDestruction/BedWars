@@ -114,16 +114,14 @@ public class ClassStorage {
         for (String name : names) {
             try {
                 Field field = clazz.getField(name.trim());
-                Object result = field.get(instance);
-                return result;
+                return field.get(instance);
             } catch (Throwable t) {
                 Class<?> claz2 = clazz;
                 do {
                     try {
                         Field field = claz2.getDeclaredField(name.trim());
                         field.setAccessible(true);
-                        Object result = field.get(instance);
-                        return result;
+                        return field.get(instance);
                     } catch (Throwable t2) {
                     }
                 } while ((claz2 = claz2.getSuperclass()) != null && claz2 != Object.class);
@@ -157,8 +155,7 @@ public class ClassStorage {
             try {
                 Field field = clazz.getField(name.trim());
                 field.set(instance, set);
-                Object result = field.get(instance);
-                return result;
+                return field.get(instance);
             } catch (Throwable t) {
                 Class<?> claz2 = clazz;
                 do {
@@ -166,8 +163,7 @@ public class ClassStorage {
                         Field field = claz2.getDeclaredField(name.trim());
                         field.setAccessible(true);
                         field.set(instance, set);
-                        Object result = field.get(instance);
-                        return result;
+                        return field.get(instance);
                     } catch (Throwable t2) {
                     }
                 } while ((claz2 = claz2.getSuperclass()) != null && claz2 != Object.class);

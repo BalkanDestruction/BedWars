@@ -2584,10 +2584,10 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
     public boolean isDelayActive(Player player, Class<? extends SpecialItem> specialItem) {
         for (DelayFactory delayFactory : getActiveDelaysOfPlayer(player)) {
             if (specialItem.isInstance(delayFactory.getSpecialItem())) {
-                return delayFactory.getDelayActive();
+                return !delayFactory.getDelayActive();
             }
         }
-        return false;
+        return true;
     }
 
     public InGameConfigBooleanConstants getCompassEnabled() {

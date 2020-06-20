@@ -50,7 +50,7 @@ public class ArrowBlockerListener implements Listener {
                 String unhidden = APIUtils.unhashFromInvisibleStringStartsWith(stack, ARROW_BLOCKER_PREFIX);
 
                 if (unhidden != null) {
-                    if (!game.isDelayActive(player, ArrowBlocker.class)) {
+                    if (game.isDelayActive(player, ArrowBlocker.class)) {
                         event.setCancelled(true);
 
                         int protectionTime = Integer.parseInt(unhidden.split(":")[2]);

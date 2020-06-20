@@ -57,7 +57,7 @@ public class GolemListener implements Listener {
                 String unhidden = APIUtils.unhashFromInvisibleStringStartsWith(stack, GOLEM_PREFIX);
 
                 if (unhidden != null) {
-                    if (!game.isDelayActive(player, Golem.class)) {
+                    if (game.isDelayActive(player, Golem.class)) {
                         event.setCancelled(true);
 
                         double speed = Double.parseDouble(unhidden.split(":")[2]);

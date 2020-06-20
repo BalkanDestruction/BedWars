@@ -74,7 +74,7 @@ public class HologramManager implements Listener {
 
         List<Hologram> copy = new ArrayList<>(HOLOGRAMS);
         for (Hologram hologram : copy) {
-            if (hologram.isEmpty() || !hologram.hasViewers()) {
+            if (hologram.isEmpty() || hologram.hasViewers()) {
                 HOLOGRAMS.remove(hologram);
                 continue;
             }
@@ -104,7 +104,7 @@ public class HologramManager implements Listener {
 
         List<Hologram> copy = new ArrayList<>(HOLOGRAMS);
         for (Hologram hologram : copy) {
-            if (hologram.isEmpty() || !hologram.hasViewers()) {
+            if (hologram.isEmpty() || hologram.hasViewers()) {
                 HOLOGRAMS.remove(hologram);
                 continue;
             }
@@ -131,7 +131,7 @@ public class HologramManager implements Listener {
 
         List<Hologram> copy = new ArrayList<>(HOLOGRAMS);
         for (Hologram hologram : copy) {
-            if (hologram.isEmpty() || !hologram.hasViewers()) {
+            if (hologram.isEmpty() || hologram.hasViewers()) {
                 HOLOGRAMS.remove(hologram);
                 continue;
             }
@@ -164,7 +164,7 @@ public class HologramManager implements Listener {
 
         List<Hologram> copy = new ArrayList<>(HOLOGRAMS);
         for (Hologram hologram : copy) {
-            if (hologram.isEmpty() || !hologram.hasViewers()) {
+            if (hologram.isEmpty() || hologram.hasViewers()) {
                 HOLOGRAMS.remove(hologram);
                 continue;
             }

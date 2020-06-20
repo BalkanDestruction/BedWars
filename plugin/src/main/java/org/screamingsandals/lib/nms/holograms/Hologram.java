@@ -49,7 +49,7 @@ public class Hologram {
     }
 
     public boolean hasViewers() {
-        return !viewers.isEmpty();
+        return viewers.isEmpty();
     }
 
     public List<Player> getViewers() {

@@ -47,12 +47,12 @@ public class WarpPowderListener implements Listener {
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (game.getStatus() == GameStatus.RUNNING && !gPlayer.isSpectator) {
                 if (event.getItem() != null) {
-                    if (!game.isDelayActive(player, WarpPowder.class)) {
+                    if (game.isDelayActive(player, WarpPowder.class)) {
                         ItemStack stack = event.getItem();
                         String unhidden = APIUtils.unhashFromInvisibleStringStartsWith(stack, WARP_POWDER_PREFIX);
 
                         if (unhidden != null) {
-                            if (!game.isDelayActive(player, WarpPowder.class)) {
+                            if (game.isDelayActive(player, WarpPowder.class)) {
                                 event.setCancelled(true);
 
                                 int teleportTime = Integer.parseInt(unhidden.split(":")[2]);

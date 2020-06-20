@@ -15,7 +15,7 @@ public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar1
     private double progress = 0;
 
     public static boolean isPluginForLegacyBossBarEnabled() {
-        return Bukkit.getPluginManager().isPluginEnabled("BarAPI");
+        return !Bukkit.getPluginManager().isPluginEnabled("BarAPI");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar1
 
     @Override
     public void setMessage(String message) {
-        if (!isPluginForLegacyBossBarEnabled()) return;
+        if (isPluginForLegacyBossBarEnabled()) return;
         this.message = message;
         if (visible) {
             for (Player p : players) {
@@ -36,7 +36,7 @@ public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar1
 
     @Override
     public void addPlayer(Player player) {
-        if (!isPluginForLegacyBossBarEnabled()) return;
+        if (isPluginForLegacyBossBarEnabled()) return;
         if (!players.contains(player)) {
             players.add(player);
 
@@ -48,7 +48,7 @@ public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar1
 
     @Override
     public void removePlayer(Player player) {
-        if (!isPluginForLegacyBossBarEnabled()) return;
+        if (isPluginForLegacyBossBarEnabled()) return;
         if (players.contains(player)) {
             players.remove(player);
 
@@ -70,7 +70,7 @@ public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar1
 
     @Override
     public void setProgress(double progress) {
-        if (!isPluginForLegacyBossBarEnabled()) return;
+        if (isPluginForLegacyBossBarEnabled()) return;
         this.progress = progress;
         if (progress < 0) {
             progress = 0;
@@ -91,7 +91,7 @@ public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar1
 
     @Override
     public void setVisible(boolean visible) {
-        if (!isPluginForLegacyBossBarEnabled()) return;
+        if (isPluginForLegacyBossBarEnabled()) return;
         if (this.visible != visible) {
             if (visible) {
                 for (Player player : players) {
@@ -107,12 +107,12 @@ public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar1
     }
 
     private void show(Player player) {
-        if (!isPluginForLegacyBossBarEnabled()) return;
+        if (isPluginForLegacyBossBarEnabled()) return;
         BarAPI.setMessage(player, message, (float) progress * 100);
     }
 
     private void hide(Player player) {
-        if (!isPluginForLegacyBossBarEnabled()) return;
+        if (isPluginForLegacyBossBarEnabled()) return;
         BarAPI.removeBar(player);
     }
 
