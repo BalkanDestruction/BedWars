@@ -26,11 +26,11 @@ inventory {
         }
 
         item('CHAINMAIL_CHESTPLATE for 3 of iron') {
-            stack.enchant 'PROTECTION_ENVIRONMENTAL', 2
+            stack.enchant 'PROTECTION_ENVIRONMENTAL', 2 as int
         }
 
         item('CHAINMAIL_CHESTPLATE for 7 of iron') {
-            stack.enchant 'PROTECTION_ENVIRONMENTAL', 3
+            stack.enchant 'PROTECTION_ENVIRONMENTAL', 3 as int
         }
 
         item('IRON_HELMET for 10 of gold') {
@@ -54,11 +54,11 @@ inventory {
         }
 
         item('GOLDEN_SWORD for 3 of iron') {
-            stack.enchant 'DAMAGE_ALL', 2
+            stack.enchant 'DAMAGE_ALL', 2 as int
         }
 
         item('GOLDEN_SWORD for 7 of iron') {
-            stack.enchant 'DAMAGE_ALL', 3
+            stack.enchant 'DAMAGE_ALL', 3 as int
         }
 
         item('GOLDEN_SWORD for 3 of gold') {
@@ -306,11 +306,11 @@ inventory {
         }
 
         item('IRON_PICKAXE for 2 of iron') {
-            stack.enchant 'LOOT_BONUS_BLOCKS', 2
+            stack.enchant 'LOOT_BONUS_BLOCKS', 2 as int
         }
 
         item('IRON_PICKAXE for 1 of gold') {
-            stack.enchant 'LOOT_BONUS_BLOCKS', 3
+            stack.enchant 'LOOT_BONUS_BLOCKS', 3 as int
         }
     }
 
