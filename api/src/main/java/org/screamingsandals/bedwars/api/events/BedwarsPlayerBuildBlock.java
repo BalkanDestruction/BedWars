@@ -10,6 +10,8 @@ import org.bukkit.inventory.ItemStack;
 import org.screamingsandals.bedwars.api.RunningTeam;
 import org.screamingsandals.bedwars.api.game.Game;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author Bedwars Team
  */
@@ -53,7 +55,8 @@ public class BedwarsPlayerBuildBlock extends Event implements Cancellable {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @Nonnull
+    HandlerList getHandlers() {
         return BedwarsPlayerBuildBlock.handlers;
     }
 

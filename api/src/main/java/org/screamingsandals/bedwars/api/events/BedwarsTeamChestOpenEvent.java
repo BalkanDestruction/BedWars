@@ -7,6 +7,8 @@ import org.bukkit.event.HandlerList;
 import org.screamingsandals.bedwars.api.RunningTeam;
 import org.screamingsandals.bedwars.api.game.Game;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author Bedwars Team
  */
@@ -40,7 +42,8 @@ public class BedwarsTeamChestOpenEvent extends Event implements Cancellable {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @Nonnull
+    HandlerList getHandlers() {
         return BedwarsTeamChestOpenEvent.handlers;
     }
 

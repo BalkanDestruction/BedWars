@@ -4,6 +4,8 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.screamingsandals.bedwars.api.game.Game;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author Bedwars Team
  */
@@ -23,7 +25,8 @@ public class BedwarsPreRebuildingEvent extends Event {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @Nonnull
+    HandlerList getHandlers() {
         return BedwarsPreRebuildingEvent.handlers;
     }
 

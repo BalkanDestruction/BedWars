@@ -5,6 +5,8 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.screamingsandals.bedwars.api.statistics.PlayerStatistic;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author Bedwars Team
  */
@@ -26,7 +28,8 @@ public class BedwarsSavePlayerStatisticEvent extends Event implements Cancellabl
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @Nonnull
+    HandlerList getHandlers() {
         return BedwarsSavePlayerStatisticEvent.handlers;
     }
 

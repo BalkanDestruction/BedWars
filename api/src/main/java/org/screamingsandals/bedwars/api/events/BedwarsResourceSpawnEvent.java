@@ -9,6 +9,8 @@ import org.screamingsandals.bedwars.api.game.Game;
 import org.screamingsandals.bedwars.api.game.ItemSpawner;
 import org.screamingsandals.bedwars.api.game.ItemSpawnerType;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author Bedwars Team
  */
@@ -42,7 +44,8 @@ public class BedwarsResourceSpawnEvent extends Event implements Cancellable {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @Nonnull
+    HandlerList getHandlers() {
         return BedwarsResourceSpawnEvent.handlers;
     }
 

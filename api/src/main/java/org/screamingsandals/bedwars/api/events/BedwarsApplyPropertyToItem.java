@@ -6,6 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 import org.screamingsandals.bedwars.api.game.Game;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 
 public class BedwarsApplyPropertyToItem extends Event {
@@ -161,7 +162,8 @@ public class BedwarsApplyPropertyToItem extends Event {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @Nonnull
+    HandlerList getHandlers() {
         return BedwarsApplyPropertyToItem.handlers;
     }
 }

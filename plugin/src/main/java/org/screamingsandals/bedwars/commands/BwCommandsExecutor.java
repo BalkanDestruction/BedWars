@@ -3,6 +3,7 @@ package org.screamingsandals.bedwars.commands;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
+import org.jetbrains.annotations.NotNull;
 import org.screamingsandals.bedwars.Main;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import static misat11.lib.lang.I18n.i18n;
 public class BwCommandsExecutor implements CommandExecutor, TabCompleter {
 
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String alias, String[] args) {
         List<String> completionList = new ArrayList<>();
         if (sender instanceof Player) {
             Player player = (Player) sender;
@@ -41,7 +42,7 @@ public class BwCommandsExecutor implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         if (args.length == 0) {
             args = new String[]{"help"};
         }

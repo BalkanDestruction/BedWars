@@ -5,6 +5,8 @@ import org.bukkit.event.HandlerList;
 import org.screamingsandals.bedwars.api.game.Game;
 import org.screamingsandals.bedwars.api.game.GameStatus;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author Bedwars Team
  */
@@ -46,7 +48,8 @@ public class BedwarsGameTickEvent extends Event {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @Nonnull
+    HandlerList getHandlers() {
         return BedwarsGameTickEvent.handlers;
     }
 

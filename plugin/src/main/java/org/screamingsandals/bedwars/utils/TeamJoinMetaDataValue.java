@@ -2,6 +2,7 @@ package org.screamingsandals.bedwars.utils;
 
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 import org.screamingsandals.bedwars.Main;
 import org.screamingsandals.bedwars.game.Team;
 
@@ -49,7 +50,7 @@ public class TeamJoinMetaDataValue implements MetadataValue {
     }
 
     @Override
-    public String asString() {
+    public @NotNull String asString() {
         return this.asBoolean() ? "true" : "false";
     }
 
