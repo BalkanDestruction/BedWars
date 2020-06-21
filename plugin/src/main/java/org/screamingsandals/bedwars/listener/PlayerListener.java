@@ -717,7 +717,7 @@ public class PlayerListener implements Listener {
                                         // The method is no longer in API, but in legacy versions exists
                                         Block.class.getMethod("setData", byte.class).invoke(block,
                                                 (byte) stack.getDurability());
-                                    } catch (Exception e) {
+                                    } catch (Exception ignored) {
                                     }
                                     BlockPlaceEvent bevent = new BlockPlaceEvent(block, originalState,
                                             event.getClickedBlock(), stack, player, true);

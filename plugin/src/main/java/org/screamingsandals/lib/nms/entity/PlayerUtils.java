@@ -38,7 +38,7 @@ public class PlayerUtils {
             Object packet = PacketPlayOutExperience.getConstructor(float.class, int.class, int.class)
                     .newInstance(percentage, player.getTotalExperience(), levels);
             sendPacket(player, packet);
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
     }
 

@@ -42,7 +42,7 @@ public class ClassStorage {
                         .replace("{f:util}", "net.minecraft.util")
                         .replace("{f:world}", "net.minecraft.world")
                 );
-            } catch (ClassNotFoundException t) {
+            } catch (ClassNotFoundException ignored) {
             }
         }
         return null;
@@ -72,7 +72,7 @@ public class ClassStorage {
                         Method method = claz2.getDeclaredMethod(name.trim(), params);
                         method.setAccessible(true);
                         return new ClassMethod(method);
-                    } catch (Throwable t2) {
+                    } catch (Throwable ignored) {
                     }
                 } while ((claz2 = claz2.getSuperclass()) != null && claz2 != Object.class);
             }
@@ -122,7 +122,7 @@ public class ClassStorage {
                         Field field = claz2.getDeclaredField(name.trim());
                         field.setAccessible(true);
                         return field.get(instance);
-                    } catch (Throwable t2) {
+                    } catch (Throwable ignored) {
                     }
                 } while ((claz2 = claz2.getSuperclass()) != null && claz2 != Object.class);
             }
@@ -164,7 +164,7 @@ public class ClassStorage {
                         field.setAccessible(true);
                         field.set(instance, set);
                         return field.get(instance);
-                    } catch (Throwable t2) {
+                    } catch (Throwable ignored) {
                     }
                 } while ((claz2 = claz2.getSuperclass()) != null && claz2 != Object.class);
             }
@@ -231,7 +231,7 @@ public class ClassStorage {
         try {
             Object world = getMethod(handler, "getWorld,func_130014_f_").invoke();
             return NMS.PathfinderGoalSelector.getConstructors()[0].newInstance(getMethodProfiler(world));
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
         return null;
     }

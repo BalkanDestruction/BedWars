@@ -30,7 +30,7 @@ public abstract class Selector {
     public void clearSelector() {
         try {
             this.selector = setField(this.handler, this.keys, obtainNewPathfinderSelector(handler));
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
     }
 }

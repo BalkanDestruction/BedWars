@@ -36,7 +36,7 @@ public class EntityLivingNMS extends EntityNMS {
             Object attr0 = getMethod(handler, "getAttributeInstance,func_110148_a", IAttribute)
                     .invoke(attr);
             return attr0 != null;
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
         return false;
     }
@@ -51,7 +51,7 @@ public class EntityLivingNMS extends EntityNMS {
             Object attr0 = getMethod(handler, "getAttributeInstance,func_110148_a", IAttribute)
                     .invoke(attr);
             return (double) getMethod(attr0, "getValue,func_111126_e").invoke();
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
         return 0;
     }

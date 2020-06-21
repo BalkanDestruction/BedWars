@@ -91,7 +91,7 @@ public class HologramManager implements Listener {
                         hologram.update(player, Arrays.asList(hologram.getFullDestroyPacket()), false);
                     }
                 }
-            } catch (Throwable t) {
+            } catch (Throwable ignored) {
             }
         }
     }
@@ -118,7 +118,7 @@ public class HologramManager implements Listener {
                         hologram.update(player, hologram.getAllSpawnPackets(), false);
                     }
                 }
-            } catch (Throwable t) {
+            } catch (Throwable ignored) {
             }
         }
     }
@@ -145,13 +145,13 @@ public class HologramManager implements Listener {
                             public void run() {
                                 try {
                                     hologram.update(player, hologram.getAllSpawnPackets(), false);
-                                } catch (Throwable t) {
+                                } catch (Throwable ignored) {
                                 }
                             }
                         }.runTaskLater(pl, 20L);
                     }
                 }
-            } catch (Throwable t) {
+            } catch (Throwable ignored) {
             }
         }
     }
@@ -181,7 +181,7 @@ public class HologramManager implements Listener {
                         hologram.update(player, Arrays.asList(hologram.getFullDestroyPacket()), false);
                     }
                 }
-            } catch (Throwable t) {
+            } catch (Throwable ignored) {
             }
         }
     }

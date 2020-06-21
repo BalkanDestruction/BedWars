@@ -23,7 +23,7 @@ public abstract class PacketInboundListener {
                     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                         try {
                             msg = handle(player, msg);
-                        } catch (Throwable t) {
+                        } catch (Throwable ignored) {
                         }
                         if (msg != null) {
                             super.channelRead(ctx, msg);
@@ -32,7 +32,7 @@ public abstract class PacketInboundListener {
                 };
                 ch.pipeline().addBefore("packet_handler", channelName, handler);
             }
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
     }
 
@@ -42,7 +42,7 @@ public abstract class PacketInboundListener {
             if (ch.pipeline().get(channelName) != null) {
                 ch.pipeline().remove(channelName);
             }
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
     }
 
@@ -50,7 +50,7 @@ public abstract class PacketInboundListener {
         try {
             Object manager = getField(getPlayerConnection(player), "networkManager,field_147371_a");
             return (Channel) getField(manager, "channel,field_150746_k,k,m");
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
         return null;
     }

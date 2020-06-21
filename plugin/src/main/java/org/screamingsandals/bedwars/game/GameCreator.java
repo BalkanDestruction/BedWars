@@ -157,7 +157,7 @@ public class GameCreator {
                                                 try {
                                                     maxSpawnedResources = Integer.parseInt(args[5]);
                                                     error = false;
-                                                } catch (NumberFormatException e) {
+                                                } catch (NumberFormatException ignored) {
                                                 }
                                             }
                                             if (error) {
@@ -731,7 +731,7 @@ public class GameCreator {
                 if (!t.isAlive()) {
                     t = null;
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
 
             if (t == null) {

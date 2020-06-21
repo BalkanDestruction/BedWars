@@ -1698,7 +1698,7 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
                                 try {
                                     // The method is no longer in API, but in legacy versions exists
                                     Block.class.getMethod("setData", byte.class).invoke(placedBlock, (byte) stack.getDurability());
-                                } catch (Exception e) {
+                                } catch (Exception ignored) {
                                 }
                             }
                         }

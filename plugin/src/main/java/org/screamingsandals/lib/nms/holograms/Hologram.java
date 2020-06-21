@@ -231,7 +231,6 @@ public class Hologram {
             viewers.forEach(player -> update(player, packets, true));
 
         } catch (Throwable ignored) {
-            ignored.printStackTrace(); // Remove after testing
         }
     }
 
@@ -256,7 +255,6 @@ public class Hologram {
                 sendPacket.invoke(packet);
             }
         } catch (Throwable ignored) {
-            ignored.printStackTrace();
         }
     }
 

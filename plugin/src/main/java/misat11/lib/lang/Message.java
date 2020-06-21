@@ -146,7 +146,7 @@ public class Message {
 
         try {
             sender.getClass().getMethod("sendMessage", String.class).invoke(sender, message);
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
         return this;
     }
@@ -156,7 +156,7 @@ public class Message {
 
         try {
             name = (String) sender.getClass().getMethod("getName").invoke(sender);
-        } catch (Throwable t) {
+        } catch (Throwable ignored) {
         }
 
         MessageReceiver receiver = new MessageReceiver(sender, name);

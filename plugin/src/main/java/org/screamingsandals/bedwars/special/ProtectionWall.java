@@ -181,7 +181,7 @@ public class ProtectionWall extends SpecialItem implements org.screamingsandals.
                     try {
                         // The method is no longer in API, but in legacy versions exists
                         Block.class.getMethod("setData", byte.class).invoke(placedBlock, (byte) coloredStack.getDurability());
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
                     }
                 } else {
                     placedBlock.setType(coloredStack.getType());
