@@ -2040,7 +2040,7 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
             Main.getConfigurator().recordConfig.set("record." + this.getName() + ".time", wonTime);
             Main.getConfigurator().recordConfig.set("record." + this.getName() + ".team",
                     t.teamInfo.color.chatColor + t.teamInfo.name);
-            List<String> winners = new ArrayList<String>();
+            List<String> winners = new ArrayList<>();
             for (GamePlayer p : t.players) {
                 winners.add(p.player.getName());
             }
