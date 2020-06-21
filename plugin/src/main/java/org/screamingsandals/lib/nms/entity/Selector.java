@@ -1,5 +1,7 @@
 package org.screamingsandals.lib.nms.entity;
 
+import java.util.Objects;
+
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.EntityInsentient;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.PathfinderGoal;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.*;
@@ -10,7 +12,7 @@ public abstract class Selector {
     protected Object selector;
 
     protected Selector(Object handler, String keys) {
-        if (!EntityInsentient.isInstance(handler)) {
+        if (!Objects.requireNonNull(EntityInsentient).isInstance(handler)) {
             throw new IllegalArgumentException("Invalid mob type");
         }
         this.handler = handler;

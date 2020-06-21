@@ -2,6 +2,8 @@ package org.screamingsandals.lib.nms.entity;
 
 import org.bukkit.entity.LivingEntity;
 
+import java.util.Objects;
+
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.*;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.*;
 
@@ -9,7 +11,7 @@ public class EntityLivingNMS extends EntityNMS {
 
     public EntityLivingNMS(Object handler) {
         super(handler);
-        if (!EntityInsentient.isInstance(handler)) {
+        if (!Objects.requireNonNull(EntityInsentient).isInstance(handler)) {
             throw new IllegalArgumentException("Entity must be instance of EntityInsentient!!");
         }
     }

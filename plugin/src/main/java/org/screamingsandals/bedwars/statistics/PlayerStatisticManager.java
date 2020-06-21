@@ -11,6 +11,7 @@ import java.io.File;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 /*
@@ -43,7 +44,7 @@ public class PlayerStatisticManager {
             return;
         }
 
-        if (Main.getConfigurator().config.getString("statistics.type").equalsIgnoreCase("database")) {
+        if (Objects.requireNonNull(Main.getConfigurator().config.getString("statistics.type")).equalsIgnoreCase("database")) {
             this.initializeDatabase();
         } else {
             File file = new File(Main.getInstance().getDataFolder() + "/database/bw_stats_players.yml");
@@ -117,7 +118,7 @@ public class PlayerStatisticManager {
     }
 
     public PlayerStatistic loadStatistic(UUID uuid) {
-        if (Main.getConfigurator().config.getString("statistics.type").equalsIgnoreCase("database")) {
+        if (Objects.requireNonNull(Main.getConfigurator().config.getString("statistics.type")).equalsIgnoreCase("database")) {
             return this.loadDatabaseStatistic(uuid);
         } else {
             return this.loadYamlStatistic(uuid);
@@ -132,7 +133,7 @@ public class PlayerStatisticManager {
             return playerStatistic;
         }
 
-        HashMap<String, Object> deserialize = new HashMap<>(this.fileDatabase.getConfigurationSection("data." + uuid.toString()).getValues(false));
+        HashMap<String, Object> deserialize = new HashMap<>(Objects.requireNonNull(this.fileDatabase.getConfigurationSection("data." + uuid.toString())).getValues(false));
         PlayerStatistic playerStatistic = new PlayerStatistic(deserialize);
         playerStatistic.setId(uuid);
         Player player = Main.getInstance().getServer().getPlayer(uuid);
@@ -204,7 +205,7 @@ public class PlayerStatisticManager {
             return;
         }
 
-        if (Main.getConfigurator().config.getString("statistics.type").equalsIgnoreCase("database")) {
+        if (Objects.requireNonNull(Main.getConfigurator().config.getString("statistics.type")).equalsIgnoreCase("database")) {
             this.storeDatabaseStatistic(statistic);
         } else {
             this.storeYamlStatistic(statistic);
@@ -222,7 +223,7 @@ public class PlayerStatisticManager {
     }
 
     public void unloadStatistic(OfflinePlayer player) {
-        if (Main.getConfigurator().config.getString("statistics.type").equalsIgnoreCase("database")) {
+        if (Objects.requireNonNull(Main.getConfigurator().config.getString("statistics.type")).equalsIgnoreCase("database")) {
             this.playerStatistic.remove(player.getUniqueId());
         }
     }

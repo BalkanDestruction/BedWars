@@ -13,6 +13,8 @@ import org.screamingsandals.bedwars.game.TeamColor;
 import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.screamingsandals.lib.nms.entity.EntityUtils;
 
+import java.util.Objects;
+
 import static misat11.lib.lang.I18n.i18nonly;
 
 public class Golem extends SpecialItem implements org.screamingsandals.bedwars.api.special.Golem {
@@ -74,7 +76,7 @@ public class Golem extends SpecialItem implements org.screamingsandals.bedwars.a
 
         entity = golem;
 
-        EntityUtils.makeMobAttackTarget(golem, speed, followRange, -1)
+        Objects.requireNonNull(EntityUtils.makeMobAttackTarget(golem, speed, followRange, -1))
                 .getTargetSelector()
                 .attackNearestTarget(0, "EntityPlayer");
 

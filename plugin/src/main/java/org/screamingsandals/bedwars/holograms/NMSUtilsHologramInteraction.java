@@ -156,7 +156,7 @@ public class NMSUtilsHologramInteraction implements IHologramInteraction, TouchH
         holo.addHandler(this);
 
         String headline = Main.getConfigurator().config.getString("holograms.headline", "Your §eBEDWARS§f stats");
-        if (!headline.trim().isEmpty()) {
+        if (!Objects.requireNonNull(headline).trim().isEmpty()) {
             holo.addLine(headline);
         }
 

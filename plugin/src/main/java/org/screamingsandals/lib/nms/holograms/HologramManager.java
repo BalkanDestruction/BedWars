@@ -15,6 +15,7 @@ import org.screamingsandals.lib.nms.network.inbound.AutoPacketInboundListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.PacketPlayInUseEntity;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.getField;
@@ -33,7 +34,7 @@ public class HologramManager implements Listener {
 
             @Override
             protected Object handle(Player sender, Object packet) throws Throwable {
-                if (PacketPlayInUseEntity.isInstance(packet)) {
+                if (Objects.requireNonNull(PacketPlayInUseEntity).isInstance(packet)) {
                     int a = (int) getField(PacketPlayInUseEntity, "a,field_149567_a", packet);
                     for (Hologram h : HOLOGRAMS) {
                         if (h.handleTouch(sender, a)) {

@@ -7,6 +7,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.screamingsandals.bedwars.Main;
 
+import java.util.Objects;
+
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.*;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.*;
 
@@ -21,10 +23,10 @@ public class PlayerUtils {
                 } catch (Throwable t) {
                     try {
                         Object selectedObj = findEnumConstant(EnumClientCommand, "PERFORM_RESPAWN");
-                        Object packet = PacketPlayInClientCommand.getDeclaredConstructor(EnumClientCommand)
+                        Object packet = Objects.requireNonNull(PacketPlayInClientCommand).getDeclaredConstructor(EnumClientCommand)
                                 .newInstance(selectedObj);
                         Object connection = getPlayerConnection(player);
-                        getMethod(connection, "a,func_147342_a", PacketPlayInClientCommand).invoke(packet);
+                        getMethod(Objects.requireNonNull(connection), "a,func_147342_a", PacketPlayInClientCommand).invoke(packet);
                     } catch (Throwable ignored) {
                         t.printStackTrace();
                     }
@@ -35,7 +37,7 @@ public class PlayerUtils {
 
     public static void fakeExp(Player player, float percentage, int levels) {
         try {
-            Object packet = PacketPlayOutExperience.getConstructor(float.class, int.class, int.class)
+            Object packet = Objects.requireNonNull(PacketPlayOutExperience).getConstructor(float.class, int.class, int.class)
                     .newInstance(percentage, player.getTotalExperience(), levels);
             sendPacket(player, packet);
         } catch (Throwable ignored) {

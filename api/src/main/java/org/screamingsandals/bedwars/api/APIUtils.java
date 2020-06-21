@@ -6,6 +6,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Bedwars Team
@@ -19,7 +20,7 @@ public class APIUtils {
         ItemMeta meta = stack.getItemMeta();
         List<String> lore = meta.hasLore() ? meta.getLore() : new ArrayList<>();
 
-        lore.add(convertToInvisibleString(hash));
+        Objects.requireNonNull(lore).add(convertToInvisibleString(hash));
         meta.setLore(lore);
 
         stack.setItemMeta(meta);
@@ -35,7 +36,7 @@ public class APIUtils {
         try {
             if (meta.hasLore()) {
                 List<String> lore = meta.getLore();
-                for (String s : lore) {
+                for (String s : Objects.requireNonNull(lore)) {
                     String unhidden = returnFromInvisibleString(s);
                     if (unhidden.startsWith(startsWith)) {
                         return unhidden;
@@ -58,7 +59,7 @@ public class APIUtils {
         try {
             if (meta.hasLore()) {
                 List<String> lore = meta.getLore();
-                for (String s : lore) {
+                for (String s : Objects.requireNonNull(lore)) {
                     String unhidden = returnFromInvisibleString(s);
                     if (unhidden.equals(hash)) {
                         return true;

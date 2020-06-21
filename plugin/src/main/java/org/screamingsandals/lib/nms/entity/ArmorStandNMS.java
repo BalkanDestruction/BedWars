@@ -3,6 +3,8 @@ package org.screamingsandals.lib.nms.entity;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 
+import java.util.Objects;
+
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.EntityArmorStand;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.World;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.getHandle;
@@ -12,7 +14,7 @@ public class ArmorStandNMS extends EntityNMS {
 
     public ArmorStandNMS(Object handler) {
         super(handler);
-        if (!EntityArmorStand.isInstance(handler)) {
+        if (!Objects.requireNonNull(EntityArmorStand).isInstance(handler)) {
             throw new IllegalArgumentException("Entity must be instance of EntityArmorStand!!");
         }
     }
@@ -22,7 +24,7 @@ public class ArmorStandNMS extends EntityNMS {
     }
 
     public ArmorStandNMS(Location loc) throws Throwable {
-        this(EntityArmorStand.getConstructor(World, double.class, double.class, double.class)
+        this(Objects.requireNonNull(EntityArmorStand).getConstructor(World, double.class, double.class, double.class)
                 .newInstance(getMethod(loc.getWorld(), "getHandle").invoke(), loc.getX(), loc.getY(), loc.getZ()));
         this.setLocation(loc); // Update rotation
     }

@@ -12,10 +12,10 @@ import java.util.Map;
 public class BedwarsApplyPropertyToItem extends Event {
 
     private static final HandlerList handlers = new HandlerList();
-    private Game game = null;
-    private Player player = null;
-    private ItemStack stack = null;
-    private Map<String, Object> properties = null;
+    private final Game game;
+    private final Player player;
+    private final Map<String, Object> properties;
+    private ItemStack stack;
 
     /**
      * @param game

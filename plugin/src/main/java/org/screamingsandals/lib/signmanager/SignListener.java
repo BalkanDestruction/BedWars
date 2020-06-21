@@ -10,6 +10,7 @@ import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SignListener implements Listener {
 
@@ -27,7 +28,7 @@ public class SignListener implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (event.getClickedBlock().getState() instanceof Sign) {
+            if (Objects.requireNonNull(event.getClickedBlock()).getState() instanceof Sign) {
                 if (manager.isSignRegistered(event.getClickedBlock().getLocation())) {
                     SignBlock sign = manager.getSign(event.getClickedBlock().getLocation());
                     owner.onClick(event.getPlayer(), sign);
@@ -63,7 +64,7 @@ public class SignListener implements Listener {
         }
         if (event.getBlock().getState() instanceof Sign) {
             Location loc = event.getBlock().getLocation();
-            if (SIGN_PREFIX.contains(event.getLine(0).toLowerCase())) {
+            if (SIGN_PREFIX.contains(Objects.requireNonNull(event.getLine(0)).toLowerCase())) {
                 if (event.getPlayer().hasPermission(owner.getSignCreationPermission())) {
                     if (manager.registerSign(loc, event.getLine(1))) {
                         event.getPlayer().sendMessage(owner.returnTranslate("sign_successfully_created"));

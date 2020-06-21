@@ -5,6 +5,7 @@ import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.EnumParticle;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.PacketPlayOutWorldParticles;
@@ -22,13 +23,13 @@ public class Particles {
                 try {
                     Object selectedParticle = null;
                     particleName = particleName.toUpperCase();
-                    for (Object obj : EnumParticle.getEnumConstants()) {
+                    for (Object obj : Objects.requireNonNull(EnumParticle).getEnumConstants()) {
                         if (particleName.equalsIgnoreCase((String) getMethod(obj, "b").invoke())) {
                             selectedParticle = obj;
                             break;
                         }
                     }
-                    Object packet = PacketPlayOutWorldParticles
+                    Object packet = Objects.requireNonNull(PacketPlayOutWorldParticles)
                             .getConstructor(EnumParticle, boolean.class, float.class, float.class, float.class, float.class,
                                     float.class, float.class, float.class, int.class, int[].class)
                             .newInstance(selectedParticle, true, loc.getX(), loc.getY(), loc.getZ(), offsetX, offsetY,

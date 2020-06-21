@@ -19,10 +19,7 @@ import org.screamingsandals.bedwars.region.FlatteningBedUtils;
 import org.screamingsandals.bedwars.region.LegacyBedUtils;
 import org.screamingsandals.bedwars.utils.TeamJoinMetaDataValue;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static misat11.lib.lang.I18n.i18n;
 
@@ -547,7 +544,7 @@ public class GameCreator {
                     if (block.getBlockData() instanceof Bed) {
                         Bed bed = (Bed) block.getBlockData();
                         if (bed.getPart() != Part.HEAD) {
-                            t.bed = FlatteningBedUtils.getBedNeighbor(block).getLocation();
+                            t.bed = Objects.requireNonNull(FlatteningBedUtils.getBedNeighbor(block)).getLocation();
                         } else {
                             t.bed = loc;
                         }

@@ -2,6 +2,8 @@ package org.screamingsandals.lib.nms.title;
 
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.*;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.*;
 
@@ -16,7 +18,7 @@ public class Title {
                 Object subtitleComponent = getMethod(ChatSerializer, "a,field_150700_a", String.class)
                         .invokeStatic("{\"text\": \"" + subtitle + "\"}");
 
-                Object titlePacket = PacketPlayOutTitle.getConstructor(EnumTitleAction, IChatBaseComponent)
+                Object titlePacket = Objects.requireNonNull(PacketPlayOutTitle).getConstructor(EnumTitleAction, IChatBaseComponent)
                         .newInstance(findEnumConstant(EnumTitleAction, "TITLE"), titleComponent);
                 Object subtitlePacket = PacketPlayOutTitle.getConstructor(EnumTitleAction, IChatBaseComponent)
                         .newInstance(findEnumConstant(EnumTitleAction, "SUBTITLE"), subtitleComponent);

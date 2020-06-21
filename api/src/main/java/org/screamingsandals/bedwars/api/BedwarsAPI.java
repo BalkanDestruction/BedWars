@@ -8,6 +8,7 @@ import org.screamingsandals.bedwars.api.game.ItemSpawnerType;
 import org.screamingsandals.bedwars.api.utils.ColorChanger;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Bedwars Team
@@ -18,7 +19,7 @@ public interface BedwarsAPI {
      * @return Bedwars instance
      */
     static BedwarsAPI getInstance() {
-        return Bukkit.getServicesManager().getRegistration(BedwarsAPI.class).getProvider();
+        return Objects.requireNonNull(Bukkit.getServicesManager().getRegistration(BedwarsAPI.class)).getProvider();
     }
 
     /**

@@ -32,10 +32,7 @@ import org.screamingsandals.simpleinventories.item.PlayerItemInfo;
 import org.screamingsandals.simpleinventories.utils.MapReader;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static misat11.lib.lang.I18n.i18n;
 import static misat11.lib.lang.I18n.i18nonly;
@@ -244,7 +241,7 @@ public class ShopInventory implements Listener {
                     s = s.replaceAll("%price%", Integer.toString(price));
                     s = s.replaceAll("%resource%", type.getItemName());
                     s = s.replaceAll("%amount%", Integer.toString(stack.getAmount()));
-                    lore.add(s);
+                    Objects.requireNonNull(lore).add(s);
                 }
                 stackMeta.setLore(lore);
                 stack.setItemMeta(stackMeta);
@@ -365,7 +362,7 @@ public class ShopInventory implements Listener {
             int finalStackSize;
 
             for (ItemStack itemStack : event.getPlayer().getInventory().getStorageContents()) {
-                if (itemStack != null && itemStack.isSimilar(type.getStack())) {
+                if (itemStack.isSimilar(type.getStack())) {
                     inInventory = inInventory + itemStack.getAmount();
                 }
             }

@@ -216,7 +216,7 @@ public class Main extends JavaPlugin implements BedwarsAPI {
     public static boolean isFarmBlock(Material mat) {
         if (instance.configurator.config.getBoolean("farmBlocks.enable")) {
             List<String> list = (List<String>) instance.configurator.config.getList("farmBlocks.blocks");
-            return list.contains(mat.name());
+            return Objects.requireNonNull(list).contains(mat.name());
         }
         return false;
     }
@@ -225,7 +225,7 @@ public class Main extends JavaPlugin implements BedwarsAPI {
         if (instance.configurator.config.getBoolean("breakable.enabled")) {
             List<String> list = (List<String>) instance.configurator.config.getList("breakable.blocks");
             boolean asblacklist = instance.configurator.config.getBoolean("breakable.asblacklist", false);
-            return list.contains(mat.name()) != asblacklist;
+            return Objects.requireNonNull(list).contains(mat.name()) != asblacklist;
         }
         return false;
     }
@@ -233,7 +233,7 @@ public class Main extends JavaPlugin implements BedwarsAPI {
     public static boolean isCommandLeaveShortcut(String command) {
         if (instance.configurator.config.getBoolean("leaveshortcuts.enabled")) {
             List<String> commands = (List<String>) instance.configurator.config.getList("leaveshortcuts.list");
-            for (String comm : commands) {
+            for (String comm : Objects.requireNonNull(commands)) {
                 if (!comm.startsWith("/")) {
                     comm = "/" + comm;
                 }
@@ -428,8 +428,8 @@ public class Main extends JavaPlugin implements BedwarsAPI {
         new MainlobbyCommand();
 
         BwCommandsExecutor cmd = new BwCommandsExecutor();
-        getCommand("bw").setExecutor(cmd);
-        getCommand("bw").setTabCompleter(cmd);
+        Objects.requireNonNull(getCommand("bw")).setExecutor(cmd);
+        Objects.requireNonNull(getCommand("bw")).setTabCompleter(cmd);
 
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
         if (versionNumber >= 109) {
@@ -451,7 +451,7 @@ public class Main extends JavaPlugin implements BedwarsAPI {
 
         getServer().getServicesManager().register(BedwarsAPI.class, this, this, ServicePriority.Normal);
 
-        for (String spawnerN : configurator.config.getConfigurationSection("resources").getKeys(false)) {
+        for (String spawnerN : Objects.requireNonNull(configurator.config.getConfigurationSection("resources")).getKeys(false)) {
 
             String name = Main.getConfigurator().config.getString("resources." + spawnerN + ".name");
             String translate = Main.getConfigurator().config.getString("resources." + spawnerN + ".translate");
@@ -548,7 +548,7 @@ public class Main extends JavaPlugin implements BedwarsAPI {
             // PerWorldInventory
             if (Bukkit.getPluginManager().isPluginEnabled("PerWorldInventory")) {
                 Plugin pwi = Bukkit.getPluginManager().getPlugin("PerWorldInventory");
-                if (pwi.getClass().getName().equals("me.ebonjaeger.perworldinventory.PerWorldInventory")) {
+                if (Objects.requireNonNull(pwi).getClass().getName().equals("me.ebonjaeger.perworldinventory.PerWorldInventory")) {
                     // Kotlin version
                     getServer().getPluginManager().registerEvents(new PerWorldInventoryKotlinListener(), this);
                 } else {

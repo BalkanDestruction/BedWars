@@ -5,6 +5,8 @@ import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 import static org.screamingsandals.lib.nms.utils.ClassStorage.getField;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.getPlayerConnection;
 
@@ -17,7 +19,7 @@ public abstract class PacketInboundListener {
     public void addPlayer(Player player) {
         try {
             Channel ch = getChannel(player);
-            if (ch.pipeline().get(channelName) == null) {
+            if (Objects.requireNonNull(ch).pipeline().get(channelName) == null) {
                 ChannelDuplexHandler handler = new ChannelDuplexHandler() {
                     @Override
                     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
@@ -39,7 +41,7 @@ public abstract class PacketInboundListener {
     public void removePlayer(Player player) {
         try {
             Channel ch = getChannel(player);
-            if (ch.pipeline().get(channelName) != null) {
+            if (Objects.requireNonNull(ch).pipeline().get(channelName) != null) {
                 ch.pipeline().remove(channelName);
             }
         } catch (Throwable ignored) {

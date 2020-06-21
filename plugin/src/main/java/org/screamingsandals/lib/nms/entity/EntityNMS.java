@@ -5,6 +5,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.screamingsandals.lib.nms.utils.InstanceMethod;
 
+import java.util.Objects;
+
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.ChatSerializer;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.IChatBaseComponent;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.*;
@@ -57,8 +59,8 @@ public class EntityNMS {
 
     public String getCustomName() {
         Object textComponent = getMethod(handler, "getCustomName,func_200201_e,func_95999_t").invoke();
-        String text = "";
-        if (IChatBaseComponent.isInstance(textComponent)) {
+        String text;
+        if (Objects.requireNonNull(IChatBaseComponent).isInstance(textComponent)) {
             text = (String) getMethod(textComponent, "getLegacyString,func_150254_d").invoke();
         } else {
             text = textComponent.toString();

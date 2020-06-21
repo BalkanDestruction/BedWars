@@ -7,6 +7,8 @@ import org.screamingsandals.bedwars.Main;
 import org.screamingsandals.bedwars.game.TeamColor;
 import org.screamingsandals.lib.debug.Debug;
 
+import java.util.Objects;
+
 public class ColorChanger implements org.screamingsandals.bedwars.api.utils.ColorChanger {
     public static ItemStack changeLegacyStackColor(ItemStack itemStack, TeamColor teamColor) {
         Material material = itemStack.getType();
@@ -15,10 +17,10 @@ public class ColorChanger implements org.screamingsandals.bedwars.api.utils.Colo
         if (Main.autoColoredMaterials.contains(materialName)) {
             itemStack.setDurability((short) teamColor.woolData);
         } else if (material.toString().contains("GLASS")) {
-            itemStack.setType(Material.getMaterial("STAINED_GLASS"));
+            itemStack.setType(Objects.requireNonNull(Material.getMaterial("STAINED_GLASS")));
             itemStack.setDurability((short) teamColor.woolData);
         } else if (material.toString().contains("GLASS_PANE")) {
-            itemStack.setType(Material.getMaterial("STAINED_GLASS_PANE"));
+            itemStack.setType(Objects.requireNonNull(Material.getMaterial("STAINED_GLASS_PANE")));
             itemStack.setDurability((short) teamColor.woolData);
         }
         return itemStack;
@@ -65,11 +67,11 @@ public class ColorChanger implements org.screamingsandals.bedwars.api.utils.Colo
             TeamColor color = TeamColor.fromApiColor(apiColor);
             Material material = stack.getType();
             if (Main.isLegacy()) {
-                stack = changeLegacyStackColor(stack, color);
+                changeLegacyStackColor(stack, color);
             } else {
                 stack.setType(changeMaterialColor(material, color));
             }
-            stack = changeLeatherArmorColor(stack, color);
+            changeLeatherArmorColor(stack, color);
             return stack;
         } catch (NullPointerException e) {
             Debug.warn("DEFINED ITEM DOES NOT EXISTS. CHECK YOUR CONFIG.");

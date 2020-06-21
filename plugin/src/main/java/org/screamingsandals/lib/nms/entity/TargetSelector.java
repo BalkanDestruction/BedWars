@@ -2,6 +2,8 @@ package org.screamingsandals.lib.nms.entity;
 
 import org.bukkit.entity.LivingEntity;
 
+import java.util.Objects;
+
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.EntityInsentient;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.PathfinderGoalNearestAttackableTarget;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.*;
@@ -23,7 +25,7 @@ public class TargetSelector extends Selector {
 
     public TargetSelector attackNearestTarget(int a, Class<?> targetClass) {
         try {
-            Object targetNear = PathfinderGoalNearestAttackableTarget.getConstructor(EntityInsentient, Class.class, Boolean.TYPE)
+            Object targetNear = Objects.requireNonNull(PathfinderGoalNearestAttackableTarget).getConstructor(EntityInsentient, Class.class, Boolean.TYPE)
                     .newInstance(handler, targetClass, false);
             registerPathfinder(a, targetNear);
         } catch (Throwable ignored) {

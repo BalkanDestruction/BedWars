@@ -14,7 +14,7 @@ public class BedwarsSavePlayerStatisticEvent extends Event implements Cancellabl
 
     private static final HandlerList handlers = new HandlerList();
     private boolean cancelled = false;
-    private PlayerStatistic playerStatistic = null;
+    private final PlayerStatistic playerStatistic;
 
     /**
      * @param playerStatistic

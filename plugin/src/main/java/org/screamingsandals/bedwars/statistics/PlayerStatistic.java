@@ -95,7 +95,7 @@ public class PlayerStatistic implements ConfigurationSerializable, org.screaming
     }
 
     public double getCurrentKD() {
-        double kd = 0.0;
+        double kd;
         if (this.getDeaths() + this.getCurrentDeaths() == 0) {
             kd = this.getKills();
         } else if (this.getKills() + this.getCurrentKills() == 0) {
@@ -122,7 +122,7 @@ public class PlayerStatistic implements ConfigurationSerializable, org.screaming
     }
 
     public double getKD() {
-        double kd = 0.0;
+        double kd;
         if (this.getDeaths() == 0) {
             kd = this.getKills();
         } else if (this.getKills() == 0) {

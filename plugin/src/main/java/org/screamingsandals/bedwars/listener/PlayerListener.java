@@ -36,14 +36,10 @@ import org.screamingsandals.bedwars.game.*;
 import org.screamingsandals.bedwars.inventories.TeamSelectorInventory;
 import org.screamingsandals.bedwars.statistics.PlayerStatistic;
 import org.screamingsandals.bedwars.utils.*;
-import org.screamingsandals.lib.debug.Debug;
 import org.screamingsandals.lib.nms.entity.PlayerUtils;
 import org.screamingsandals.simpleinventories.utils.StackParser;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static misat11.lib.lang.I18n.i18n;
 import static misat11.lib.lang.I18n.i18nonly;
@@ -150,11 +146,11 @@ public class PlayerListener implements Listener {
                         }
                         if (team.isDead()) {
                             SpawnEffects.spawnEffect(game, victim, "game-effects.teamkill");
-                            Sounds.playSound(killer, killer.getLocation(),
+                            Sounds.playSound(killer, Objects.requireNonNull(killer).getLocation(),
                                     Main.getConfigurator().config.getString("sounds.on_team_kill"),
                                     Sounds.ENTITY_PLAYER_LEVELUP, 1, 1);
                         } else {
-                            Sounds.playSound(killer, killer.getLocation(),
+                            Sounds.playSound(killer, Objects.requireNonNull(killer).getLocation(),
                                     Main.getConfigurator().config.getString("sounds.on_player_kill"),
                                     Sounds.ENTITY_PLAYER_BIG_FALL, 1, 1);
                             Main.depositPlayer(killer, Main.getVaultKillReward());
@@ -299,13 +295,9 @@ public class PlayerListener implements Listener {
 
                 SpawnEffects.spawnEffect(gPlayer.getGame(), gPlayer.player, "game-effects.respawn");
                 if (gPlayer.getGame().getOriginalOrInheritedPlayerRespawnItems()) {
-                    List<ItemStack> givedGameStartItems = StackParser.parseAll((Collection<Object>) Main.getConfigurator().config
-                            .getList("gived-player-respawn-items"));
-                    if (givedGameStartItems != null) {
-                        MiscUtils.giveItemsToPlayer(givedGameStartItems, gPlayer.player, team.getColor());
-                    } else {
-                        Debug.warn("You have wrongly configured gived-player-respawn-items!", true);
-                    }
+                    List<ItemStack> givedGameStartItems = StackParser.parseAll((Collection<Object>) Objects.requireNonNull(Main.getConfigurator().config
+                            .getList("gived-player-respawn-items")));
+                    MiscUtils.giveItemsToPlayer(givedGameStartItems, gPlayer.player, team.getColor());
                 }
             }
         }
@@ -645,9 +637,8 @@ public class PlayerListener implements Listener {
                                 return;
                             }
                             inv.openForPlayer(player);
-                        } else if (gPlayer.isSpectator) {
-                            // TODO
-                        }
+                        }  // TODO
+
                     } else if (event.getMaterial() == Material
                             .valueOf(Main.getConfigurator().config.getString("items.startgame", "DIAMOND"))) {
                         if (game.getStatus() == GameStatus.WAITING && (player.hasPermission("bw.vip.startitem")
@@ -854,8 +845,12 @@ public class PlayerListener implements Listener {
 
             event.setCancelled(true);
             TeamJoinMetaDataValue value = (TeamJoinMetaDataValue) values.get(0);
-            if (!((boolean) value.value())) {
-                return;
+            try {
+                if (!((boolean) value.value())) {
+                    return;
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
             }
 
             if (!(entity instanceof LivingEntity)) {
@@ -909,15 +904,15 @@ public class PlayerListener implements Listener {
 
             String format = Main.getConfigurator().config.getString("chat.format", "<%teamcolor%%name%§r> ");
             if (team != null) {
-                format = format.replace("%teamcolor%", team.teamInfo.color.chatColor.toString());
+                format = Objects.requireNonNull(format).replace("%teamcolor%", team.teamInfo.color.chatColor.toString());
                 format = format.replace("%team%", team.teamInfo.name);
                 format = format.replace("%coloredteam%", team.teamInfo.color.chatColor + team.teamInfo.name);
             } else if (spectator) {
-                format = format.replace("%teamcolor%", ChatColor.GRAY.toString());
+                format = Objects.requireNonNull(format).replace("%teamcolor%", ChatColor.GRAY.toString());
                 format = format.replace("%team%", "SPECTATOR");
                 format = format.replace("%coloredteam%", ChatColor.GRAY.toString() + "SPECTATOR");
             } else {
-                format = format.replace("%teamcolor%", ChatColor.GRAY.toString());
+                format = Objects.requireNonNull(format).replace("%teamcolor%", ChatColor.GRAY.toString());
                 format = format.replace("%team%", "");
                 format = format.replace("%coloredteam%", ChatColor.GRAY.toString());
             }
@@ -944,10 +939,10 @@ public class PlayerListener implements Listener {
             String allChat = Main.getConfigurator().config.getString("chat.all-chat-prefix", "@a");
             String tChat = Main.getConfigurator().config.getString("chat.team-chat-prefix", "@t");
 
-            if (message.startsWith(allChat)) {
+            if (message.startsWith(Objects.requireNonNull(allChat))) {
                 teamChat = false;
                 message = message.substring(allChat.length()).trim();
-            } else if (message.startsWith(tChat) && (team != null || spectator)) {
+            } else if (message.startsWith(Objects.requireNonNull(tChat)) && (team != null || spectator)) {
                 teamChat = true;
                 message = message.substring(tChat.length()).trim();
             }

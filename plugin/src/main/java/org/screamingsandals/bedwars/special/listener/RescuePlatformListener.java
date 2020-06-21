@@ -24,6 +24,7 @@ import org.screamingsandals.bedwars.utils.DelayFactory;
 import org.screamingsandals.bedwars.utils.MiscUtils;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static misat11.lib.lang.I18n.i18n;
 import static misat11.lib.lang.I18n.i18nonly;
@@ -110,11 +111,9 @@ public class RescuePlatformListener implements Listener {
 
         RescuePlatform rescuePlatform = (RescuePlatform) game.getFirstActivedSpecialItemOfPlayer(player, RescuePlatform.class);
         if (rescuePlatform != null && event.getCause() == EntityDamageEvent.DamageCause.FALL) {
-            Block block = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
-            if (block != null) {
-                if (block.getType() == rescuePlatform.getMaterial()) {
-                    event.setCancelled(true);
-                }
+            Block block = Objects.requireNonNull(player).getLocation().getBlock().getRelative(BlockFace.DOWN);
+            if (block.getType() == rescuePlatform.getMaterial()) {
+                event.setCancelled(true);
             }
         }
     }

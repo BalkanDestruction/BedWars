@@ -2,6 +2,8 @@ package org.screamingsandals.lib.nms.entity;
 
 import org.bukkit.entity.LivingEntity;
 
+import java.util.Objects;
+
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.*;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.getHandle;
 import static org.screamingsandals.lib.nms.utils.ClassStorage.getMethod;
@@ -15,7 +17,7 @@ public class EntityUtils {
                                                       double attackDamage) {
         try {
             Object handler = getHandle(mob);
-            if (!EntityInsentient.isInstance(handler)) {
+            if (!Objects.requireNonNull(EntityInsentient).isInstance(handler)) {
                 throw new IllegalArgumentException("Entity must be instance of EntityInsentient!!");
             }
 
@@ -23,7 +25,7 @@ public class EntityUtils {
 
             GoalSelector selector = entityLiving.getGoalSelector();
             selector.clearSelector();
-            selector.registerPathfinder(0, PathfinderGoalMeleeAttack
+            selector.registerPathfinder(0, Objects.requireNonNull(PathfinderGoalMeleeAttack)
                     .getConstructor(EntityCreature, double.class, boolean.class).newInstance(handler, 1.0D, false));
 
             entityLiving.setAttribute(Attribute.MOVEMENT_SPEED, speed);
@@ -48,7 +50,7 @@ public class EntityUtils {
                 // new
                 // one?
                 if (tag == null) {
-                    tag = NBTTagCompound.getConstructor().newInstance();
+                    tag = Objects.requireNonNull(NBTTagCompound).getConstructor().newInstance();
                 }
                 getMethod(handler, "c,func_184198_c", NBTTagCompound).invoke(tag);
                 getMethod(NBTTagCompound, "setInt,func_74768_a", String.class, int.class).invokeInstance(tag, "NoAI",

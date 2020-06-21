@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class BukkitTranslateContainer implements ITranslateContainer {
 
@@ -96,7 +97,7 @@ public class BukkitTranslateContainer implements ITranslateContainer {
     @Override
     public String translate(String key, String def) {
         if (config.isSet(key)) {
-            return ChatColor.translateAlternateColorCodes('&', config.getString(key));
+            return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString(key)));
         } else if (fallback != null) {
             return fallback.translate(key, def);
         } else if (def != null) {

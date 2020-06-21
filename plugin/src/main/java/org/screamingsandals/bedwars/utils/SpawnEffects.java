@@ -15,6 +15,7 @@ import org.screamingsandals.lib.nms.particles.Particles;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class SpawnEffects {
     public static void spawnEffect(Game game, Player player, String particleName) {
@@ -29,10 +30,10 @@ public class SpawnEffects {
         if (effect != null && effect.isSet("type")) {
             try {
                 String type = effect.getString("type");
-                if (type.equalsIgnoreCase("List")) {
+                if (Objects.requireNonNull(type).equalsIgnoreCase("List")) {
                     if (effect.isSet("list")) {
                         List<Map<String, Object>> sections = (List<Map<String, Object>>) effect.getList("list");
-                        for (Map<String, Object> section : sections) {
+                        for (Map<String, Object> section : Objects.requireNonNull(sections)) {
                             useEffect((String) section.get("type"), section, player, game);
                         }
                     }

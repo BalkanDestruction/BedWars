@@ -12,10 +12,7 @@ import org.screamingsandals.lib.debug.Debug;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Configurator {
@@ -181,12 +178,12 @@ public class Configurator {
         checkOrSetConfig(modify, "items.startgame", "DIAMOND");
         checkOrSetConfig(modify, "items.shopback", "BARRIER");
         checkOrSetConfig(modify, "items.shopcosmetic",
-                Main.isLegacy() ? new ItemStack(Material.getMaterial("STAINED_GLASS_PANE"), 1, (short) 7)
+                Main.isLegacy() ? new ItemStack(Objects.requireNonNull(Material.getMaterial("STAINED_GLASS_PANE")), 1, (short) 7)
                         : "GRAY_STAINED_GLASS_PANE");
         checkOrSetConfig(modify, "items.pageback", "ARROW");
         checkOrSetConfig(modify, "items.pageforward", "ARROW");
         checkOrSetConfig(modify, "items.team-select",
-                Main.isLegacy() ? new ItemStack(Material.getMaterial("WOOL"), 1, (short) 1)
+                Main.isLegacy() ? new ItemStack(Objects.requireNonNull(Material.getMaterial("WOOL")), 1, (short) 1)
                         : "WHITE_WOOL");
 
         checkOrSetConfig(modify, "vault.enable", true);

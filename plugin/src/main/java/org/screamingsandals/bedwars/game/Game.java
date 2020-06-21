@@ -48,7 +48,6 @@ import org.screamingsandals.bedwars.region.FlatteningRegion;
 import org.screamingsandals.bedwars.region.LegacyRegion;
 import org.screamingsandals.bedwars.statistics.PlayerStatistic;
 import org.screamingsandals.bedwars.utils.*;
-import org.screamingsandals.lib.debug.Debug;
 import org.screamingsandals.lib.nms.entity.EntityUtils;
 import org.screamingsandals.lib.nms.holograms.Hologram;
 import org.screamingsandals.lib.signmanager.SignBlock;
@@ -184,7 +183,7 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
         game.pauseCountdown = configMap.getInt("pauseCountdown");
         game.gameTime = configMap.getInt("gameTime");
         String worldName = configMap.getString("world");
-        game.world = Bukkit.getWorld(worldName);
+        game.world = Bukkit.getWorld(Objects.requireNonNull(worldName));
         if (game.world == null) {
             if (Bukkit.getPluginManager().isPluginEnabled("Multiverse-Core")) {
                 Bukkit.getConsoleSender().sendMessage("§c[B§fW] §cWorld " + worldName
@@ -217,21 +216,21 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
         }
 
         if (Main.getVersionNumber() >= 115) {
-            game.world.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true);
+            Objects.requireNonNull(game.world).setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true);
         }
 
-        game.pos1 = MiscUtils.readLocationFromString(game.world, configMap.getString("pos1"));
-        game.pos2 = MiscUtils.readLocationFromString(game.world, configMap.getString("pos2"));
-        game.specSpawn = MiscUtils.readLocationFromString(game.world, configMap.getString("specSpawn"));
+        game.pos1 = MiscUtils.readLocationFromString(game.world, Objects.requireNonNull(configMap.getString("pos1")));
+        game.pos2 = MiscUtils.readLocationFromString(game.world, Objects.requireNonNull(configMap.getString("pos2")));
+        game.specSpawn = MiscUtils.readLocationFromString(game.world, Objects.requireNonNull(configMap.getString("specSpawn")));
         String spawnWorld = configMap.getString("lobbySpawnWorld");
-        World lobbySpawnWorld = Bukkit.getWorld(spawnWorld);
+        World lobbySpawnWorld = Bukkit.getWorld(Objects.requireNonNull(spawnWorld));
         if (lobbySpawnWorld == null) {
             if (Bukkit.getPluginManager().isPluginEnabled("Multiverse-Core")) {
                 Bukkit.getConsoleSender().sendMessage("§c[B§fW] §cWorld " + spawnWorld
                         + " was not found, but we found Multiverse-Core, so we will try to load this world.");
 
                 Core multiverse = (Core) Bukkit.getPluginManager().getPlugin("Multiverse-Core");
-                MVWorldManager manager = multiverse.getMVWorldManager();
+                MVWorldManager manager = Objects.requireNonNull(multiverse).getMVWorldManager();
                 if (manager.loadWorld(spawnWorld)) {
                     Bukkit.getConsoleSender().sendMessage("§c[B§fW] §aWorld " + spawnWorld
                             + " was succesfully loaded with Multiverse-Core, continue in arena loading.");
@@ -253,18 +252,18 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
                 return null;
             }
         }
-        game.lobbySpawn = MiscUtils.readLocationFromString(lobbySpawnWorld, configMap.getString("lobbySpawn"));
+        game.lobbySpawn = MiscUtils.readLocationFromString(lobbySpawnWorld, Objects.requireNonNull(configMap.getString("lobbySpawn")));
         game.minPlayers = configMap.getInt("minPlayers", 2);
         if (configMap.isSet("teams")) {
-            for (String teamN : configMap.getConfigurationSection("teams").getKeys(false)) {
-                ConfigurationSection team = configMap.getConfigurationSection("teams").getConfigurationSection(teamN);
+            for (String teamN : Objects.requireNonNull(configMap.getConfigurationSection("teams")).getKeys(false)) {
+                ConfigurationSection team = Objects.requireNonNull(configMap.getConfigurationSection("teams")).getConfigurationSection(teamN);
                 Team t = new Team();
-                t.newColor = team.getBoolean("isNewColor", false);
+                t.newColor = Objects.requireNonNull(team).getBoolean("isNewColor", false);
                 t.color = TeamColor.valueOf(MiscUtils.convertColorToNewFormat(team.getString("color"), t));
                 t.name = teamN;
-                t.bed = MiscUtils.readLocationFromString(game.world, team.getString("bed"));
+                t.bed = MiscUtils.readLocationFromString(game.world, Objects.requireNonNull(team.getString("bed")));
                 t.maxPlayers = team.getInt("maxPlayers");
-                t.spawn = MiscUtils.readLocationFromString(game.world, team.getString("spawn"));
+                t.spawn = MiscUtils.readLocationFromString(game.world, Objects.requireNonNull(team.getString("spawn")));
                 t.game = game;
 
                 t.newColor = true;
@@ -273,7 +272,7 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
         }
         if (configMap.isSet("spawners")) {
             List<Map<String, Object>> spawners = (List<Map<String, Object>>) configMap.getList("spawners");
-            for (Map<String, Object> spawner : spawners) {
+            for (Map<String, Object> spawner : Objects.requireNonNull(spawners)) {
                 ItemSpawner sa = new ItemSpawner(
                         MiscUtils.readLocationFromString(game.world, (String) spawner.get("location")),
                         Main.getSpawnerType(((String) spawner.get("type")).toLowerCase()),
@@ -286,7 +285,7 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
         }
         if (configMap.isSet("stores")) {
             List<Object> stores = (List<Object>) configMap.getList("stores");
-            for (Object store : stores) {
+            for (Object store : Objects.requireNonNull(stores)) {
                 if (store instanceof Map) {
                     Map<String, String> map = (Map<String, String>) store;
                     game.gameStore.add(new GameStore(MiscUtils.readLocationFromString(game.world, map.get("loc")),
@@ -338,13 +337,13 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
         game.holoAboveBed = readBooleanConstant(configMap.getString("constant." + HOLO_ABOVE_BED, "inherit"));
         game.spectatorJoin = readBooleanConstant(configMap.getString("constant." + SPECTATOR_JOIN, "inherit"));
 
-        game.arenaTime = ArenaTime.valueOf(configMap.getString("arenaTime", ArenaTime.WORLD.name()).toUpperCase());
-        game.arenaWeather = loadWeather(configMap.getString("arenaWeather", "default").toUpperCase());
+        game.arenaTime = ArenaTime.valueOf(Objects.requireNonNull(configMap.getString("arenaTime", ArenaTime.WORLD.name())).toUpperCase());
+        game.arenaWeather = loadWeather(Objects.requireNonNull(configMap.getString("arenaWeather", "default")).toUpperCase());
 
         try {
             game.lobbyBossBarColor = loadBossBarColor(
-                    configMap.getString("lobbyBossBarColor", "default").toUpperCase());
-            game.gameBossBarColor = loadBossBarColor(configMap.getString("gameBossBarColor", "default").toUpperCase());
+                    Objects.requireNonNull(configMap.getString("lobbyBossBarColor", "default")).toUpperCase());
+            game.gameBossBarColor = loadBossBarColor(Objects.requireNonNull(configMap.getString("gameBossBarColor", "default")).toUpperCase());
         } catch (Throwable t) {
             // We're using 1.8
         }
@@ -890,8 +889,8 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
         if (Main.getConfigurator().config.getBoolean("mainlobby.enabled")
                 && !Main.getConfigurator().config.getBoolean("bungee.enabled")) {
             Location mainLobbyLocation = MiscUtils.readLocationFromString(
-                    Bukkit.getWorld(Main.getConfigurator().config.getString("mainlobby.world")),
-                    Main.getConfigurator().config.getString("mainlobby.location"));
+                    Bukkit.getWorld(Objects.requireNonNull(Main.getConfigurator().config.getString("mainlobby.world"))),
+                    Objects.requireNonNull(Main.getConfigurator().config.getString("mainlobby.location")));
             gamePlayer.teleport(mainLobbyLocation);
         }
 
@@ -930,15 +929,14 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
                 updateSigns();
                 rebuild();
             } else {
-                status = GameStatus.WAITING;
                 cancelTask();
             }
             countdown = -1;
             if (gameScoreboard.getObjective("display") != null) {
-                gameScoreboard.getObjective("display").unregister();
+                Objects.requireNonNull(gameScoreboard.getObjective("display")).unregister();
             }
             if (gameScoreboard.getObjective("lobby") != null) {
-                gameScoreboard.getObjective("lobby").unregister();
+                Objects.requireNonNull(gameScoreboard.getObjective("lobby")).unregister();
             }
             gameScoreboard.clearSlot(DisplaySlot.SIDEBAR);
             for (CurrentTeam team : teamsInGame) {
@@ -1400,13 +1398,9 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
                     }
 
                     if (gamePlayer.getGame().getOriginalOrInheritedPlayerRespawnItems()) {
-                        List<ItemStack> givedGameStartItems = StackParser.parseAll((Collection<Object>) Main.getConfigurator().config
-                                .getList("gived-player-respawn-items"));
-                        if (givedGameStartItems != null) {
-                            MiscUtils.giveItemsToPlayer(givedGameStartItems, player, currentTeam.getColor());
-                        } else {
-                            Debug.warn("You have wrongly configured gived-player-respawn-items!", true);
-                        }
+                        List<ItemStack> givedGameStartItems = StackParser.parseAll((Collection<Object>) Objects.requireNonNull(Main.getConfigurator().config
+                                .getList("gived-player-respawn-items")));
+                        MiscUtils.giveItemsToPlayer(givedGameStartItems, player, currentTeam.getColor());
                     }
                 }
             }.runTask(Main.getInstance());
@@ -1566,7 +1560,7 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
                         teamSelectorInventory.destroy();
                     teamSelectorInventory = null;
                     if (gameScoreboard.getObjective("lobby") != null) {
-                        gameScoreboard.getObjective("lobby").unregister();
+                        Objects.requireNonNull(gameScoreboard.getObjective("lobby")).unregister();
                     }
                     gameScoreboard.clearSlot(DisplaySlot.SIDEBAR);
                     updateSigns();
@@ -1625,13 +1619,9 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
                             player.teleport(team.teamInfo.spawn, () -> {
                                 player.player.setGameMode(GameMode.SURVIVAL);
                                 if (getOriginalOrInheritedGameStartItems()) {
-                                    List<ItemStack> givedGameStartItems = StackParser.parseAll((Collection<Object>) Main.getConfigurator().config
-                                            .getList("gived-game-start-items"));
-                                    if (givedGameStartItems != null) {
-                                        MiscUtils.giveItemsToPlayer(givedGameStartItems, player.player, team.getColor());
-                                    } else {
-                                        Debug.warn("You have wrongly configured gived-player-start-items!", true);
-                                    }
+                                    List<ItemStack> givedGameStartItems = StackParser.parseAll((Collection<Object>) Objects.requireNonNull(Main.getConfigurator().config
+                                            .getList("gived-game-start-items")));
+                                    MiscUtils.giveItemsToPlayer(givedGameStartItems, player.player, team.getColor());
                                 }
                                 SpawnEffects.spawnEffect(this, player.player, "game-effects.start");
                             });
@@ -1839,7 +1829,7 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
                         }
 
                         if ((elapsedTime % cycle) == 0) {
-                            int calculatedStack = 1;
+                            int calculatedStack;
                             double currentLevel = spawner.getCurrentLevel();
                             calculatedStack = (int) currentLevel;
 
@@ -2128,7 +2118,7 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
             return "";
         }
 
-        return Main.getConfigurator().config.getString("scoreboard.teamTitle")
+        return Objects.requireNonNull(Main.getConfigurator().config.getString("scoreboard.teamTitle"))
                 .replace("%color%", team.teamInfo.color.chatColor.toString()).replace("%team%", team.teamInfo.name)
                 .replace("%bed%", destroy ? bedLostString() : bedExistString());
     }
@@ -2151,7 +2141,7 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
     }
 
     private String formatScoreboardTitle() {
-        return Main.getConfigurator().config.getString("scoreboard.title").replace("%game%", this.name)
+        return Objects.requireNonNull(Main.getConfigurator().config.getString("scoreboard.title")).replace("%game%", this.name)
                 .replace("%time%", this.getFormattedTimeLeft());
     }
 
@@ -2245,7 +2235,7 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
 
         List<String> rows = Main.getConfigurator().config.getStringList("lobby-scoreboard.content");
         int rowMax = rows.size();
-        if (rows == null || rows.isEmpty()) {
+        if (rows.isEmpty()) {
             return;
         }
 

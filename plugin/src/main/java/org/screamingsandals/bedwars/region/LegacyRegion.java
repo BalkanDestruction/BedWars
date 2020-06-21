@@ -10,10 +10,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.material.*;
 import org.screamingsandals.bedwars.api.Region;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LegacyRegion implements Region {
     private final List<Location> builtBlocks = new ArrayList<>();
@@ -137,7 +134,7 @@ public class LegacyRegion implements Region {
 
             Bed bedHead = (Bed) headState.getData();
             bedHead.setHeadOfBed(true);
-            bedHead.setFacingDirection(blockHead.getFace(blockFeed).getOppositeFace());
+            bedHead.setFacingDirection(Objects.requireNonNull(blockHead.getFace(blockFeed)).getOppositeFace());
 
             Bed bedFeed = (Bed) feedState.getData();
             bedFeed.setHeadOfBed(false);

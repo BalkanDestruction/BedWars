@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 public class ClassStorage {
 
@@ -185,7 +186,7 @@ public class ClassStorage {
     }
 
     public static boolean sendPacket(Player player, Object packet) {
-        if (!NMS.Packet.isInstance(packet)) {
+        if (!Objects.requireNonNull(NMS.Packet).isInstance(packet)) {
             return false;
         }
         Object connection = getPlayerConnection(player);
@@ -230,7 +231,7 @@ public class ClassStorage {
     public static Object obtainNewPathfinderSelector(Object handler) {
         try {
             Object world = getMethod(handler, "getWorld,func_130014_f_").invoke();
-            return NMS.PathfinderGoalSelector.getConstructors()[0].newInstance(getMethodProfiler(world));
+            return Objects.requireNonNull(NMS.PathfinderGoalSelector).getConstructors()[0].newInstance(getMethodProfiler(world));
         } catch (Throwable ignored) {
         }
         return null;

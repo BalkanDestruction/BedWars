@@ -12,6 +12,8 @@ import org.screamingsandals.bedwars.game.TeamColor;
 import org.screamingsandals.bedwars.utils.MiscUtils;
 import org.screamingsandals.lib.nms.entity.EntityUtils;
 
+import java.util.Objects;
+
 import static misat11.lib.lang.I18n.i18n;
 
 public class TNTSheep extends SpecialItem implements org.screamingsandals.bedwars.api.special.TNTSheep {
@@ -74,7 +76,7 @@ public class TNTSheep extends SpecialItem implements org.screamingsandals.bedwar
         }
 
         entity = sheep;
-        EntityUtils.makeMobAttackTarget(sheep, speed, followRange, 0)
+        Objects.requireNonNull(EntityUtils.makeMobAttackTarget(sheep, speed, followRange, 0))
                 .getTargetSelector().attackTarget(target);
 
         tnt = (TNTPrimed) loc.getWorld().spawnEntity(loc, EntityType.PRIMED_TNT);

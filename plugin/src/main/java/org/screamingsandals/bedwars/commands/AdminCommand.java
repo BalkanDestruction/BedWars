@@ -512,9 +512,7 @@ public class AdminCommand extends BaseCommand {
             if (args.size() == 4 && args.get(2).equalsIgnoreCase("add")) {
                 completion.addAll(Arrays.asList("Villager_shop", "Dealer", "Seller", "&a&lVillager_shop"));
             }
-            if (args.size() == 5 && args.get(2).equalsIgnoreCase("add")) {
-                // TODO scan files for this :D
-            }
+            // TODO scan files for this :D
             if (args.size() == 6 && args.get(2).equalsIgnoreCase("add")) {
                 completion.addAll(Arrays.asList("true", "false"));
             }
