@@ -12,9 +12,9 @@ import org.screamingsandals.lib.nms.entity.PlayerUtils;
 
 public class GamePlayer {
     public final Player player;
+    private final StoredInventory oldInventory = new StoredInventory();
     public boolean isSpectator = false;
     public boolean isTeleportingFromGame_justForInventoryPlugins = false;
-    private final StoredInventory oldInventory = new StoredInventory();
     private Game game = null;
     private String latestGame = null;
 

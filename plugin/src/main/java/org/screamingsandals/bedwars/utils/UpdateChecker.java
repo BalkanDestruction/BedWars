@@ -92,8 +92,8 @@ public class UpdateChecker {
     }
 
     public static class UpdateListener implements Listener {
-        public float javaVer;
         private final Result result;
+        public float javaVer;
 
         public UpdateListener(Result result) {
             this.result = result;

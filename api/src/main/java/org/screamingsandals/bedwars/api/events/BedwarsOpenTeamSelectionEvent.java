@@ -14,9 +14,9 @@ import javax.annotation.Nonnull;
 public class BedwarsOpenTeamSelectionEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
-    private boolean cancelled = false;
     private final Game game;
     private final Player player;
+    private boolean cancelled = false;
 
     /**
      * @param game

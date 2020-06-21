@@ -22,11 +22,9 @@ public class RescuePlatform extends SpecialItem implements org.screamingsandals.
     private final Game game;
     private final Player player;
     private final Team team;
-    private List<Block> platformBlocks;
-
-    private Material buildingMaterial;
     private final ItemStack item;
-
+    private List<Block> platformBlocks;
+    private Material buildingMaterial;
     private boolean canBreak;
     private int breakingTime;
     private int livingTime;

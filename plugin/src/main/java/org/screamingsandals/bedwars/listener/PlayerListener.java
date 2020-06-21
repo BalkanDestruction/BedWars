@@ -196,9 +196,9 @@ public class PlayerListener implements Listener {
                 game.makeSpectator(gVictim, false);
 
                 new BukkitRunnable() {
-                    int livingTime = respawnTime;
                     final GamePlayer gamePlayer = gVictim;
                     final Player player = gamePlayer.player;
+                    int livingTime = respawnTime;
 
                     @Override
                     public void run() {

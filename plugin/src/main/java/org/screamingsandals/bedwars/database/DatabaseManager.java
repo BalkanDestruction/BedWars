@@ -10,11 +10,11 @@ import java.util.TimeZone;
 public class DatabaseManager {
     private final String tablePrefix;
     private final String database;
-    private HikariDataSource dataSource = null;
     private final String host;
     private final String password;
     private final int port;
     private final String user;
+    private HikariDataSource dataSource = null;
 
     public DatabaseManager(String host, int port, String user, String password, String database, String tablePrefix) {
         this.host = host;

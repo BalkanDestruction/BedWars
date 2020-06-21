@@ -13,10 +13,9 @@ import org.screamingsandals.lib.nms.entity.PlayerUtils;
 import static misat11.lib.lang.I18n.i18n;
 
 public class WarpPowder extends SpecialItem implements org.screamingsandals.bedwars.api.special.WarpPowder {
+    private final ItemStack item;
     private BukkitTask teleportingTask = null;
     private int teleportingTime;
-
-    private final ItemStack item;
 
     public WarpPowder(Game game, Player player, Team team, ItemStack item, int teleportingTime) {
         super(game, player, team);

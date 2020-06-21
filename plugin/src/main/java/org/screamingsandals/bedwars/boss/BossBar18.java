@@ -9,8 +9,8 @@ import java.util.List;
 
 public class BossBar18 implements org.screamingsandals.bedwars.api.boss.BossBar18 {
 
-    private boolean visible = false;
     private final List<Player> players = new ArrayList<>();
+    private boolean visible = false;
     private String message = "";
     private double progress = 0;
 

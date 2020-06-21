@@ -14,10 +14,10 @@ import javax.annotation.Nonnull;
 public class BedwarsPlayerJoinEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
-    private boolean cancelled = false;
-    private String cancelMessage = null;
     private final Game game;
     private final Player player;
+    private boolean cancelled = false;
+    private String cancelMessage = null;
 
     /**
      * @param game

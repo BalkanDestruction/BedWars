@@ -69,6 +69,10 @@ public class Main extends JavaPlugin implements BedwarsAPI {
         autoColoredMaterials.add("STAINED_GLASS_PANE");
     }
 
+    private final HashMap<String, Game> games = new HashMap<>();
+    private final HashMap<Player, GamePlayer> playersInGame = new HashMap<>();
+    private final HashMap<Entity, Game> entitiesInGame = new HashMap<>();
+    private final HashMap<String, ItemSpawnerType> spawnerTypes = new HashMap<>();
     private String version, nmsVersion;
     private boolean isPaper;
     private boolean isDisabling = false;
@@ -76,12 +80,8 @@ public class Main extends JavaPlugin implements BedwarsAPI {
     private boolean snapshot, isVault, isNMS;
     private int versionNumber = 0;
     private Economy econ = null;
-    private final HashMap<String, Game> games = new HashMap<>();
-    private final HashMap<Player, GamePlayer> playersInGame = new HashMap<>();
-    private final HashMap<Entity, Game> entitiesInGame = new HashMap<>();
     private Configurator configurator;
     private ShopInventory menu;
-    private final HashMap<String, ItemSpawnerType> spawnerTypes = new HashMap<>();
     private DatabaseManager databaseManager;
     private PlayerStatisticManager playerStatisticsManager;
     private IHologramInteraction hologramInteraction;

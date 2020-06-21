@@ -18,9 +18,9 @@ import java.util.UUID;
 Thanks to BedWarsRel for this
  */
 public class PlayerStatisticManager {
+    private final Map<UUID, PlayerStatistic> playerStatistic;
     private File databaseFile = null;
     private FileConfiguration fileDatabase;
-    private final Map<UUID, PlayerStatistic> playerStatistic;
 
     public PlayerStatisticManager() {
         this.playerStatistic = new HashMap<>();

@@ -17,14 +17,14 @@ import java.util.Objects;
 import static misat11.lib.lang.I18n.i18n;
 
 public class TNTSheep extends SpecialItem implements org.screamingsandals.bedwars.api.special.TNTSheep {
-    private LivingEntity entity;
-    private TNTPrimed tnt;
     private final Location loc;
     private final ItemStack item;
     private final double speed;
     private final double followRange;
     private final double maxTargetDistance;
     private final int explosionTime;
+    private LivingEntity entity;
+    private TNTPrimed tnt;
 
     public TNTSheep(Game game, Player player, Team team, Location loc, ItemStack item,
                     double speed, double followRange, double maxTargetDistance, int explosionTime) {

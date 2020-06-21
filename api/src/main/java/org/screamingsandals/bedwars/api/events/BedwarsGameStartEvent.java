@@ -13,8 +13,8 @@ import javax.annotation.Nonnull;
 public class BedwarsGameStartEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
-    private boolean cancelled = false;
     private final Game game;
+    private boolean cancelled = false;
 
     /**
      * @param game

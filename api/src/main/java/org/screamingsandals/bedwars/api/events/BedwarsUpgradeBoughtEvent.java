@@ -16,12 +16,12 @@ import java.util.List;
  */
 public class BedwarsUpgradeBoughtEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
-    private boolean cancelled = false;
     private final Game game;
     private final List<Upgrade> upgrades;
     private final Player customer;
     private final UpgradeStorage storage;
     private final double addLevels;
+    private boolean cancelled = false;
 
     /**
      * @param game

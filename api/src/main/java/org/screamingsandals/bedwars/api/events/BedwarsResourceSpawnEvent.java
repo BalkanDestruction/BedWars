@@ -16,10 +16,10 @@ import javax.annotation.Nonnull;
  */
 public class BedwarsResourceSpawnEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
-    private boolean cancelled = false;
     private final Game game;
-    private ItemStack resource;
     private final ItemSpawner spawner;
+    private boolean cancelled = false;
+    private ItemStack resource;
 
     /**
      * @param game

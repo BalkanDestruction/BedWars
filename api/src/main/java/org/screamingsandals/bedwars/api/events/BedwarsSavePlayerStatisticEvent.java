@@ -13,8 +13,8 @@ import javax.annotation.Nonnull;
 public class BedwarsSavePlayerStatisticEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
-    private boolean cancelled = false;
     private final PlayerStatistic playerStatistic;
+    private boolean cancelled = false;
 
     /**
      * @param playerStatistic

@@ -23,8 +23,8 @@ public class BedwarsPlayerBuildBlock extends Event implements Cancellable {
     private final RunningTeam team;
     private final Block block;
     private final BlockState replaced;
-    private boolean cancel = false;
     private final ItemStack itemInHand;
+    private boolean cancel = false;
 
     /**
      * @param game

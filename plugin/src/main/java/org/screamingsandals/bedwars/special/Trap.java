@@ -17,8 +17,8 @@ import static misat11.lib.lang.I18n.i18nonly;
 
 public class Trap extends SpecialItem implements org.screamingsandals.bedwars.api.special.Trap {
     private final List<Map<String, Object>> trapData;
-    private Location location;
     private final Player player;
+    private Location location;
 
     public Trap(Game game, Player player, Team team, List<Map<String, Object>> trapData) {
         super(game, player, team);

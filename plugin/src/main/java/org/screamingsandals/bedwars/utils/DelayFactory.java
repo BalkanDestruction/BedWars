@@ -7,10 +7,10 @@ import org.screamingsandals.bedwars.api.game.Game;
 import org.screamingsandals.bedwars.api.special.SpecialItem;
 
 public class DelayFactory implements org.screamingsandals.bedwars.api.utils.DelayFactory {
-    private int delay;
     private final SpecialItem specialItem;
     private final Player player;
     private final Game game;
+    private int delay;
     private boolean delayActive;
 
     public DelayFactory(int delay, SpecialItem specialItem, Player player, Game game) {

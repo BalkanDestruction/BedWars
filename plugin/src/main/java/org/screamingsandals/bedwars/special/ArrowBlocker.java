@@ -15,9 +15,9 @@ public class ArrowBlocker extends SpecialItem implements org.screamingsandals.be
     private final Player player;
 
     private final int protectionTime;
+    private final ItemStack item;
     private int usedTime;
     private boolean isActivated;
-    private final ItemStack item;
 
     public ArrowBlocker(Game game, Player player, Team team, ItemStack item, int protectionTime) {
         super(game, player, team);

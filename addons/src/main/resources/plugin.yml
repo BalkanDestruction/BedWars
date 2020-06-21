@@ -2,6 +2,6 @@ name: BedWars-Addons
 main: org.screamingsandals.bedwars.addons.Main
 version: ${project.version}
 author: ScreamingSandals <Misat11, Ceph>
-api-version: 1.13
+api-version: 1.15
 softdepend:
   - BedWars

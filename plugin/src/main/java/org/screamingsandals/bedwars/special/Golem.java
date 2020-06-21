@@ -18,7 +18,6 @@ import java.util.Objects;
 import static misat11.lib.lang.I18n.i18nonly;
 
 public class Golem extends SpecialItem implements org.screamingsandals.bedwars.api.special.Golem {
-    private LivingEntity entity;
     private final Location location;
     private final ItemStack item;
     private final double speed;
@@ -26,6 +25,7 @@ public class Golem extends SpecialItem implements org.screamingsandals.bedwars.a
     private final double health;
     private final String name;
     private final boolean showName;
+    private LivingEntity entity;
 
     public Golem(Game game, Player player, Team team,
                  ItemStack item, Location location, double speed, double followRange, double health,

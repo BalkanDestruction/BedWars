@@ -20,10 +20,10 @@ public class CurrentTeam implements RunningTeam {
     public final Team teamInfo;
     public final List<GamePlayer> players = new ArrayList<>();
     private final Inventory chestInventory = Bukkit.createInventory(null, InventoryType.ENDER_CHEST, i18n("team_chest"));
-    private org.bukkit.scoreboard.Team scoreboardTeam;
     private final List<Block> chests = new ArrayList<>();
     private final Game game;
     public boolean isBed = true;
+    private org.bukkit.scoreboard.Team scoreboardTeam;
     private Hologram holo;
     private Hologram protectHolo;
 

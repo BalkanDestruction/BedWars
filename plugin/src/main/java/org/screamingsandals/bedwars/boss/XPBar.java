@@ -8,10 +8,10 @@ import java.util.List;
 
 public class XPBar implements org.screamingsandals.bedwars.api.boss.XPBar {
 
+    private final List<Player> players = new ArrayList<>();
     private boolean visible = false;
     private float progress = 0F;
     private int seconds = 0;
-    private final List<Player> players = new ArrayList<>();
 
     @Override
     public void addPlayer(Player player) {

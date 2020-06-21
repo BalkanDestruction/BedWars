@@ -23,15 +23,13 @@ public class ProtectionWall extends SpecialItem implements org.screamingsandals.
     private final Game game;
     private final Player player;
     private final Team team;
-
+    private final ItemStack item;
     private int breakingTime;
     private int livingTime;
     private int width;
     private int height;
     private int distance;
     private boolean canBreak;
-
-    private final ItemStack item;
     private Material buildingMaterial;
     private List<Block> wallBlocks;
 

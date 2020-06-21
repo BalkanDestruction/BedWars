@@ -27,9 +27,9 @@ import static misat11.lib.lang.I18n.i18nonly;
 
 public class TeamSelectorInventory implements Listener {
     private final Game game;
-    private SimpleInventories simpleGuiFormat;
     private final Options options;
     private final List<Player> openedForPlayers = new ArrayList<>();
+    private SimpleInventories simpleGuiFormat;
 
     public TeamSelectorInventory(Main plugin, Game game) {
         this.game = game;

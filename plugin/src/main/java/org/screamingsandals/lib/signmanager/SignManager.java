@@ -18,8 +18,8 @@ public class SignManager {
     private final FileConfiguration config = new YamlConfiguration();
     private final File configFile;
     private final HashMap<Location, SignBlock> signs = new HashMap<>();
-    private boolean modify = false;
     private final SignOwner owner;
+    private boolean modify = false;
 
     public SignManager(SignOwner owner, File configFile) {
         this.owner = owner;
