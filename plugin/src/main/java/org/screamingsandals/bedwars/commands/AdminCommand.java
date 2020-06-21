@@ -445,7 +445,7 @@ public class AdminCommand extends BaseCommand {
                         lid++;
                     }
                     boolean isArenaSaved = gc.get(arN).cmd(player, args.get(1),
-                            nargs.toArray(new String[nargs.size()]));
+                            nargs.toArray(new String[0]));
                     if (args.get(1).equalsIgnoreCase("save") && isArenaSaved) {
                         gc.remove(arN);
                     }

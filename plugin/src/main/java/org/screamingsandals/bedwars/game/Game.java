@@ -2251,9 +2251,11 @@ public class Game implements org.screamingsandals.bedwars.api.game.Game {
 
         for (String row : rows) {
             if (row.trim().equals("")) {
+                StringBuilder rowBuilder = new StringBuilder(row);
                 for (int i = 0; i <= rowMax; i++) {
-                    row = row + " ";
+                    rowBuilder.append(" ");
                 }
+                row = rowBuilder.toString();
             }
 
             Score score = obj.getScore(this.formatLobbyScoreboardString(row));

@@ -132,8 +132,7 @@ public class PlayerStatisticManager {
             return playerStatistic;
         }
 
-        HashMap<String, Object> deserialize = new HashMap<>();
-        deserialize.putAll(this.fileDatabase.getConfigurationSection("data." + uuid.toString()).getValues(false));
+        HashMap<String, Object> deserialize = new HashMap<>(this.fileDatabase.getConfigurationSection("data." + uuid.toString()).getValues(false));
         PlayerStatistic playerStatistic = new PlayerStatistic(deserialize);
         playerStatistic.setId(uuid);
         Player player = Main.getInstance().getServer().getPlayer(uuid);

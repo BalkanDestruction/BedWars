@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.screamingsandals.lib.nms.network.inbound.AutoPacketInboundListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.PacketPlayInUseEntity;
@@ -47,11 +47,11 @@ public class HologramManager implements Listener {
     }
 
     public Hologram spawnHologram(Player player, Location loc, String... lines) {
-        return spawnHologram(Arrays.asList(player), loc, lines);
+        return spawnHologram(Collections.singletonList(player), loc, lines);
     }
 
     public Hologram spawnHologramTouchable(Player player, Location loc, String... lines) {
-        return spawnHologramTouchable(Arrays.asList(player), loc, lines);
+        return spawnHologramTouchable(Collections.singletonList(player), loc, lines);
     }
 
     public Hologram spawnHologram(List<Player> players, Location loc, String... lines) {
@@ -88,7 +88,7 @@ public class HologramManager implements Listener {
                         hologram.update(player, hologram.getAllSpawnPackets(), false);
                     } else if (event.getTo().distanceSquared(loc) >= VISIBILITY_DISTANCE_SQUARED
                             && event.getFrom().distanceSquared(loc) < VISIBILITY_DISTANCE_SQUARED) {
-                        hologram.update(player, Arrays.asList(hologram.getFullDestroyPacket()), false);
+                        hologram.update(player, Collections.singletonList(hologram.getFullDestroyPacket()), false);
                     }
                 }
             } catch (Throwable ignored) {
@@ -178,7 +178,7 @@ public class HologramManager implements Listener {
                         hologram.update(player, hologram.getAllSpawnPackets(), false);
                     } else if (event.getTo().distanceSquared(loc) >= VISIBILITY_DISTANCE_SQUARED
                             && event.getFrom().distanceSquared(loc) < VISIBILITY_DISTANCE_SQUARED) {
-                        hologram.update(player, Arrays.asList(hologram.getFullDestroyPacket()), false);
+                        hologram.update(player, Collections.singletonList(hologram.getFullDestroyPacket()), false);
                     }
                 }
             } catch (Throwable ignored) {

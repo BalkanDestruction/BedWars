@@ -9,6 +9,7 @@ import org.screamingsandals.lib.nms.utils.Version;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.screamingsandals.lib.nms.utils.ClassStorage.NMS.*;
@@ -76,7 +77,7 @@ public class Hologram {
     }
 
     public Hologram addViewer(Player player) {
-        return addViewers(Arrays.asList(player));
+        return addViewers(Collections.singletonList(player));
     }
 
     public Hologram addViewers(List<Player> players) {
@@ -93,7 +94,7 @@ public class Hologram {
     }
 
     public Hologram removeViewer(Player player) {
-        return removeViewers(Arrays.asList(player));
+        return removeViewers(Collections.singletonList(player));
     }
 
     public Hologram removeViewers(List<Player> players) {
@@ -101,7 +102,7 @@ public class Hologram {
             if (viewers.contains(player)) {
                 viewers.remove(player);
                 try {
-                    update(player, Arrays.asList(getFullDestroyPacket()), true);
+                    update(player, Collections.singletonList(getFullDestroyPacket()), true);
                 } catch (Throwable ignored) {
                 }
             }
