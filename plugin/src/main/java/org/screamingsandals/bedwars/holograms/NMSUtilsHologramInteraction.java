@@ -106,9 +106,7 @@ public class NMSUtilsHologramInteraction implements IHologramInteraction, TouchH
 
     @Override
     public void updateHolograms(Player player, long delay) {
-        Main.getInstance().getServer().getScheduler().runTaskLater(Main.getInstance(), () -> {
-            NMSUtilsHologramInteraction.this.updateHolograms(player);
-        }, delay);
+        Main.getInstance().getServer().getScheduler().runTaskLater(Main.getInstance(), () -> NMSUtilsHologramInteraction.this.updateHolograms(player), delay);
     }
 
     @Override

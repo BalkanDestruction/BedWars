@@ -11,7 +11,7 @@ import org.bukkit.plugin.Plugin;
 public abstract class AutoPacketInboundListener extends PacketInboundListener implements Listener {
     public AutoPacketInboundListener(Plugin plugin) {
         Bukkit.getPluginManager().registerEvents(this, plugin);
-        Bukkit.getOnlinePlayers().forEach(player -> addPlayer(player));
+        Bukkit.getOnlinePlayers().forEach(this::addPlayer);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
@@ -21,6 +21,6 @@ public abstract class AutoPacketInboundListener extends PacketInboundListener im
 
     @EventHandler
     public final void onPluginDisable(PluginDisableEvent e) {
-        Bukkit.getOnlinePlayers().forEach(player -> removePlayer(player));
+        Bukkit.getOnlinePlayers().forEach(this::removePlayer);
     }
 }
